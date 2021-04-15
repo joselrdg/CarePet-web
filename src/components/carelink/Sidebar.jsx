@@ -1,12 +1,6 @@
 import React from "react";
 
-export const CATEGORIES = [
-  "main",
-  "history",
-  "nutrition",
-  "vaccinations",
-  "deworm",
-];
+
 
 export const Sidebar = () => {
   return (

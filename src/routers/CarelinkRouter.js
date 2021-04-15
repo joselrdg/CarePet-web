@@ -4,7 +4,7 @@ import { CarelinkScreen } from "../components/carelink/CarelinkScreen";
 
 export const CarelinkRouter = () => {
   return (
-    <div className=''>
+    <div className='journal__main-content'>
     <div className=''>
       <Switch>
         <Route exact path="/carelink" component={CarelinkScreen} />

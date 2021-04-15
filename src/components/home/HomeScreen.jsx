@@ -1,9 +1,11 @@
-import React from 'react';
+import React from "react";
+import Navbar from "../nav/Navbar";
 
 export const HomeScreen = () => {
-    return (
-        <div>
-            Home
-        </div>
-    );
+  return (
+    <div>
+      <Navbar />
+      Home
+    </div>
+  );
 };
