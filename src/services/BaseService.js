@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getAccessToken } from '../stores/AccessTokenStore';
+import { getAccessToken, logout } from '../stores/AccessTokenStore';
 
 export const create = (opts = {}) => {
     const http = axios.create({
@@ -17,7 +17,14 @@ export const create = (opts = {}) => {
     })
 
     http.interceptors.response.use(
-        response => response.data
+        response => response.data,
+        (error)=>{
+            if(error.response && [401,403].includes(error.response.status)){
+                logout()
+            }
+
+            return Promise.reject(error)
+        }
     )
     return http
 }

@@ -60,7 +60,7 @@ export const LoginScreen = ({ doLogin }) => {
     if (isValid()) {
       login(fields).then((response) => {
         setAccessToken(response.access_token);
-        doLogin().then((r) => {});
+        doLogin().then(() => push('/carelink'));
       });
     }
   };
