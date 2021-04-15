@@ -1,0 +1,11 @@
+import axios from 'axios';
+
+export const create = (opts = {}) => {
+    const http = axios.create({
+        baseURL: 'http://localhost:3001/api'
+    })
+    http.interceptors.response.use(
+        response => response.data
+    )
+    return http
+}
