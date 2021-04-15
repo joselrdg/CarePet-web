@@ -3,7 +3,8 @@ import { getAccessToken } from '../stores/AccessTokenStore';
 
 export const create = (opts = {}) => {
     const http = axios.create({
-        baseURL: 'http://localhost:3001/api'
+        baseURL: 'http://localhost:3001/api',
+        ...opts
     })
 
     http.interceptors.request.use(request => {
