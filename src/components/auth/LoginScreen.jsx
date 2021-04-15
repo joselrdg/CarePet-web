@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { login } from "../../services/AuthService";
+import { setAccessToken } from "../../stores/AccessTokenStore";
 
 //eslint-disable-next-line
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -32,7 +33,8 @@ const validators = {
   },
 };
 
-export const LoginScreen = () => {
+export const LoginScreen = ({ doLogin }) => {
+  const { push } = useHistory();
   const [state, setstate] = useState({
     fields: {
       email: "",
@@ -52,10 +54,14 @@ export const LoginScreen = () => {
   };
 
   const onSubmit = (e) => {
+    const { fields } = state;
     e.preventDefault();
-    if (isValid) {
-      login(state.fields)
-      .then((response)=> console.log(response))
+
+    if (isValid()) {
+      login(fields).then((response) => {
+        setAccessToken(response.access_token);
+        doLogin().then(() => push('/carelink'));
+      });
     }
   };
 
@@ -98,8 +104,8 @@ export const LoginScreen = () => {
     <>
       <div className="auth__head">
         <h3 className="auth__title">Login</h3>
-        <Link to='/'>
-        <i className="fas fa-dog fa-2x"></i>
+        <Link to="/">
+          <i className="fas fa-dog fa-2x"></i>
         </Link>
       </div>
       <form onSubmit={onSubmit}>
@@ -136,7 +142,9 @@ export const LoginScreen = () => {
           autoComplete="off"
         />
         <button
-          className={`btn ${isValid()?'btn-primary':'btn-primary-d'} btn-block`}
+          className={`btn ${
+            isValid() ? "btn-primary" : "btn-primary-d"
+          } btn-block`}
           type="submit"
           disabled={!isValid()}
         >
