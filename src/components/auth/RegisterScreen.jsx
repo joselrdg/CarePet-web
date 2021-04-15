@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { login } from "../../services/AuthService";
+import { register } from "../../services/AuthService";
 
 //eslint-disable-next-line
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -65,7 +65,7 @@ export const RegisterScreen = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (isValid) {
-      login(state.fields).then((response) => console.log(response));
+      register(state.fields).then((response) => console.log(response)).catch((e)=> console.log(e));
     }
   };
 
@@ -86,8 +86,6 @@ export const RegisterScreen = () => {
 
   const onBlur = (e) => {
     const { name } = e.target;
-
-    console.log(name);
     setTouched((prevTouched) => ({
       ...prevTouched,
       [name]: true,
