@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { login } from "../../services/AuthService";
 
 //eslint-disable-next-line
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-const PASSWORD_PATTERN = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+const NUM_PATTERN = /[0-9]/;
+const CAPITAL_PATTERN = /[A-Z]/;
 
 const validators = {
   email: (value) => {
@@ -19,9 +21,12 @@ const validators = {
     let message;
     if (!value) {
       message = "Password is required";
-    } else if (!PASSWORD_PATTERN.test(value)) {
-      message =
-        "Your password must contain at least 8 characters, 1 number, 1 uppercase and 1 lowercase";
+    } else if (!NUM_PATTERN.test(value)) {
+      message = "Your password must contain at least one number";
+    } else if (!CAPITAL_PATTERN.test(value)) {
+      message = "Your password must contain at least one capital letter";
+    } else if (value && value.length < 8) {
+      message = "Your password must contain at least 8 characters";
     }
     return message;
   },
@@ -48,8 +53,9 @@ export const LoginScreen = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
     if (isValid) {
+      login(state.fields)
+      .then((response)=> console.log(response))
     }
   };
 
@@ -70,6 +76,7 @@ export const LoginScreen = () => {
   const onBlur = (e) => {
     const { name } = e.target;
 
+    console.log(name);
     setTouched((prevTouched) => ({
       ...prevTouched,
       [name]: true,
@@ -78,7 +85,6 @@ export const LoginScreen = () => {
 
   const onFocus = (e) => {
     const { name } = e.target;
-
     setTouched((prevTouched) => ({
       ...prevTouched,
       [name]: false,
@@ -90,8 +96,19 @@ export const LoginScreen = () => {
 
   return (
     <>
-      <h3 className="auth__title">Login</h3>
+      <div className="auth__head">
+        <h3 className="auth__title">Login</h3>
+        <Link to='/'>
+        <i className="fas fa-dog fa-2x"></i>
+        </Link>
+      </div>
       <form onSubmit={onSubmit}>
+        {errors.password && (
+          <div className="auth__alert-error">{errors.password}</div>
+        )}
+        {errors.email && (
+          <div className="auth__alert-error">{errors.email}</div>
+        )}
         <input
           className={`auth__input ${
             errors.email && touched.email ? "auth__invalid" : ""
@@ -103,8 +120,8 @@ export const LoginScreen = () => {
           onChange={onChange}
           onBlur={onBlur}
           onFocus={onFocus}
+          autoComplete="off"
         />
-        {errors.email && <i className="auth__invalid">{errors.email}</i>}
         <input
           className={`auth__input ${
             errors.password && touched.password ? "auth__invalid" : ""
@@ -116,14 +133,12 @@ export const LoginScreen = () => {
           onChange={onChange}
           onBlur={onBlur}
           onFocus={onFocus}
+          autoComplete="off"
         />
-        {errors.password && <i className="auth__invalid">{errors.password}</i>}
         <button
-          className={`btn ${
-            isValid ? "btn-primary-d" : "btn-primary"
-          } btn-block`}
+          className={`btn ${isValid()?'btn-primary':'btn-primary-d'} btn-block`}
           type="submit"
-          disabled={!isValid}
+          disabled={!isValid()}
         >
           Login
         </button>
