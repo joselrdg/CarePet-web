@@ -5,7 +5,6 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import Navbar from "../components/nav/Navbar";
 import { AuthRouter } from "./AuthRouter";
 import { CarelinkRouter } from "./CarelinkRouter";
 import { HomeScreen } from "../components/home/HomeScreen";

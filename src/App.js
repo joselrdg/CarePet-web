@@ -1,6 +1,4 @@
 import { AppRouter } from './routers/AppRouter'
-import Navbar from './components/nav/Navbar';
-
 
 function App() {
   return (

@@ -28,6 +28,14 @@ transition: color .3s ease;
     background-color: darken($color: $primary, $amount: 15);
   }
 }
+.btn-primary-d {
+  background-color: $primary;
+  border-radius: 2px;
+
+  &:disabled {
+    background-color: lighten($color: $primary, $amount: 15);
+  }
+}
 
 .btn-block {
   width: 100%;
