@@ -41,7 +41,7 @@ export default function Pet({ }) {
       <h3>Breed: {breed}</h3>
       <h3>Hair: {hair}</h3>
       <h3>Sterilized: {sterilized}</h3>
-      <LinkToEdit />
+      <LinkToEdit user petId='id'/>
     </div>
   );
 }
