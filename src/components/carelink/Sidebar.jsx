@@ -1,4 +1,5 @@
 import React from "react";
+import { logout } from "../../stores/AccessTokenStore";
 
 
 
@@ -12,7 +13,7 @@ export const Sidebar = () => {
             <span> Jose</span>
           </h3>
 
-          <button className="btn">Logout</button>
+          <button onClick={logout} className="btn">Logout</button>
         </div>
         <div className="journal__new-entry">
           <i className="far fa-calendar-plus fa-5x" />
