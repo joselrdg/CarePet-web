@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getPetInfo } from "../../services/PetService";
+import LinkToEdit from "./LinkToEdit";
 
-export default function Pet({}) {
+export default function Pet({ }) {
   const [pet, setPet] = useState();
 
   const { id } = useParams();
@@ -40,7 +41,7 @@ export default function Pet({}) {
       <h3>Breed: {breed}</h3>
       <h3>Hair: {hair}</h3>
       <h3>Sterilized: {sterilized}</h3>
-      <Link to={`/carelink/pet/${id}/edit`}><h3>Edit</h3></Link>
+      <LinkToEdit user petId='id'/>
     </div>
   );
 }

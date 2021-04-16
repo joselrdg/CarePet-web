@@ -3,10 +3,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { UserContext } from './context/UserContext';
 
 ReactDOM.render(
   <React.StrictMode>
+    <UserContext.Provider vale={{ color: 'blue' }}>
       <App />
+    </UserContext.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
