@@ -34,9 +34,12 @@ const validators = {
   },
 };
 
+
 export const LoginScreen = () => {
+
   const { push } = useHistory();
   const {doLogin} = useUser();
+  
   console.log(doLogin)
   const [state, setstate] = useState({
     fields: {
@@ -84,8 +87,6 @@ export const LoginScreen = () => {
 
   const onBlur = (e) => {
     const { name } = e.target;
-
-    console.log(name);
     setTouched((prevTouched) => ({
       ...prevTouched,
       [name]: true,

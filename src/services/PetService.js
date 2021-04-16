@@ -6,6 +6,10 @@ export const getPetsList = () => {
     return http.get('/pets/list')
 }
 
+export const getPetsUser = (body) => {
+    return http.get('/pets/user', body)
+}
+
 export const getPetInfo = (params) => {
     return http.get(`/pets/${params}`)
 }

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getPetInfo } from "../../services/PetService";
 import LinkToEdit from "./LinkToEdit";
 
-export default function Pet({ }) {
+export default function Pet() {
   const [pet, setPet] = useState();
 
   const { id } = useParams();
@@ -16,7 +16,10 @@ export default function Pet({ }) {
     return "Loading...";
   }
 
-  const { review, carepet } = pet;
+  const {
+    review,
+    // , carepet
+  } = pet;
 
   const {
     name,
@@ -40,8 +43,13 @@ export default function Pet({ }) {
       <h3>Species: {species}</h3>
       <h3>Breed: {breed}</h3>
       <h3>Hair: {hair}</h3>
+      <h3>color: {color}</h3>
       <h3>Sterilized: {sterilized}</h3>
-      <LinkToEdit user petId='id'/>
+      <h3>allergies: {allergies}</h3>
+      <h3>familyhistory: {familyhistory}</h3>
+      <h3>previousdiseases: {previousdiseases}</h3>
+      <h3>surgeries: {surgeries}</h3>
+      <LinkToEdit user petId="id" />
     </div>
   );
 }
