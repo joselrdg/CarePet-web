@@ -16,7 +16,7 @@ export const AppRouter = () => {
         <Switch>
           <Route exact path="/" component={HomeScreen} />
           <Route path="/auth" component={AuthRouter} />
-          <Route exact path="/carelink" component={CarelinkRouter} />
+          <Route path="/carelink" component={CarelinkRouter} />
           <Redirect to="/auth/login" />
         </Switch>
       </div>
