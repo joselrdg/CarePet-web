@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { login } from "../../services/AuthService";
 import { setAccessToken } from "../../stores/AccessTokenStore";
-import { useUserContext } from "../hooks/useUserContex";
+import { useUser } from "../hooks/useUser";
 
 //eslint-disable-next-line
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -36,7 +36,8 @@ const validators = {
 
 export const LoginScreen = () => {
   const { push } = useHistory();
-  const {doLogin} = useUserContext
+  const {doLogin} = useUser();
+  console.log(doLogin)
   const [state, setstate] = useState({
     fields: {
       email: "",

@@ -7,7 +7,7 @@ import { UserContext } from './context/UserContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <UserContext.Provider vale={{ color: 'blue' }}>
+    <UserContext.Provider>
       <App />
     </UserContext.Provider>
   </React.StrictMode>,
