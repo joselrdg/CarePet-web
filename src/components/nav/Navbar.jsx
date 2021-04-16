@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { logout } from "../../stores/AccessTokenStore";
+import { UserContext } from "../../context/UserContext";
 
 const Navbar = () => {
+  const {user} = useContext(UserContext);
   return <div>
       <NavLink to="/">Home</NavLink>
       <NavLink to="/carelink">CareLink</NavLink>
@@ -13,3 +15,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
