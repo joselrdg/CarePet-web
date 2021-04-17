@@ -1,16 +1,17 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import { UserContext } from "../../context/UserContext";
+import { logout } from "../../stores/AccessTokenStore";
 
 const Navbar = () => {
-  const {user} = useContext(UserContext);
   return <div>
       <NavLink to="/">Home</NavLink>
       <NavLink to="/carelink">CareLink</NavLink>
       <Link to="/auth/login">Login</Link>
       <Link to="/auth/register">Register</Link>
-      <Link to="/logout">Log out</Link>
+      <button onClick={logout} className="btn btn-primary">Logout</button>
   </div>;
 };
 
 export default Navbar;
+
+

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+
 import { Switch, Route, Redirect } from "react-router";
 import { LoginScreen } from "../components/auth/LoginScreen";
 import { RegisterScreen } from "../components/auth/RegisterScreen";

@@ -132,7 +132,9 @@ export const RegisterScreen = () => {
           autoComplete="off"
         />
         <input
-          className="auth__input"
+          className={`auth__input ${
+            errors.email && touched.email ? "auth__invalid" : ""
+          }`}
           type="text"
           placeholder="email"
           name="email"
@@ -143,7 +145,9 @@ export const RegisterScreen = () => {
           autoComplete="off"
         />
         <input
-          className="auth__input"
+          className={`auth__input ${
+            errors.password && touched.password ? "auth__invalid" : ""
+          }`}
           type="password"
           placeholder="Password"
           name="password"
