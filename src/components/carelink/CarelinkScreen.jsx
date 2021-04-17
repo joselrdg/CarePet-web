@@ -10,8 +10,7 @@ export const CarelinkScreen = () => {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
-    console.log(user.name)
-    if (user) {
+    if (user !== null) {
       const id = { user: user.id, name:user.name };
       getPetsUser(id).then((pets) => {
         setPets(pets);
