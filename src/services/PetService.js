@@ -8,7 +8,7 @@ export const getPetsList = () => {
 
 export const getPetsUser = (body) => {
     console.log(body)
-    return http.get(`/pets/user/${body.user}`, body)
+    return http.get(`/pets/user/${body}`, body)
 }
 
 export const getPetInfo = (params) => {

@@ -1,7 +1,6 @@
 import React from "react";
 import { logout } from "../../stores/AccessTokenStore";
-
-
+import Pets from "./Pets";
 
 export const Sidebar = () => {
   return (
@@ -11,14 +10,16 @@ export const Sidebar = () => {
           <h3 className="mt-5">
             {/* <i className="far fa-moon" /> */}
             <span> Jose</span>
+            <Pets/>
           </h3>
-          <button onClick={logout} className="btn">Logout</button>
+          <button onClick={logout} className="btn">
+            Logout
+          </button>
         </div>
         <div className="journal__new-entry">
           {/* <i className="far fa-calendar-plus fa-5x" /> */}
           <p className="mt-5">New entry</p>
         </div>
-
       </div>
     </div>
   );
