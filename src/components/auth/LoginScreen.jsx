@@ -40,7 +40,6 @@ export const LoginScreen = () => {
   const { push } = useHistory();
   const {doLogin} = useUser();
   
-  console.log(doLogin)
   const [state, setstate] = useState({
     fields: {
       email: "",
