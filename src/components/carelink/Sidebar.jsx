@@ -12,7 +12,6 @@ export const Sidebar = () => {
             {/* <i className="far fa-moon" /> */}
             <span> Jose</span>
           </h3>
-
           <button onClick={logout} className="btn">Logout</button>
         </div>
         <div className="journal__new-entry">
