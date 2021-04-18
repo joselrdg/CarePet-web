@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,16 +8,23 @@ import {
 import { AuthRouter } from "./AuthRouter";
 import { CarelinkRouter } from "./CarelinkRouter";
 import { HomeScreen } from "../components/home/HomeScreen";
+import { UserContext } from "../context/UserContext";
 
 export const AppRouter = () => {
-  
+  const { user } = useContext(UserContext);
+  const pahtCareLink = () => {
+    if(user!== null ){
+      return '/carelink'
+    }
+    return '/auth/login'
+  }
   return (
     <Router>
       <div>
         <Switch>
           <Route exact path="/" component={HomeScreen} />
           <Route path="/auth" component={AuthRouter} />
-          <Route path="/carelink" component={CarelinkRouter} />
+          <Route path={pahtCareLink()} component={CarelinkRouter} />
           <Redirect to="/auth/login" />
         </Switch>
       </div>

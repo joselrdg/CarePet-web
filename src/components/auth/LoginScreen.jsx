@@ -34,12 +34,10 @@ const validators = {
   },
 };
 
-
 export const LoginScreen = () => {
-
   const { push } = useHistory();
-  const {doLogin} = useUser();
-  
+  const { doLogin } = useUser();
+
   const [state, setstate] = useState({
     fields: {
       email: "",
@@ -65,7 +63,9 @@ export const LoginScreen = () => {
     if (isValid()) {
       login(fields).then((response) => {
         setAccessToken(response.access_token);
-        doLogin().then(() => push('/carelink'));
+        doLogin().then(() => {
+          push("/carelink");
+        });
       });
     }
   };

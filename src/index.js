@@ -1,17 +1,20 @@
-import './styles/styles.scss'
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { UserContextProvider } from './context/UserContext';
+import "./styles/styles.scss";
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { UserContextProvider } from "./context/UserContext";
+import { PetsContextProvider } from "./context/PetContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <UserContextProvider>
-      <App />
-  </UserContextProvider>
+      <PetsContextProvider>
+        <App />
+      </PetsContextProvider>
+    </UserContextProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

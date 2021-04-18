@@ -1,31 +1,25 @@
-import React, { useContext, useEffect, useState } from "react";
-import { getPetsUser } from "../../services/PetService";
-import { UserContext } from "../../context/UserContext";
+import React, { useEffect } from "react";
+import { usePet } from "../hooks/usePet";
 import Navbar from "../nav/Navbar";
 import Pets from "./Pets";
 import { Sidebar } from "./Sidebar";
 
+
 export const CarelinkScreen = () => {
-  const [pets, setPets] = useState([]);
-  const { user } = useContext(UserContext);
-
+  const { getPets } = usePet();
+  
+  
   useEffect(() => {
-    console.log(user.name)
-    if (user) {
-      const id = { user: user.id, name:user.name };
-      getPetsUser(id).then((pets) => {
-        setPets(pets);
-      });
-    }
-  }, [user]);
-
+    getPets()    
+  }, [getPets]);
+  
   return (
     <div className="">
       <Navbar />
       <div>
         <Sidebar />
         <main>
-          <Pets pets={pets} />
+          <Pets />
         </main>
       </div>
     </div>
