@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Copyright from "../copyright/Copyright";
 import { usePet } from "../hooks/usePet";
 import Navbar from "../nav/Navbar";
 import Pets from "./Pets";
@@ -12,6 +13,7 @@ export const CarelinkScreen = () => {
   useEffect(() => {
     getPets()    
   }, [getPets]);
+ 
   
   return (
     <div className="">
@@ -19,9 +21,9 @@ export const CarelinkScreen = () => {
       <div>
         <Sidebar />
         <main>
-          <Pets />
         </main>
       </div>
+      <Copyright/>
     </div>
   );
 };
