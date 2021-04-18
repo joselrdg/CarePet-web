@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { login } from "../../services/AuthService";
 import { setAccessToken } from "../../stores/AccessTokenStore";
-import { usePet } from "../hooks/usePet";
 import { useUser } from "../hooks/useUser";
 
 //eslint-disable-next-line
@@ -35,13 +34,10 @@ const validators = {
   },
 };
 
-
 export const LoginScreen = () => {
-
   const { push } = useHistory();
-  const {doLogin} = useUser();
-  // const {getPets} = usePet();
-  
+  const { doLogin } = useUser();
+
   const [state, setstate] = useState({
     fields: {
       email: "",
@@ -66,12 +62,10 @@ export const LoginScreen = () => {
 
     if (isValid()) {
       login(fields).then((response) => {
-        console.log(response)
         setAccessToken(response.access_token);
         doLogin().then(() => {
-
-          push('/carelink')
-      });
+          push("/carelink");
+        });
       });
     }
   };

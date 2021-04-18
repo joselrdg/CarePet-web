@@ -8,7 +8,7 @@ export function UserContextProvider({ children }) {
   const [user, setUser] = useState(null);
 
   const doLogin = () => {
-    return getUserInfo().then((response) => setUser(response));
+    return getUserInfo().then((response) => {setUser(response); return response});
   };
 
   useEffect(() => {
