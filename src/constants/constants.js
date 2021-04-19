@@ -8,14 +8,41 @@ import ColorizeIcon from '@material-ui/icons/Colorize';
 import OutdoorGrillIcon from '@material-ui/icons/OutdoorGrill';
 
 export const CATEGORIES = [
-  {name: "Mascotas", icon: <PetsIcon />, subcategory: ['Añadir mascota'],folders:['Perfil', 'Reseña', 'Recomendaciones']},
-  {name:"Agenda", icon: <TodayIcon />, subcategory: ['Añadir aviso']},
-  {name:"Plan de salud", icon: <LocalHospitalIcon />, subcategory: ['Añadir plan']},
-  {name:"Recomendaciones", icon: <BeenhereIcon />, subcategory: ['Buscar']},
-  {name:"Nutrición", icon: <OutdoorGrillIcon />, subcategory: ['Añadir alimentos']},
-  {name:"Vacunas", icon: <ColorizeIcon />, subcategory: ['Añadir vacuna', ]},
-  {name:"Desparasitación", icon: <AndroidIcon />, subcategory: ['Añadir desparasitación']},
-  {name:"Historial", icon: <FolderSpecialIcon />, subcategory: ['Añadir al historial']},
+  { 
+    name: "Mascotas", 
+    icon: <PetsIcon />, 
+    subcategory: ['Añadir mascota'], folders: ['Perfil', 'Reseña', 'Recomendaciones'] },
+  { 
+    name: "Agenda", 
+    icon: <TodayIcon />, 
+    subcategory: [{ 
+      name: 'Añadir aviso', 
+      folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
+    }] },
+  { 
+    name: "Plan de salud",
+     icon: <LocalHospitalIcon />, 
+     subcategory: ['Añadir plan'] },
+  { 
+    name: "Recomendaciones", 
+    icon: <BeenhereIcon />, 
+    subcategory: ['Buscar'] },
+  { 
+    name: "Nutrición", 
+    icon: <OutdoorGrillIcon />, 
+    subcategory: ['Añadir alimentos'] },
+  { 
+    name: "Vacunas", 
+    icon: <ColorizeIcon />, 
+    subcategory: ['Añadir vacuna',] },
+  { 
+    name: "Desparasitación", 
+    icon: <AndroidIcon />, 
+    subcategory: ['Añadir desparasitación'] },
+  { 
+    name: "Historial", 
+    icon: <FolderSpecialIcon />, 
+    subcategory: ['Añadir al historial'] },
 ];
 
 export const ICONSCATEGORIES = [

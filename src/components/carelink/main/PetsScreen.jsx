@@ -5,7 +5,6 @@ import TabPanel from "../main/TabPanel";
 
 const PetsScreen = () => {
     // const { petsUser } = usePet();
-
     return (
         <>
             <TabPanel category={0}/>

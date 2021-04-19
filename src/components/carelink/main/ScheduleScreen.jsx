@@ -5,8 +5,6 @@ import React from 'react';
 
 const ScheduleScreen = () => {
     // const { petsUser } = usePet();
-
-
     return (
         <div>
         <h1>ScheduleScreen</h1>
