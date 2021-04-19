@@ -14,60 +14,60 @@ import ListItemText from "@material-ui/core/ListItemText";
 import MailIcon from "@material-ui/icons/Mail";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
-import StarBorder from "@material-ui/icons/StarBorder";
-import Collapse from "@material-ui/core/Collapse";
 import Typography from "@material-ui/core/Typography";
 
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+// import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { usePet } from "../../hooks/usePet";
-import { CATEGORIES, ICONSCATEGORIES } from "../../constants/constants";
+import { CATEGORIES } from "../../constants/constants";
 import Pet from "../../pet/Pet";
+import DrawerBox from "./drawer";
+import { CategoryRouter } from "../../../routers/CategoryRouter";
+// import CategoryRouter from "../../../routers/CategoryRouter";
 
-const drawerWidth = 260;
+// const drawerWidth = 260;
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-  },
-  drawer: {
-    [theme.breakpoints.up("sm")]: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
-  },
-  appBar: {
-    [theme.breakpoints.up("sm")]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-    },
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up("sm")]: {
-      display: "none",
-    },
-  },
-  // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  content: {
-    maxWidth: '100%',
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
-  nested: {
-    paddingLeft: theme.spacing(4),
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     display: "flex",
+//   },
+//   drawer: {
+//     [theme.breakpoints.up("sm")]: {
+//       width: drawerWidth,
+//       flexShrink: 0,
+//     },
+//   },
+//   appBar: {
+//     [theme.breakpoints.up("sm")]: {
+//       width: `calc(100% - ${drawerWidth}px)`,
+//       marginLeft: drawerWidth,
+//     },
+//   },
+//   menuButton: {
+//     marginRight: theme.spacing(2),
+//     [theme.breakpoints.up("sm")]: {
+//       display: "none",
+//     },
+//   },
+//   // necessary for content to be below app bar
+//   toolbar: theme.mixins.toolbar,
+//   drawerPaper: {
+//     width: drawerWidth,
+//   },
+//   content: {
+//     maxWidth: "100%",
+//     flexGrow: 1,
+//     padding: theme.spacing(3),
+//   },
+//   nested: {
+//     paddingLeft: theme.spacing(4),
+//   },
+// }));
 
 function ResponsiveDrawer(props) {
   const { petsUser } = usePet();
+
   const [stateCategories, setStateCategories] = useState({
-    petsName: petsUser.map((pet) => pet.review.name),
+    petsName: petsUser && petsUser.map((pet) => pet.review.name),
     petNumber: 0,
     categoryNumber: 0,
     subcategoryNumber: 0,
@@ -75,9 +75,9 @@ function ResponsiveDrawer(props) {
   const [open, setOpen] = React.useState(true);
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const { window } = props;
-  const classes = useStyles();
-  const theme = useTheme();
+  const { window, classes, themeDirection } = props;
+  // const classes = useStyles();
+  // const theme = useTheme();
 
   const {
     petsName,
@@ -99,9 +99,10 @@ function ResponsiveDrawer(props) {
     surgeries,
   } = petsUser[petNumber].review;
 
-  console.log(stateCategories);
 
   const handleClick = (index) => {
+    console.log('index click ', index)
+
     if (categoryNumber === index) {
       setOpen(!open);
     } else {
@@ -124,82 +125,83 @@ function ResponsiveDrawer(props) {
   };
 
   const handleSubcategory = (subcategory) => {
+    console.log('subcategoria', subcategory)
     setStateCategories((prevState) => ({
       ...prevState,
       subcategoryNumber: subcategory,
     }));
   };
 
-  const drawer = (
-    <div>
-      <div className={classes.toolbar} />
-      <Divider />
-      <List>
-        {CATEGORIES.map((item, index) => (
-          <div key={item.name}>
-            <ListItem button onClick={() => handleClick(index)}>
-              <ListItemIcon>{item.icon}</ListItemIcon>
-              <ListItemText primary={item.name} />
-              {open && categoryNumber === index ? (
-                <ExpandLess />
-              ) : (
-                <ExpandMore />
-              )}
-            </ListItem>
+  // const drawer = (
+  //   <div>
+  //     <div className={classes.toolbar} />
+  //     <Divider />
+  //     <List>
+  //       {CATEGORIES.map((item, index) => (
+  //         <div key={item.name}>
+  //           <ListItem button onClick={() => handleClick(index)}>
+  //             <ListItemIcon>{item.icon}</ListItemIcon>
+  //             <ListItemText primary={item.name} />
+  //             {open && categoryNumber === index ? (
+  //               <ExpandLess />
+  //             ) : (
+  //               <ExpandMore />
+  //             )}
+  //           </ListItem>
 
-            {categoryNumber === index
-              ? CATEGORIES[categoryNumber].subcategory.map(
-                  (subcategory, idex) => (
-                    <div key={index}>
-                      <Collapse in={open} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                          {categoryNumber === 0
-                            ? petsName.map((name, index) => (
-                                <ListItem
-                                  button
-                                  onClick={() => handleSubcategory(index)}
-                                  className={classes.nested}
-                                >
-                                  <ListItemIcon>
-                                    <StarBorder />
-                                  </ListItemIcon>
-                                  <ListItemText primary={name} />
-                                </ListItem>
-                              ))
-                            : null}
-                          <ListItem button className={classes.nested}>
-                            <ListItemIcon>
-                              <StarBorder />
-                            </ListItemIcon>
-                            <ListItemText primary={subcategory} />
-                          </ListItem>
-                        </List>
-                      </Collapse>
-                    </div>
-                  )
-                )
-              : null}
-          </div>
-        ))}
-      </List>
-      <Divider />
-      {/* <List>
-        {CATEGORIES.map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{ICONSCATEGORIES[index]}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List> */}
-      <Divider />
-    </div>
-  );
+  //           {categoryNumber === index
+  //             ? CATEGORIES[categoryNumber].subcategory.map(
+  //                 (subcategory, idex) => (
+  //                   <div key={index}>
+  //                     <Collapse in={open} timeout="auto" unmountOnExit>
+  //                       <List component="div" disablePadding>
+  //                         {categoryNumber === 0
+  //                           ? petsName.map((name, index) => (
+  //                               <ListItem
+  //                                 button
+  //                                 onClick={() => handleSubcategory(index)}
+  //                                 className={classes.nested}
+  //                               >
+  //                                 <ListItemIcon>
+  //                                   <StarBorder />
+  //                                 </ListItemIcon>
+  //                                 <ListItemText primary={name} />
+  //                               </ListItem>
+  //                             ))
+  //                           : null}
+  //                         <ListItem button className={classes.nested}>
+  //                           <ListItemIcon>
+  //                             <StarBorder />
+  //                           </ListItemIcon>
+  //                           <ListItemText primary={subcategory} />
+  //                         </ListItem>
+  //                       </List>
+  //                     </Collapse>
+  //                   </div>
+  //                 )
+  //               )
+  //             : null}
+  //         </div>
+  //       ))}
+  //     </List>
+  //     <Divider />
+  //     {/* <List>
+  //       {CATEGORIES.map((text, index) => (
+  //         <ListItem button key={text}>
+  //           <ListItemIcon>{ICONSCATEGORIES[index]}</ListItemIcon>
+  //           <ListItemText primary={text} />
+  //         </ListItem>
+  //       ))}
+  //     </List> */}
+  //     <Divider />
+  //   </div>
+  // );
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <div className={classes.root}>
+    <>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
@@ -213,7 +215,6 @@ function ResponsiveDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-          
             CarePet: {name}
           </Typography>
         </Toolbar>
@@ -224,7 +225,7 @@ function ResponsiveDrawer(props) {
           <Drawer
             container={container}
             variant="temporary"
-            anchor={theme.direction === "rtl" ? "right" : "left"}
+            anchor={themeDirection === "rtl" ? "right" : "left"}
             open={mobileOpen}
             onClose={handleDrawerToggle}
             classes={{
@@ -234,7 +235,16 @@ function ResponsiveDrawer(props) {
               keepMounted: true, // Better open performance on mobile.
             }}
           >
-            {drawer}
+            <DrawerBox
+              classes={{ toolbar: classes.toolbar, nested: classes.nested }}
+              open={open}
+              categoryNumber={categoryNumber}
+              petsName={petsName}
+              handleClick={(h)=>handleClick(h)}
+              handleSubcategory={(h)=>handleSubcategory(h)}
+            />
+
+            {/* {drawer} */}
           </Drawer>
         </Hidden>
         <Hidden xsDown implementation="css">
@@ -245,15 +255,20 @@ function ResponsiveDrawer(props) {
             variant="permanent"
             open
           >
-            {drawer}
+            <DrawerBox
+              classes={{ toolbar: classes.toolbar, nested: classes.nested }}
+              open={open}
+              categoryNumber={categoryNumber}
+              petsName={petsName}
+              handleClick={(h)=>handleClick(h)}
+              handleSubcategory={(h)=>handleSubcategory(h)}
+            />
+            {/* {drawer} */}
           </Drawer>
         </Hidden>
       </nav>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        {mainContainer("pet")}
-      </main>
-    </div>
+     
+    </>
   );
 }
 
