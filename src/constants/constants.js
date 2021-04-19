@@ -1,9 +1,5 @@
 import PetsIcon from "@material-ui/icons/Pets";
 import LocalHospitalIcon from "@material-ui/icons/LocalHospital";
-import LocalDiningIcon from "@material-ui/icons/LocalDining";
-import AdbIcon from '@material-ui/icons/Adb';
-import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
-import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import TodayIcon from '@material-ui/icons/Today';
 import FolderSpecialIcon from '@material-ui/icons/FolderSpecial';
 import AndroidIcon from '@material-ui/icons/Android';
@@ -12,7 +8,7 @@ import ColorizeIcon from '@material-ui/icons/Colorize';
 import OutdoorGrillIcon from '@material-ui/icons/OutdoorGrill';
 
 export const CATEGORIES = [
-  {name: "Mascotas", icon: <PetsIcon />, subcategory: ['Añadir mascota']},
+  {name: "Mascotas", icon: <PetsIcon />, subcategory: ['Añadir mascota'],folders:['Perfil', 'Reseña', 'Recomendaciones']},
   {name:"Agenda", icon: <TodayIcon />, subcategory: ['Añadir aviso']},
   {name:"Plan de salud", icon: <LocalHospitalIcon />, subcategory: ['Añadir plan']},
   {name:"Recomendaciones", icon: <BeenhereIcon />, subcategory: ['Buscar']},

@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
-import Copyright from "../copyright/Copyright";
+// import Copyright from "../copyright/Copyright";
 import { usePet } from "../hooks/usePet";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-
-import Navbar from "../nav/Navbar";
-import Pets from "./Pets";
 import Sidebar from "./sidebar/Sidebar";
 
 

@@ -5,7 +5,7 @@ import Pet from "./Pet";
 
 const Pets = () => {
   const { petsUser } = useContext(PetsContext);
-  console.log(petsUser);
+ 
   if(!petsUser){
     return (<p>Loading...</p>)
   }

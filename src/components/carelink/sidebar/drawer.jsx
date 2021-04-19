@@ -1,5 +1,4 @@
 import React from "react";
-import { useTheme } from "@material-ui/core/styles";
 import {
   Divider,
   List,
@@ -12,7 +11,7 @@ import ExpandMore from "@material-ui/icons/ExpandMore";
 import Collapse from "@material-ui/core/Collapse";
 import StarBorder from "@material-ui/icons/StarBorder";
 
-import { CATEGORIES } from "../../constants/constants";
+import { CATEGORIES } from "../../../constants/constants";
 import { Link } from "react-router-dom";
 
 // const useStyles = makeStyles((theme) => ({
@@ -30,7 +29,6 @@ function DrawerBox({
   petsName,
   handleSubcategory,
 }) {
-  console.log(categoryNumber);
   if (!classes) {
     return "Loading...";
   }
