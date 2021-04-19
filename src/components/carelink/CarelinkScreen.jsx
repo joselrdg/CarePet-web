@@ -1,27 +1,69 @@
 import React, { useEffect } from "react";
+import Copyright from "../copyright/Copyright";
 import { usePet } from "../hooks/usePet";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+
 import Navbar from "../nav/Navbar";
 import Pets from "./Pets";
-import { Sidebar } from "./Sidebar";
+import Sidebar from "./sidebar/Sidebar";
 
+
+const drawerWidth = 260;
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+  },
+  drawer: {
+    [theme.breakpoints.up("sm")]: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
+  },
+  appBar: {
+    [theme.breakpoints.up("sm")]: {
+      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: drawerWidth,
+    },
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up("sm")]: {
+      display: "none",
+    },
+  },
+  // necessary for content to be below app bar
+  toolbar: theme.mixins.toolbar,
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  content: {
+    maxWidth: "100%",
+    flexGrow: 1,
+    padding: theme.spacing(3),
+  },
+  nested: {
+    paddingLeft: theme.spacing(4),
+  },
+}));
 
 export const CarelinkScreen = () => {
-  const { getPets } = usePet();
-  
-  
+  const { getPets, petsUser } = usePet();
+  const classes = useStyles();
+  const theme = useTheme();
+
   useEffect(() => {
-    getPets()    
+    getPets();
   }, [getPets]);
-  
+
+  if (!petsUser) {
+    return "Loading...";
+  }
+
   return (
-    <div className="">
-      <Navbar />
-      <div>
-        <Sidebar />
-        <main>
-          <Pets />
-        </main>
-      </div>
-    </div>
+    <>
+      <Sidebar classes={classes} themeDirection={theme.direction}/>
+      
+    </>
   );
 };

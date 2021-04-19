@@ -1,42 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getPetInfo } from "../../services/PetService";
+import React from "react";
 import LinkToEdit from "./LinkToEdit";
+import ScrollableTabsButtonAuto from "../carelink/main/TabPanel";
 
-export default function Pet() {
-  const [pet, setPet] = useState();
+export default function Pet({
+  name,
+  allergies,
+  breed,
+  chip,
+  color,
+  familyhistory,
+  hair,
+  previousdiseases,
+  species,
+  sterilized,
+  surgeries,
+}) {
 
-  const { id } = useParams();
+  console.log(name)
 
-  useEffect(() => {
-    getPetInfo(id).then((pet) => setPet(pet));
-  }, [id]);
-
-  if (!pet) {
+  if (!name) {
     return "Loading...";
   }
-
-  const {
-    review,
-    // , carepet
-  } = pet;
-
-  const {
-    name,
-    allergies,
-    breed,
-    chip,
-    color,
-    familyhistory,
-    hair,
-    previousdiseases,
-    species,
-    sterilized,
-    surgeries,
-  } = review;
+  
 
   return (
     <div>
+    <ScrollableTabsButtonAuto/>
       <h1>pantalla pet unica</h1>
       <h1>Name: {name}</h1>
       <h3>Chip: {chip}</h3>
