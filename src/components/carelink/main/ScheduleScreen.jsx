@@ -1,13 +1,10 @@
 import React from 'react';
-import { usePet } from '../../hooks/usePet';
-import TabPanel from "../main/TabPanel";
+// import { usePet } from '../../hooks/usePet';
+// import TabPanel from "../main/TabPanel";
 
 
 const ScheduleScreen = () => {
-    const { petsUser } = usePet();
-    console.log(petsUser)
-
-
+    // const { petsUser } = usePet();
     return (
         <div>
         <h1>ScheduleScreen</h1>
