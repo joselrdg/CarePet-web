@@ -54,7 +54,7 @@ function DrawerBox({
             {categoryNumber === index
               ? CATEGORIES[categoryNumber].subcategory.map(
                   (subcategory, idex) => (
-                    <div key={subcategory}>
+                    <div key={subcategory.name}>
                       <Collapse in={open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                           {categoryNumber === 0
@@ -76,7 +76,7 @@ function DrawerBox({
                             <ListItemIcon>
                               <StarBorder />
                             </ListItemIcon>
-                            <ListItemText primary={subcategory} />
+                            <ListItemText primary={subcategory.name} />
                           </ListItem>
                         </List>
                       </Collapse>

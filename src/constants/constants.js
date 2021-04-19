@@ -11,7 +11,10 @@ export const CATEGORIES = [
   { 
     name: "Mascotas", 
     icon: <PetsIcon />, 
-    subcategory: ['Añadir mascota'], folders: ['Perfil', 'Reseña', 'Recomendaciones'] },
+    subcategory: [{
+      name:'Añadir mascota', 
+      folders: ['Perfil', 'Reseña', 'Recomendaciones'
+    ]}] },
   { 
     name: "Agenda", 
     icon: <TodayIcon />, 
@@ -22,27 +25,45 @@ export const CATEGORIES = [
   { 
     name: "Plan de salud",
      icon: <LocalHospitalIcon />, 
-     subcategory: ['Añadir plan'] },
+     subcategory: [{ 
+      name: 'Añadir aviso', 
+      folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
+    }] },
   { 
     name: "Recomendaciones", 
     icon: <BeenhereIcon />, 
-    subcategory: ['Buscar'] },
+    subcategory: [{ 
+      name: 'Añadir aviso', 
+      folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
+    }] },
   { 
     name: "Nutrición", 
     icon: <OutdoorGrillIcon />, 
-    subcategory: ['Añadir alimentos'] },
+    subcategory: [{ 
+      name: 'Añadir aviso', 
+      folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
+    }] },
   { 
     name: "Vacunas", 
     icon: <ColorizeIcon />, 
-    subcategory: ['Añadir vacuna',] },
+    subcategory: [{ 
+      name: 'Añadir aviso', 
+      folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
+    }] },
   { 
     name: "Desparasitación", 
     icon: <AndroidIcon />, 
-    subcategory: ['Añadir desparasitación'] },
+    subcategory: [{ 
+      name: 'Añadir aviso', 
+      folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
+    }] },
   { 
     name: "Historial", 
     icon: <FolderSpecialIcon />, 
-    subcategory: ['Añadir al historial'] },
+    subcategory: [{ 
+      name: 'Añadir aviso', 
+      folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
+    }] },
 ];
 
 export const ICONSCATEGORIES = [

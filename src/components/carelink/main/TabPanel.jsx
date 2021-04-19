@@ -49,13 +49,15 @@ function a11yProps(index) {
 //   },
 // }));
 
-export default function ScrollableTabsButtonAuto() {
+export default function ScrollableTabsButtonAuto(cetegoryNum) {
   // const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  console.log(value)
 
   return (
     <>
@@ -70,12 +72,12 @@ export default function ScrollableTabsButtonAuto() {
           scrollButtons="auto"
           aria-label="scrollable auto tabs example"
         >
-          {CATEGORIES[0].folders.map((category, index) => (
+          {CATEGORIES[0].subcategory[0].folders.map((category, index) => (
             <Tab key={category} label={`${category}`} {...a11yProps(index)} />
           ))}
         </Tabs>
       </AppBar>
-      {CATEGORIES[0].folders.map((category, index) => (
+      {CATEGORIES[0].subcategory[0].folders.map((category, index) => (
         <TabPanel key={index} value={value} index={index}>
           {category}
         </TabPanel>
