@@ -155,7 +155,7 @@ function ResponsiveDrawer(props) {
             }}
           >
             <DrawerBox
-              classes={{ toolbar: classes.toolbar, nested: classes.nested }}
+              classes={{...classes}}
               open={open}
               // categoryNumber={categoryNumber}
               petsName={petsName}
@@ -175,7 +175,7 @@ function ResponsiveDrawer(props) {
             open
           >
             <DrawerBox
-              classes={{ toolbar: classes.toolbar, nested: classes.nested }}
+              classes={{...classes}}
               open={open}
               // categoryNumber={categoryNumber}
               petsName={petsName}
