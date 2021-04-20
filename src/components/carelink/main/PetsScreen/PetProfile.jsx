@@ -1,6 +1,6 @@
 import React from 'react';
 // import { usePet } from '../../hooks/usePet';
-import TabPanel from "../TabPanel";
+import Pipebar from "../../progress/Pipebar";
 
 
 const PetProfile = () => {
@@ -8,6 +8,7 @@ const PetProfile = () => {
     return (
         <>
         <h1>PetProfile</h1>
+        <Pipebar/>
         </>
     )
 }
