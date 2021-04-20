@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 
 // import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { usePet } from "../../hooks/usePet";
+import { useCategory } from "../../hooks/useCategory";
 import DrawerBox from "./drawer";
 
 // const drawerWidth = 260;
@@ -53,6 +54,8 @@ import DrawerBox from "./drawer";
 
 function ResponsiveDrawer(props) {
   const { petsUser } = usePet();
+  const {setCategory, stateCategory} = useCategory()
+
 
   const [stateCategories, setStateCategories] = useState({
     petsName: petsUser && petsUser.map((pet) => pet.review.name),
@@ -70,7 +73,7 @@ function ResponsiveDrawer(props) {
   const {
     petsName,
     petNumber,
-    categoryNumber,
+    // categoryNumber,
     // subcategoryNumber,
   } = stateCategories;
   const {
@@ -87,31 +90,31 @@ function ResponsiveDrawer(props) {
     // surgeries,
   } = petsUser[petNumber].review;
 
-  const handleClick = (index) => {
-    if (categoryNumber === index) {
-      setOpen(!open);
-    } else {
-      setOpen(false);
-      setTimeout(() => {
-        setStateCategories((prevState) => ({
-          ...prevState,
-          categoryNumber: index,
-        }));
-        setOpen(true);
-      }, 300);
-    }
-  };
+  // const handleClick = (index) => {
+  //  if (categoryNumber === index) {
+  //     setOpen(!open);
+  //   } else {
+  //     setOpen(false);
+  //     setTimeout(() => {
+  //       setStateCategories((prevState) => ({
+  //         ...prevState,
+  //         categoryNumber: index,
+  //       }));
+  //       setOpen(true);
+  //     }, 300);
+  //   } 
+  // };
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const handleSubcategory = (subcategory) => {
-    setStateCategories((prevState) => ({
-      ...prevState,
-      subcategoryNumber: subcategory,
-    }));
-  };
+  // const handleSubcategory = (subcategory) => {
+  //   setStateCategories((prevState) => ({
+  //     ...prevState,
+  //     subcategoryNumber: subcategory,
+  //   }));
+  // };
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
@@ -154,10 +157,10 @@ function ResponsiveDrawer(props) {
             <DrawerBox
               classes={{ toolbar: classes.toolbar, nested: classes.nested }}
               open={open}
-              categoryNumber={categoryNumber}
+              // categoryNumber={categoryNumber}
               petsName={petsName}
-              handleClick={(h) => handleClick(h)}
-              handleSubcategory={(h) => handleSubcategory(h)}
+              // handleClick={(h) => handleClick(h)}
+              // handleSubcategory={(h) => handleSubcategory(h)}
             />
 
             {/* {drawer} */}
@@ -174,10 +177,10 @@ function ResponsiveDrawer(props) {
             <DrawerBox
               classes={{ toolbar: classes.toolbar, nested: classes.nested }}
               open={open}
-              categoryNumber={categoryNumber}
+              // categoryNumber={categoryNumber}
               petsName={petsName}
-              handleClick={(h) => handleClick(h)}
-              handleSubcategory={(h) => handleSubcategory(h)}
+              // handleClick={(h) => handleClick(h)}
+              // handleSubcategory={(h) => handleSubcategory(h)}
             />
             {/* {drawer} */}
           </Drawer>

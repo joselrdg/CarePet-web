@@ -10,7 +10,7 @@ import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import Collapse from "@material-ui/core/Collapse";
 import StarBorder from "@material-ui/icons/StarBorder";
-
+import { useCategory } from "../../hooks/useCategory";
 import { CATEGORIES } from "../../../constants/constants";
 import { Link } from "react-router-dom";
 
@@ -23,12 +23,39 @@ import { Link } from "react-router-dom";
 
 function DrawerBox({
   classes,
-  handleClick,
-  open,
-  categoryNumber,
+  // handleClick,
+  // open,
+  // categoryNumber,
   petsName,
-  handleSubcategory,
+  // handleSubcategory,
 }) {
+  const { setCategory, stateCategory } = useCategory();
+  const [open, setOpen] = React.useState(true);
+  const { category, subcategory } = stateCategory;
+
+  const handleSubcategory = (subcategory) => {
+    setCategory((prevState) => ({
+      ...prevState,
+      subcategory: subcategory,
+      folder: 0,
+    }));
+  };
+
+  const handleClick = (index) => {
+    setOpen(!open);
+    if (index !== category) {
+      setTimeout(() => {
+        setCategory({
+          category: index,
+          subcategory: 0,
+          folder: 0,
+        });
+        setOpen(true);
+      }, 280);
+    }
+  };
+  console.log(stateCategory);
+
   if (!classes) {
     return "Loading...";
   }
@@ -43,60 +70,45 @@ function DrawerBox({
               <ListItem button onClick={() => handleClick(index)}>
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText primary={item.name} />
-                {open && categoryNumber === index ? (
-                  <ExpandLess />
-                ) : (
-                  <ExpandMore />
-                )}
+                {open && category === index ? <ExpandLess /> : <ExpandMore />}
               </ListItem>
             </Link>
 
-            {categoryNumber === index
-              ? CATEGORIES[categoryNumber].subcategory.map(
-                  (subcategory, idex) => (
-                    <div key={subcategory.name}>
-                      <Collapse in={open} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                          {categoryNumber === 0
-                            ? petsName.map((name, index) => (
-                                <ListItem
-                                  button
-                                  onClick={() => handleSubcategory(index)}
-                                  className={classes.nested}
-                                  key={index}
-                                >
-                                  <ListItemIcon>
-                                    <StarBorder />
-                                  </ListItemIcon>
-                                  <ListItemText primary={name} />
-                                </ListItem>
-                              ))
-                            : null}
-                          <ListItem button className={classes.nested}>
-                            <ListItemIcon>
-                              <StarBorder />
-                            </ListItemIcon>
-                            <ListItemText primary={subcategory.name} />
-                          </ListItem>
-                        </List>
-                      </Collapse>
-                    </div>
-                  )
-                )
+            {category === index
+              ? CATEGORIES[category].subcategory.map((subcategoryMap, idex) => (
+                  <div key={subcategoryMap.name}>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                      <List component="div" disablePadding>
+                        {category === 0
+                          ? petsName.map((name, index) => (
+                              <ListItem
+                                button
+                                onClick={() => handleSubcategory(index)}
+                                className={classes.nested}
+                                key={index}
+                              >
+                                <ListItemIcon>
+                                  <StarBorder />
+                                </ListItemIcon>
+                                <ListItemText primary={name} />
+                              </ListItem>
+                            ))
+                          : null}
+                        <ListItem button className={classes.nested}>
+                          <ListItemIcon>
+                            <StarBorder />
+                          </ListItemIcon>
+                          <ListItemText primary={subcategoryMap.name} />
+                        </ListItem>
+                      </List>
+                    </Collapse>
+                  </div>
+                ))
               : null}
           </div>
         ))}
       </List>
       <Divider />
-      {/* <List>
-        {CATEGORIES.map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{ICONSCATEGORIES[index]}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List> */}
-      {/* <Divider /> */}
     </div>
   );
 }

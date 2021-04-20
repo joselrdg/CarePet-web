@@ -1,16 +1,15 @@
 import React from 'react';
 // import { usePet } from '../../hooks/usePet';
-import TabPanel from "../main/TabPanel";
+import TabPanel from "../TabPanel";
 
 
-const PetsScreen = () => {
+const PetProfile = () => {
     // const { petsUser } = usePet();
     return (
         <>
-            <TabPanel category={0}/>
-        <h1>PetsScreen</h1>
+        <h1>PetProfile</h1>
         </>
     )
 }
 
-export default PetsScreen
+export default PetProfile
