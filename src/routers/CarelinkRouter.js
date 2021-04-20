@@ -4,8 +4,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { CarelinkScreen } from "../components/carelink/CarelinkScreen";
 
-import PetsScreen from "../components/carelink/main/PetsScreen";
-import ScheduleScreen from "../components/carelink/main/ScheduleScreen";
+import PetsScreen from "../components/carelink/main/PetsScreen/PetsScreen";
+import ScheduleScreen from "../components/carelink/main/ScheduleScreen/ScheduleScreen";
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -7,11 +7,11 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { CATEGORIES } from "../../../constants/constants";
+import { useCategory } from "../../hooks/useCategory";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
-  return (
+    return (
     <div
       role="tabpanel"
       hidden={value !== index}
@@ -52,19 +52,22 @@ function a11yProps(index) {
 export default function ScrollableTabsButtonAuto(cetegoryNum) {
   // const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const {setCategory, stateCategory} = useCategory()
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setCategory((prevState) => ({...prevState, folder: newValue}));
   };
 
-  console.log(value)
+  const {subcategory, folder} = stateCategory
+
+  console.log(folder)
 
   return (
     <>
     {/* <div className={classes.root}> */}
       <AppBar position="static" color="default">
         <Tabs
-          value={value}
+          value={folder||0}
           onChange={handleChange}
           indicatorColor="primary"
           textColor="primary"
@@ -72,16 +75,16 @@ export default function ScrollableTabsButtonAuto(cetegoryNum) {
           scrollButtons="auto"
           aria-label="scrollable auto tabs example"
         >
-          {CATEGORIES[0].subcategory[0].folders.map((category, index) => (
+          {CATEGORIES[0].subcategory[subcategory].folders.map((category, index) => (
             <Tab key={category} label={`${category}`} {...a11yProps(index)} />
           ))}
         </Tabs>
       </AppBar>
-      {CATEGORIES[0].subcategory[0].folders.map((category, index) => (
+      {/* {CATEGORIES[0].subcategory[subcategory].folders.map((category, index) => (
         <TabPanel key={index} value={value} index={index}>
           {category}
         </TabPanel>
-      ))}
+      ))} */}
     {/* </div> */}
     </>
   );

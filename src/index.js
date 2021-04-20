@@ -5,12 +5,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { UserContextProvider } from "./context/UserContext";
 import { PetsContextProvider } from "./context/PetContext";
+import { CategoryContextProvider } from "./context/CategoryContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <UserContextProvider>
       <PetsContextProvider>
-        <App />
+        <CategoryContextProvider>
+          <App />
+        </CategoryContextProvider>
       </PetsContextProvider>
     </UserContextProvider>
   </React.StrictMode>,
