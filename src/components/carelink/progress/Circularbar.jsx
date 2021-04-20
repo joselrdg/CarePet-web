@@ -1,49 +1,47 @@
-import React, { PureComponent } from 'react';
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
+import React, { PureComponent } from "react";
+import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
 
 const data = [
-  { name: 'Group A', value: 98 },
-  { name: 'Group B', value: 2 },
+  { name: "Group A", value: 98 },
+  { name: "Group B", value: 2 },
 ];
 // const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-const COLORS = ['#55f9aa', '#e60404', ];
+const COLORS = ["#55f9aa", "#e60404"];
 
 export default class Circularbar extends PureComponent {
-
   render() {
     return (
-      <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
-        <Pie
-          data={data}
-          cx={120}
-          cy={200}
-          innerRadius={60}
-          outerRadius={80}
-          fill="#8884d8"
-          paddingAngle={0}
-          dataKey="value"
+      <div style={{ width: "250px", height: "250px", position: "relative" }}>
+        <PieChart width={250} height={250} onMouseEnter={this.onPieEnter}>
+          <h1>hola</h1>
+          <Pie
+            data={data}
+            cx={120}
+            cy={120}
+            startAngle={180}
+            endAngle={-180}
+            innerRadius={80}
+            outerRadius={100}
+            fill="hola"
+            paddingAngle={0}
+            dataKey="value"
+          >
+            {data.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
+          </Pie>
+        </PieChart>
+        <h1
+          style={{
+            position: "absolute",
+          }}
         >
-          {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-        <Pie
-          data={data}
-          cx={420}
-          cy={200}
-          startAngle={180}
-          endAngle={0}
-          innerRadius={80}
-          outerRadius={100}
-          fill="#8884d8"
-          paddingAngle={0}
-          dataKey="value"
-        >
-          {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-      </PieChart>
+          hola
+        </h1>
+      </div>
     );
   }
 }
