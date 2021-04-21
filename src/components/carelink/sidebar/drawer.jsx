@@ -32,7 +32,7 @@ function DrawerBox({
 }) {
   const { setCategory, stateCategory } = useCategory();
   const [open, setOpen] = React.useState(true);
-  const { category, subcategory } = stateCategory;
+  const { category } = stateCategory;
 
   const handleSubcategory = (subcategory) => {
     setCategory((prevState) => ({

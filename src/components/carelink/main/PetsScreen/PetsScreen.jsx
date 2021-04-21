@@ -2,21 +2,20 @@ import React from 'react';
 import { useCategory } from '../../../hooks/useCategory';
 // import { usePet } from '../../hooks/usePet';
 import TabPanel from "../TabPanel";
+import AddPet from './AddPet.jsx/AddPet';
 import AddPetForm from './AddPetForm';
-import PetCharacteristics from './PetCharacteristics';
+// import PetCharacteristics from './PetCharacteristics';
 import PetProfile from './PetProfile';
 
 const folderBox = (folder) => {
     switch (folder) {
         case 0:
             return <PetProfile />
-            break;
         case 1:
             return <AddPetForm />
-            break;
         case 2:
-            return <PetCharacteristics />
-            break;
+            return <AddPet />
+            // break;
 
         default:
             break;

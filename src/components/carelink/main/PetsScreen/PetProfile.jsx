@@ -1,7 +1,7 @@
 import React from "react";
 import { usePet } from '../../../hooks/usePet';
 import Pipebar from "../../progress/Pipebar";
-import Circularbar from "../../progress/Circularbar";
+// import Circularbar from "../../progress/Circularbar";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 
@@ -25,7 +25,7 @@ const PetProfile = () => {
     if (!petsUser) {
     return "Loading...";
   }
-    const { review} = petsUser[0]
+    // const { review} = petsUser[0]
 
 // console.log(
 //     fecha.toLocaleDateString("es-ES", options)

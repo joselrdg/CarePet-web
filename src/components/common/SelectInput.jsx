@@ -1,11 +1,11 @@
 import { FormControl, Input, InputLabel, makeStyles, MenuItem, Select, useTheme } from '@material-ui/core';
 import React from 'react'
-import { DOGBREED } from '../../constants/constants';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
         margin: theme.spacing(1),
         minWidth: 120,
+        maxWidth: 300,
     }
 }));
 
@@ -16,14 +16,12 @@ const MenuProps = {
         style: {
             maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
             width: 250,
-            padding:0
         },
     },
 };
 
 function getStyles(name, personName, theme) {
     return {
-        width: 200,
         fontWeight:
             personName.indexOf(name) === -1
                 ? theme.typography.fontWeightRegular
@@ -31,36 +29,34 @@ function getStyles(name, personName, theme) {
     };
 }
 
-function SelectInput({ items, itemname, label }) {
+
+function SelectInput({ items, value, handleChange, itemname, label }) {
     const classes = useStyles();
     const theme = useTheme();
-    const [personName, setPersonName] = React.useState([]);
 
-    const handleChange = (event) => {
-        setPersonName(event.target.value);
-    };
+    // console.log(itemname)
 
     return (
-        <FormControl className={classes.formControl}>
+        <FormControl >
             <InputLabel >{label}</InputLabel>
             <Select
-                displayEmpty
+                labelId="demo-mutiple-name-label"
+                id={label}
+                // multiple
                 name={itemname}
-                value={personName}
                 onChange={handleChange}
                 input={<Input />}
                 MenuProps={MenuProps}
-                inputProps={{ 'aria-label': 'Without label' }}
+                value={value}
+                className={classes.formControl}
             >
-
                 {items.map((name) => (
-                    <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
+                    <MenuItem key={name}  value={name} style={getStyles(name, label, theme)}>
                         {name}
                     </MenuItem>
                 ))}
             </Select>
         </FormControl>
-
     );
 }
 
