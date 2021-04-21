@@ -1,0 +1,14 @@
+.pipebar__root{
+text-align: center;
+}
+
+.pipebar__body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pipebar__body > p{
+padding-left: 10px;
+font-size: larger;
+}

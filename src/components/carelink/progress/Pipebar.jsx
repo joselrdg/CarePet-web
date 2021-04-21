@@ -1,21 +1,24 @@
 import React, { PureComponent } from "react";
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
+import TodayIcon from '@material-ui/icons/Today';
+
 
 const data = [
-  { name: "Group A", value: 98 },
+  { name: "Group A", value: 100 },
   { name: "Group B", value: 2 },
 ];
 // const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-const COLORS = ["#55f9aa", "#e60404"];
+const COLORS = ["#55f9aa", "#e91e63"];
 
-export default class Circularbar extends PureComponent {
+export default class Pipebar extends PureComponent {
   render() {
     return (
-        <PieChart width={400} height={200} onMouseEnter={this.onPieEnter}>
+      <div className='pipebar__root'>
+        <PieChart width={250} height={125} onMouseEnter={this.onPieEnter}>
           <Pie
             data={data}
             cx={120}
-            cy={100}
+            cy={120}
             startAngle={180}
             endAngle={0}
             innerRadius={80}
@@ -32,6 +35,11 @@ export default class Circularbar extends PureComponent {
             ))}
           </Pie>
         </PieChart>
+        <div className='pipebar__body'>
+        <TodayIcon/>
+        <p>Fecha</p>
+        </div>
+      </div>
     );
   }
 }

@@ -55,7 +55,6 @@ function DrawerBox({
       }, 280);
     }
   };
-  console.log(stateCategory);
 
   if (!classes) {
     return "Loading...";

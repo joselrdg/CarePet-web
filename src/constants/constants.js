@@ -66,13 +66,13 @@ export const CATEGORIES = [
     }] },
 ];
 
-export const ICONSCATEGORIES = [
-  <PetsIcon />,
-  <TodayIcon />,
-  <LocalHospitalIcon />,
-  <BeenhereIcon />,
-  <OutdoorGrillIcon />,
-  <ColorizeIcon />,
-  <AndroidIcon />,
-  <FolderSpecialIcon />,
+export const DOGBREED = [
+  'American english coonhound',
+  'Poochon',
+  'Labsky o huskador',
+  'Cuvac eslovaco',
+  'Shepsky',
+  'Caniche gigante o poodle estándar',
+  'Pastor leonés',
+  'Barbet o perro de agua francés',
 ];
