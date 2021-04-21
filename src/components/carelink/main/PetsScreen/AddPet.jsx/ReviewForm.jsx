@@ -47,7 +47,7 @@ export default function AddressForm({ valuesField, handleTextFieldChange }) {
         <Grid item xs={12} sm={3}  >
           <TextField
             label="Peso"
-            value={valuesField.weight}
+            value={valuesField.weight.kg}
             onChange={handleTextFieldChange}
             name="weight"
             id="weight"

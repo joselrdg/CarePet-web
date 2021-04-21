@@ -11,7 +11,8 @@ export const getPetsUser = (id) => {
 }
 
 export const createPet = (body) => {
-    const id = body.id
+    const id = body.user
+    console.log(id)
     return http.post(`/pets/create/${id}`, body)
 }
 

@@ -1,11 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Grid from '@material-ui/core/Grid';
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@material-ui/core';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -31,29 +27,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const columns = [
-    { id: 'name', label: 'Key', minWidth: 170 },
+    { id: 'name', label: 'Característica', minWidth: 170 },
     { id: 'valor', label: 'Valor', minWidth: 100 },]
-
-// const rows = [
-    // { id: 'idd', code:'fads', label: 'Key', minWidth: 170 },
-    // { id: 'valodfr',code:'fgh', label: 'Valor', minWidth: 100 },]
 
 export default function Review({ valuesField }) {
     const classes = useStyles();
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
-    
-    const rows = Object.entries(valuesField)
-    
-    console.log(rows)
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
-
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(+event.target.value);
-        setPage(0);
-    };
 
     return (
         <React.Fragment>
@@ -76,24 +54,7 @@ export default function Review({ valuesField }) {
                                 ))}
                             </TableRow>
                         </TableHead>
-                        <TableBody>
-
-                        {/* {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
-                                return (
-                                    <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                                        {columns.map((column, i) => {
-                                            const value = row[i][0];
-                                            return (
-                                                <TableCell key={column.id} align={column.align}>
-                                                {value[0]}
-                                                    {column.format && typeof value === 'number' ? column.format(value) : value}
-                                                </TableCell>
-                                            );
-                                        })}
-                                    </TableRow>
-                                );
-                            })} */}
-                            
+                        <TableBody>                            
                             <TableRow>
                                 <TableCell>Nombre</TableCell>
                                 <TableCell>{valuesField.name}</TableCell>
@@ -118,7 +79,6 @@ export default function Review({ valuesField }) {
                                 <TableCell>Pelo</TableCell>
                                 <TableCell>{valuesField.hair}</TableCell>
                             </TableRow>
-
                             <TableRow>
                                 <TableCell>Color</TableCell>
                                 <TableCell>{valuesField.color}</TableCell>
@@ -129,15 +89,15 @@ export default function Review({ valuesField }) {
                             </TableRow>
                             <TableRow>
                                 <TableCell>Peso</TableCell>
-                                <TableCell>{valuesField.weight}</TableCell>
+                                <TableCell>{valuesField.weight.kg}</TableCell>
                             </TableRow>
                             {/* <TableRow>
                                 <TableCell>Fecha de nacimiento</TableCell>
                                 <TableCell>{valuesField.datebirth}</TableCell>
                             </TableRow> */}
-                            <TableRow  className={classes.listItem}>
+                            <TableRow >
                                 <TableCell>Historia familiar</TableCell>
-                                <TableCell  className={classes.total}>{valuesField.familyhistory}</TableCell>
+                                <TableCell >{valuesField.familyhistory}</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell>Enfermedades previas</TableCell>
@@ -150,97 +110,7 @@ export default function Review({ valuesField }) {
                         </TableBody>
                     </Table>
                 </TableContainer>
-                {/* <TablePagination
-                    rowsPerPageOptions={[5, 10, 20]}
-                    component="div"
-                    count={17}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onChangePage={handleChangePage}
-                    onChangeRowsPerPage={handleChangeRowsPerPage}
-                /> */}
             </Paper>
-            {/* <List disablePadding>
-
-                <ListItem className={classes.listItem}>
-                    <ListItemText primary='Nombre' />
-                    <Typography variant="subtitle1" className={classes.total}>
-                        {valuesField.name}
-                    </Typography>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                    <ListItemText primary='Chip' />
-                    <Typography variant="subtitle1" className={classes.total}>
-                        {valuesField.chip}
-                    </Typography>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                    <ListItemText primary='Especie' />
-                    <Typography variant="subtitle1" className={classes.total}>
-                        {valuesField.species}
-                    </Typography>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                    <ListItemText primary='Raza' />
-                    <Typography variant="subtitle1" className={classes.total}>
-                        {valuesField.breed}
-                    </Typography>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                    <ListItemText primary='Sexo' />
-                    <Typography variant="subtitle1" className={classes.total}>
-                        {valuesField.sex}
-                    </Typography>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                    <ListItemText primary='Pelo' />
-                    <Typography variant="subtitle1" className={classes.total}>
-                        {valuesField.hair}
-                    </Typography>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                    <ListItemText primary='Color' />
-                    <Typography variant="subtitle1" className={classes.total}>
-                        {valuesField.color}
-                    </Typography>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                    <ListItemText primary='Estado reproductivo' />
-                    <Typography variant="subtitle1" className={classes.total}>
-                        {valuesField.sterilized}
-                    </Typography>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                    <ListItemText primary='Peso' />
-                    <Typography variant="subtitle1" className={classes.total}>
-                        {valuesField.weight} Kg
-                    </Typography>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                    <ListItemText primary='Fecha de nacimiento' />
-                    <Typography variant="subtitle1" className={classes.total}>
-                        {valuesField.datebirth}
-                    </Typography>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                    <ListItemText primary='Historia familiar' />
-                    <Typography variant="subtitle1" className={classes.total}>
-                        {valuesField.familyhistory}
-                    </Typography>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                    <ListItemText primary='Enfermedades previas' />
-                    <Typography variant="subtitle1" className={classes.total}>
-                        {valuesField.previousdiseases}
-                    </Typography>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                    <ListItemText primary='Cirugías' />
-                    <Typography variant="subtitle1" className={classes.total}>
-                        {valuesField.surgeries ? 'Si' : 'No'}
-                    </Typography>
-                </ListItem>
-            </List> */}
 
         </React.Fragment>
     );

@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Paper from '@material-ui/core/Paper';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -13,6 +11,8 @@ import Typography from '@material-ui/core/Typography';
 import ReviewForm from './ReviewForm';
 import ClinicalForm from './ClinicalForm';
 import Review from './Review';
+import { createPet } from '../../../../../services/PetService';
+import { useUser } from '../../../../hooks/useUser';
 
 function Copyright() {
     return (
@@ -80,9 +80,11 @@ function getStepContent(step, valuesField, handleTextFieldChange) {
 }
 
 export default function Checkout() {
+    const { user } = useUser()
     const classes = useStyles();
     const [activeStep, setActiveStep] = useState(0);
     const [valuesField, setValuesField] = useState({
+        user: user.id,
         review: {
             name: '',
             chip: '',
@@ -92,15 +94,15 @@ export default function Checkout() {
             hair: '',
             color: '',
             sterilized: '',
-            weight: '',
+            weight: { date: new Date(), kg: '' },
             datebirth: new Date(),
-            familyhistory:'',
-            previousdiseases:'',
-            surgeries:'',
-            allergies:'',
-            origin:'',
-            habitat:'',
-            family:'',
+            familyhistory: '',
+            previousdiseases: '',
+            surgeries: '',
+            allergies: '',
+            origin: '',
+            habitat: '',
+            family: '',
 
         }
     });
@@ -114,16 +116,17 @@ export default function Checkout() {
     };
 
     const handleTextFieldChange = (event) => {
-        let name = ''
+        let name = event.target.name
         let value = ''
         if (!event.target) {
             name = 'datebirth'
             value = event
-        } else {
-            name = event.target.name
+        } else if (event.target.name === 'weight') {
+            value = { ...valuesField.review.weight, kg: event.target.value }
+        }
+        else {
             value = event.target.value
         }
-
 
         setValuesField({
             ...valuesField,
@@ -135,61 +138,82 @@ export default function Checkout() {
         console.log(valuesField)
     }
 
+    const onSubmit = (e) => {
+        e.preventDefault();
+        createPet(valuesField).then((response) => {
+            console.log(response)
+            handleNext()
+        })
+    };
+
     return (
         <React.Fragment>
             <CssBaseline />
-            <AppBar position="absolute" color="default" className={classes.appBar}>
+            {/* <AppBar position="absolute" color="default" className={classes.appBar}>
                 <Toolbar>
                     <Typography variant="h6" color="inherit" noWrap>
-                        Add mascota
+                        Añadir mascota
           </Typography>
                 </Toolbar>
-            </AppBar>
+            </AppBar> */}
             <main className={classes.layout}>
-                <Paper className={classes.paper}>
-                    <Typography component="h1" variant="h4" align="center">
-                        Add mascota
+                <form onSubmit={onSubmit}>
+                    <Paper className={classes.paper}>
+                        <Typography component="h1" variant="h4" align="center">
+                            Añadir mascota
           </Typography>
-                    <Stepper activeStep={activeStep} className={classes.stepper}>
-                        {steps.map((label) => (
-                            <Step key={label}>
-                                <StepLabel>{label}</StepLabel>
-                            </Step>
-                        ))}
-                    </Stepper>
-                    <React.Fragment>
-                        {activeStep === steps.length ? (
-                            <React.Fragment>
-                                <Typography variant="h5" gutterBottom>
-                                    Thank you for your order.
+                        <Stepper activeStep={activeStep} className={classes.stepper}>
+                            {steps.map((label) => (
+                                <Step key={label}>
+                                    <StepLabel>{label}</StepLabel>
+                                </Step>
+                            ))}
+                        </Stepper>
+                        <React.Fragment>
+                            {activeStep === steps.length ? (
+                                <React.Fragment>
+                                    <Typography variant="h5" gutterBottom>
+                                        Thank you for your order.
                 </Typography>
-                                <Typography variant="subtitle1">
-                                    Your order number is #2001539. We have emailed your order confirmation, and will
-                                    send you an update when your order has shipped.
+                                    <Typography variant="subtitle1">
+                                        Your order number is #2001539. We have emailed your order confirmation, and will
+                                        send you an update when your order has shipped.
                 </Typography>
-                            </React.Fragment>
-                        ) : (
-                            <React.Fragment>
-                                {getStepContent(activeStep, valuesField, handleTextFieldChange)}
-                                <div className={classes.buttons}>
-                                    {activeStep !== 0 && (
-                                        <Button onClick={handleBack} className={classes.button}>
-                                            Back
-                                        </Button>
-                                    )}
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        onClick={handleNext}
-                                        className={classes.button}
-                                    >
-                                        {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
-                                    </Button>
-                                </div>
-                            </React.Fragment>
-                        )}
-                    </React.Fragment>
-                </Paper>
+                                </React.Fragment>
+                            ) : (
+                                <React.Fragment>
+                                    {getStepContent(activeStep, valuesField, handleTextFieldChange)}
+                                    <div className={classes.buttons}>
+                                        {activeStep !== 0 && (
+                                            <Button onClick={handleBack} className={classes.button}>
+                                                Back
+                                            </Button>
+                                        )}
+                                        {activeStep === steps.length - 1 ?
+                                            <Button
+                                                variant="contained"
+                                                color="primary"
+                                                onClick={onSubmit}
+                                                className={classes.button}
+                                            >
+                                                Añadir
+                                        </Button> :
+                                            <Button
+                                                variant="contained"
+                                                color="primary"
+                                                onClick={handleNext}
+                                                className={classes.button}
+                                            >
+                                                Next
+                                            {/* {activeStep === steps.length - 1 ? 'Place order' : 'Next'} */}
+                                            </Button>
+                                        }
+                                    </div>
+                                </React.Fragment>
+                            )}
+                        </React.Fragment>
+                    </Paper>
+                </form>
                 <Copyright />
             </main>
         </React.Fragment>
