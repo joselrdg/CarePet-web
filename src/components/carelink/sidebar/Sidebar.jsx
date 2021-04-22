@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 
 // import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { usePet } from "../../hooks/usePet";
-import { useCategory } from "../../hooks/useCategory";
+// import { useCategory } from "../../hooks/useCategory";
 import DrawerBox from "./drawer";
 
 // const drawerWidth = 260;
@@ -54,16 +54,16 @@ import DrawerBox from "./drawer";
 
 function ResponsiveDrawer(props) {
   const { petsUser } = usePet();
-  const {setCategory, stateCategory} = useCategory()
+  // const {setCategory, stateCategory} = useCategory()
 
 
-  const [stateCategories, setStateCategories] = useState({
+  const [stateCategories] = useState({
     petsName: petsUser && petsUser.map((pet) => pet.review.name),
     petNumber: 0,
     categoryNumber: 0,
     subcategoryNumber: 0,
   });
-  const [open, setOpen] = React.useState(true);
+  // const [open, setOpen] = React.useState(true);
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const { window, classes, themeDirection } = props;
@@ -156,7 +156,7 @@ function ResponsiveDrawer(props) {
           >
             <DrawerBox
               classes={{...classes}}
-              open={open}
+              // open={open}
               // categoryNumber={categoryNumber}
               petsName={petsName}
               // handleClick={(h) => handleClick(h)}
@@ -172,11 +172,11 @@ function ResponsiveDrawer(props) {
               paper: classes.drawerPaper,
             }}
             variant="permanent"
-            open
+            // open
           >
             <DrawerBox
               classes={{...classes}}
-              open={open}
+              // open={open}
               // categoryNumber={categoryNumber}
               petsName={petsName}
               // handleClick={(h) => handleClick(h)}
