@@ -4,8 +4,6 @@ const http = create({
     useAccessToken: false
 })
 
-
-
 export const login = (body) => {
     console.log(body)
 return http.post('/users/auth', body)
