@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { login } from "../../services/AuthService";
 import { setAccessToken } from "../../stores/AccessTokenStore";
 import { useUser } from "../hooks/useUser";
+import {getRaza }from "../../services/ScraperService";
 
 //eslint-disable-next-line
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -59,7 +60,6 @@ export const LoginScreen = () => {
   const onSubmit = (e) => {
     const { fields } = state;
     e.preventDefault();
-
     if (isValid()) {
       login(fields).then((response) => {
         setAccessToken(response.access_token);

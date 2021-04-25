@@ -4,6 +4,8 @@ import { usePet } from "../hooks/usePet";
 import { green, pink } from '@material-ui/core/colors';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Sidebar from "./sidebar/Sidebar";
+import {getRaza }from "../../services/ScraperService";
+
 
 
 const drawerWidth = 260;
@@ -54,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const CarelinkScreen = () => {
+
   const { getPets, petsUser } = usePet();
   const classes = useStyles();
   const theme = useTheme();
