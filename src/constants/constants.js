@@ -15,6 +15,13 @@ export const CATEGORIES = [
       name:'Añadir mascota', 
       folders: ['Perfil', 'Reseña', 'Add mascota'
     ]}] },
+    { 
+      name: "Razas", 
+      icon: <i className="fas fa-dog"></i>, 
+      subcategory: [{ 
+        name: 'Añadir aviso', 
+        folders: ['Grupos', 'Todas las razas', 'Buscador', ] 
+      }] },
   { 
     name: "Agenda", 
     icon: <TodayIcon />, 
@@ -31,39 +38,39 @@ export const CATEGORIES = [
     }] },
   { 
     name: "Recomendaciones", 
-    icon: <BeenhereIcon />, 
+    icon: <i className="fas fa-hand-holding-medical"></i>, 
     subcategory: [{ 
       name: 'Añadir aviso', 
       folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
     }] },
   { 
     name: "Nutrición", 
-    icon: <OutdoorGrillIcon />, 
+    icon: <i className="fas fa-bone"></i>, 
     subcategory: [{ 
       name: 'Añadir aviso', 
       folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
     }] },
   { 
     name: "Vacunas", 
-    icon: <ColorizeIcon />, 
+    icon: <i className="fas fa-syringe"></i>, 
     subcategory: [{ 
       name: 'Añadir aviso', 
       folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
     }] },
   { 
     name: "Desparasitación", 
-    icon: <AndroidIcon />, 
+    icon: <i className="fas fa-bug"></i>, 
     subcategory: [{ 
       name: 'Añadir aviso', 
       folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
     }] },
   { 
     name: "Historial", 
-    icon: <FolderSpecialIcon />, 
+    icon: <i className="fas fa-file-medical"></i>, 
     subcategory: [{ 
       name: 'Añadir aviso', 
       folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
-    }] },
+    }] }
 ];
 
 export const DOGBREED = [

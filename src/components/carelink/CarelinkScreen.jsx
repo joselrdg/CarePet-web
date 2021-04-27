@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 // import Copyright from "../copyright/Copyright";
 import { usePet } from "../hooks/usePet";
+import { useBreeds } from "../hooks/useBreed";
 import { green, pink } from '@material-ui/core/colors';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Sidebar from "./sidebar/Sidebar";
@@ -58,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
 export const CarelinkScreen = () => {
 
   const { getPets, petsUser } = usePet();
+  // const {breeds, getBreeds  } = useBreeds();
   const classes = useStyles();
   const theme = useTheme();
 
@@ -65,9 +67,11 @@ export const CarelinkScreen = () => {
     getPets();
   }, [getPets]);
 
-  if (!petsUser) {
+  if (!petsUser ) {
     return "Loading...";
   }
+
+  // console.log(breeds)
 
   return (
     <>
