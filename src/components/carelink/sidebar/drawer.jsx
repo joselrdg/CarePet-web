@@ -45,20 +45,23 @@ function DrawerBox({
     }));
   };
 
+  const set = (index) => {
+    setCategory({
+      category: index,
+      subcategory: 0,
+      folder: 0,
+    });
+  }
+
   const handleClick = (index) => {
+    const srtLink = CATEGORIES[index].name.replaceAll(' ','-')
     setOpen(!open);
-    const link = `/CarePet/${CATEGORIES[index].name}`
-    push(link);
     if (index !== category) {
-      console.log(link)
+      push(srtLink);
       setTimeout(() => {
-        setCategory({
-          category: index,
-          subcategory: 0,
-          folder: 0,
-        });
-        setOpen(true);
+        set(index)
       }, 280);
+      setOpen(true);
     }
   };
 

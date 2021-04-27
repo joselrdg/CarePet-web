@@ -5,7 +5,7 @@ export default function LinkToEdit({ user,petId }) {
     
   return (
     <div>
-      {user.id === petId && <Link to={`/pets/${""}/edit`}>Edit link</Link>}
+      {user.id === petId && <Link to={`/Mascotas/${""}/edit`}>Edit link</Link>}
     </div>
   );
 }

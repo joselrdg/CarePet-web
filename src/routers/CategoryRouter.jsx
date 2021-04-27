@@ -14,7 +14,7 @@ export const CategoryRouter = () => {
     <div className='journal__main-content'>
     <div className=''>
       <Switch>
-        <Route exact path="/CarePet/pets" component={PetsScreen} />
+        <Route exact path="/CarePet/Mascotas" component={PetsScreen} />
         <Route exact path="/CarePet/pet/:id/edit" component={CarelinkScreen} />
         <Redirect to='/CarePet'/>
       </Switch>
