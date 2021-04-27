@@ -22,18 +22,16 @@ const folderBox = (folder) => {
 };
 
 const BreedScreen = () => {
-  const [breedsState, setBreeds] = useState();
+  const [breeds, setBreeds] = useState();
   const { stateCategory } = useCategory();
   const { folder } = stateCategory;
 
+  console.log(breeds);
   useEffect(() => {
-    if (!breedsState) {
-      getBreedsList().then((response) => setBreeds(response));
-    }
+      setBreeds();
   }, []);
-  console.log(breedsState);
 
-  if (!breedsState) {
+  if (!breeds) {
     return <p>Loading...</p>;
   }
 
