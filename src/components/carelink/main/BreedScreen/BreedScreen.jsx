@@ -31,10 +31,8 @@ const BreedScreen = () => {
 
   console.log(breeds);
   useEffect(() => {
-    if (breeds !== null) {
-      getBreeds()
-    }
-  }, [breeds]);
+    
+  }, []);
 
   console.log(breeds)
 
@@ -47,7 +45,7 @@ const BreedScreen = () => {
     <>
       <TabPanel category={1} />
       {
-        folderBox(folder, breeds)
+        folderBox(folder)
       }
     </>
   );
