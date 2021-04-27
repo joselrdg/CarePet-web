@@ -16,7 +16,7 @@ export function PetsContextProvider({ children }) {
   };
 
   useEffect(() => {
-    if (user !== null && getAccessToken()) {
+    if (user !== null) {
       const id = user.id;
       getPets(id);
     }
