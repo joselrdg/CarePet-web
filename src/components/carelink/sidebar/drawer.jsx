@@ -13,7 +13,8 @@ import StarBorder from "@material-ui/icons/StarBorder";
 import Avatar from '@material-ui/core/Avatar';
 import { useCategory } from "../../hooks/useCategory";
 import { CATEGORIES } from "../../../constants/constants";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+
 
 // const useStyles = makeStyles((theme) => ({
 //   toolbar: theme.mixins.toolbar,
@@ -33,6 +34,8 @@ function DrawerBox({
   const { setCategory, stateCategory } = useCategory();
   const [open, setOpen] = React.useState(true);
   const { category } = stateCategory;
+  const { push } = useHistory();
+
 
   const handleSubcategory = (subcategory) => {
     setCategory((prevState) => ({
@@ -43,6 +46,7 @@ function DrawerBox({
   };
 
   const handleClick = (index) => {
+    console.log(`/carelink/${CATEGORIES[0][index]}`)
     setOpen(!open);
     if (index !== category) {
       setTimeout(() => {
@@ -51,6 +55,7 @@ function DrawerBox({
           subcategory: 0,
           folder: 0,
         });
+        push(`/carelink/${CATEGORIES[0][index]}`);
         setOpen(true);
       }, 280);
     }
