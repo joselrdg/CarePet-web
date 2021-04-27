@@ -20,7 +20,7 @@ export const CATEGORIES = [
       icon: <i className="fas fa-dog"></i>, 
       subcategory: [{ 
         name: 'Añadir aviso', 
-        folders: ['Lista', 'Reseña', 'Recomendaciones'] 
+        folders: ['Grupos', 'Todas las razas', 'Buscador', ] 
       }] },
   { 
     name: "Agenda", 

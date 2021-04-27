@@ -39,7 +39,7 @@ export const CarelinkRouter = () => {
         <div className={classes.toolbar} />
         <div className={classes.main}>
           <Switch>
-            <Route exact path="/CarePet/pets" component={PetsScreen} />
+            <Route exact path="/CarePet/Mascotas" component={PetsScreen} />
             {/* <Route exact path="/carelink/pet/:id/edit" component={CarelinkScreen} /> */}
 
             <Route exact path="/CarePet/Razas" component={BreedsRouter} />
@@ -49,7 +49,7 @@ export const CarelinkRouter = () => {
               path="/CarePet/pet/:id/edit"
               component={CarelinkScreen}
             />
-            <Redirect to="/CarePet" />
+            <Redirect to="/CarePet/Mascotas" />
           </Switch>
         </div>
       </main>
