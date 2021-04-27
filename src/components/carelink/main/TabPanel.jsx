@@ -48,7 +48,8 @@ export default function ScrollableTabsButtonAuto() {
     setCategory((prevState) => ({...prevState, folder: newValue}));
   };
 
-  const {subcategory, folder} = stateCategory
+  const { category, subcategory, folder} = stateCategory
+  console.log(category)
 
 
   return (
@@ -64,7 +65,7 @@ export default function ScrollableTabsButtonAuto() {
           scrollButtons="auto"
           aria-label="scrollable auto tabs example"
         >
-          {CATEGORIES[0].subcategory[subcategory].folders.map((category, index) => (
+          {CATEGORIES[category].subcategory[subcategory].folders.map((category, index) => (
             <Tab key={category} label={`${category}`} {...a11yProps(index)} />
           ))}
         </Tabs>

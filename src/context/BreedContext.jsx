@@ -1,19 +1,22 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getBreedsList } from "../services/BreedService";
+import { UserContext } from "./UserContext";
 
 export const BreedsContext = createContext();
 
 export function BreedsContextProvider({ children }) {
   const [breeds, setBreeds] = useState(null);
+  const { user } = useContext(UserContext);
 
-  const getBreeds = () => {
-    console.log('por queeeeeeeeeeeeeeeeee')
-      // return getBreedsList().then((response) => setBreeds(response));
+  const getBreeds = (id) => {
+      return getBreedsList(id).then((response) => setBreeds(response));
   };
 
   useEffect(() => {
+    if (user !== null) {
       getBreeds();
-  },[breeds]);
+    }
+  }, [user]);
 
   const value = {
     getBreeds,
