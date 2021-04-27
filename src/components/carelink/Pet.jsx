@@ -5,7 +5,7 @@ export default function Pet({review, id}) {
   return (
     <div>
       <h1>Pet:</h1>      
-      <Link to={`/carelink/pet/${id}`}><h3>{name}</h3></Link>
+      <Link to={`/CarePet//pet/${id}`}><h3>{name}</h3></Link>
     </div>
   );
 }

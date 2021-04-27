@@ -46,16 +46,17 @@ function DrawerBox({
   };
 
   const handleClick = (index) => {
-    console.log(`/carelink/${CATEGORIES[0][index]}`)
     setOpen(!open);
+    const link = `/CarePet/${CATEGORIES[index].name}`
+    push(link);
     if (index !== category) {
+      console.log(link)
       setTimeout(() => {
         setCategory({
           category: index,
           subcategory: 0,
           folder: 0,
         });
-        push(`/carelink/${CATEGORIES[0][index]}`);
         setOpen(true);
       }, 280);
     }
@@ -71,13 +72,13 @@ function DrawerBox({
       <List>
         {CATEGORIES.map((item, index) => (
           <div key={item.name}>
-            <Link to={`/carelink/pets`}>
+            {/* <Link to={`/CarePet/${item.name}`}> */}
               <ListItem button onClick={() => handleClick(index)}>
                 <ListItemIcon><Avatar className={classes.pink}>{item.icon}</Avatar></ListItemIcon>
                 <ListItemText primary={item.name} />
                 {open && category === index ? <ExpandLess /> : <ExpandMore />}
               </ListItem>
-            </Link>
+            {/* </Link> */}
 
             {category === index
               ? CATEGORIES[category].subcategory.map((subcategoryMap, idex) => (

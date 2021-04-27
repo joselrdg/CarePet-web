@@ -1,39 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getBreedsList } from '../../../../services/BreedService';
 import { useCategory } from '../../../hooks/useCategory';
 // import { usePet } from '../../hooks/usePet';
 import TabPanel from "../TabPanel";
-import AddPet from './AddPet.jsx/AddPet';
-import AddPetForm from './AddPetForm';
+import BreedList from './BreedList';
 // import PetCharacteristics from './PetCharacteristics';
-import PetProfile from './PetProfile';
 
 const folderBox = (folder) => {
+
+
+
     switch (folder) {
         case 0:
             return <BreedList />
         case 1:
-            return <AddPetForm />
+            return 
         case 2:
-            return <AddPet />
-            // break;
+            return 
+        // break;
 
         default:
             break;
     }
 }
 
-const PetsScreen = () => {
-    const { stateCategory } = useCategory()
-    const { folder } = stateCategory
+const BreedScreen = () => {
+    // const [breedsState, setBreeds] = useState;
+    // const { stateCategory } = useCategory()
+    // const { folder } = stateCategory
+
+    // useEffect(() => {
+    //     getBreedsList().then((response) => setBreeds(response))
+    // }, [])
+    // console.log(breedsState)
+    
     // const { petsUser } = usePet();
     return (
         <>
             <TabPanel category={0} />
             {
-                folderBox(folder)
+                
+                // folderBox(folder)
             }
         </>
     )
 }
 
-export default PetsScreen
+export default BreedScreen

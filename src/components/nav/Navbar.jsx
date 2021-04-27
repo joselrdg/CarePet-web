@@ -5,7 +5,7 @@ import { logout } from "../../stores/AccessTokenStore";
 const Navbar = () => {
   return <div>
       <NavLink to="/">Home</NavLink>
-      <NavLink to="/carelink/pets">CareLink</NavLink>
+      <NavLink to="/CarePet/pets">CareLink</NavLink>
       <Link to="/auth/login">Login</Link>
       <Link to="/auth/register">Register</Link>
       <button onClick={logout} className="btn btn-primary">Logout</button>
