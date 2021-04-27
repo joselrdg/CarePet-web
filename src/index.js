@@ -14,15 +14,15 @@ import DateFnsUtils from "@date-io/date-fns";
 ReactDOM.render(
   <React.StrictMode>
     <UserContextProvider>
-      <PetsContextProvider>
-        <CategoryContextProvider>
-          <BreedsContextProvider>
+      <BreedsContextProvider>
+        <PetsContextProvider>
+          <CategoryContextProvider>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <App />
             </MuiPickersUtilsProvider>
-          </BreedsContextProvider>
-        </CategoryContextProvider>
-      </PetsContextProvider>
+          </CategoryContextProvider>
+        </PetsContextProvider>
+      </BreedsContextProvider>
     </UserContextProvider>
   </React.StrictMode>,
   document.getElementById("root")

@@ -64,7 +64,7 @@ export const LoginScreen = () => {
       login(fields).then((response) => {
         setAccessToken(response.access_token);
         doLogin().then(() => {
-          push("/carelink/pets");
+          push("/CarePet/pets");
         });
       });
     }

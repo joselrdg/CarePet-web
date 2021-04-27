@@ -59,20 +59,19 @@ const useStyles = makeStyles((theme) => ({
 export const CarelinkScreen = () => {
 
   const { getPets, petsUser } = usePet();
-  const {breeds, getBreeds  } = useBreeds();
+  // const {breeds, getBreeds  } = useBreeds();
   const classes = useStyles();
   const theme = useTheme();
 
   useEffect(() => {
     getPets();
-    getBreeds();
   }, [getPets]);
 
-  if (!petsUser && !breeds ) {
+  if (!petsUser ) {
     return "Loading...";
   }
 
-  console.log(breeds)
+  // console.log(breeds)
 
   return (
     <>

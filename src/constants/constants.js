@@ -17,7 +17,7 @@ export const CATEGORIES = [
     ]}] },
     { 
       name: "Razas", 
-      icon: <i class="fas fa-dog"></i>, 
+      icon: <i className="fas fa-dog"></i>, 
       subcategory: [{ 
         name: 'Añadir aviso', 
         folders: ['Lista', 'Reseña', 'Recomendaciones'] 
@@ -38,35 +38,35 @@ export const CATEGORIES = [
     }] },
   { 
     name: "Recomendaciones", 
-    icon: <i class="fas fa-hand-holding-medical"></i>, 
+    icon: <i className="fas fa-hand-holding-medical"></i>, 
     subcategory: [{ 
       name: 'Añadir aviso', 
       folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
     }] },
   { 
     name: "Nutrición", 
-    icon: <i class="fas fa-bone"></i>, 
+    icon: <i className="fas fa-bone"></i>, 
     subcategory: [{ 
       name: 'Añadir aviso', 
       folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
     }] },
   { 
     name: "Vacunas", 
-    icon: <i class="fas fa-syringe"></i>, 
+    icon: <i className="fas fa-syringe"></i>, 
     subcategory: [{ 
       name: 'Añadir aviso', 
       folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
     }] },
   { 
     name: "Desparasitación", 
-    icon: <i class="fas fa-bug"></i>, 
+    icon: <i className="fas fa-bug"></i>, 
     subcategory: [{ 
       name: 'Añadir aviso', 
       folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
     }] },
   { 
     name: "Historial", 
-    icon: <i class="fas fa-file-medical"></i>, 
+    icon: <i className="fas fa-file-medical"></i>, 
     subcategory: [{ 
       name: 'Añadir aviso', 
       folders: ['Perfil', 'Reseña', 'Recomendaciones'] 

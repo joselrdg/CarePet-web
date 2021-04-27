@@ -41,18 +41,8 @@ function a11yProps(index) {
   };
 }
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     flexGrow: 1,
-//     width: "100%",
-//     backgroundColor: theme.palette.background.paper,
-//   },
-// }));
-
-export default function ScrollableTabsButtonAuto(cetegoryNum) {
-  // const classes = useStyles();
-  // const [value, setValue] = React.useState(0);
-  const {setCategory, stateCategory} = useCategory()
+export default function ScrollableTabsButtonAuto() {
+  const {stateCategory, setCategory} = useCategory()
 
   const handleChange = (event, newValue) => {
     setCategory((prevState) => ({...prevState, folder: newValue}));
@@ -66,7 +56,7 @@ export default function ScrollableTabsButtonAuto(cetegoryNum) {
     {/* <div className={classes.root}> */}
       <AppBar position="static" color="default">
         <Tabs
-          value={folder||0}
+          value={folder ? folder : 0}
           onChange={handleChange}
           indicatorColor="primary"
           textColor="primary"
