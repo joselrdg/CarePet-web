@@ -12,6 +12,7 @@ const BreedList = () => {
     const [page, setPage] = React.useState(2);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
+
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
