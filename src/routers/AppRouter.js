@@ -8,11 +8,11 @@ import {
 import { AuthRouter } from "./AuthRouter";
 import { CarelinkRouter } from "./CarelinkRouter";
 import { HomeScreen } from "../components/home/HomeScreen";
-import { UserContext } from "../context/UserContext";
+// import { UserContext } from "../context/UserContext";
 
 export const AppRouter = () => {
-  const { user } = useContext(UserContext);
-  const pahtCareLink = user !== null ? '/CarePet' : '/auth/login'
+  // const { user } = useContext(UserContext);
+  // const pahtCareLink = user !== null ? '/CarePet' : '/auth/login'
   
   return (
     <Router>

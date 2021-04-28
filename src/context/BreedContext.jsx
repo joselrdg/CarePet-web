@@ -9,13 +9,19 @@ export function BreedsContextProvider({ children }) {
   const [breeds, setBreedsFci] = useState(null);
   const { user } = useContext(UserContext);
 
-  const getBreeds = () => {
+  const getBreeds = (id) => {
+    if (id) {
+      console.log(id)
       return getBreedsList().then((response) => setBreedsFci(response));
+    }
   };
 
   useEffect(() => {
-      getBreeds();
-  }, []);
+    if (user !== null) {
+      const id = user.id;
+      getBreeds(id);
+    }
+  }, [user]);
 
   const value = {
     getBreeds,
