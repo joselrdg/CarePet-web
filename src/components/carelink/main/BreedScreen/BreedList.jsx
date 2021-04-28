@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import CardBreed from './CardBreed'
 import TablePagination from '@material-ui/core/TablePagination';
 import { useBreeds } from "../../../hooks/useBreed";
+import { getBreedsList } from "../../../../services/BreedService";
 
 
 
 const BreedList = () => {
-    // const { breeds, getBreeds } = useBreeds();
+    const { breeds, setBreeds } = useState();
     const [page, setPage] = React.useState(2);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -21,6 +22,14 @@ const BreedList = () => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
+
+    useEffect(() => {
+        console.log('useefect')
+        getBreedsList().then((r)=>{
+            console.log( 'conseguidas razas');
+            setBreeds(r)
+        })
+    }, []);
 
 
     return (
