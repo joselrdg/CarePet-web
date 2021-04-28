@@ -8,7 +8,7 @@ import { getBreedsList } from "../../../../services/BreedService";
 
 
 const BreedList = () => {
-    const { breeds, setBreeds } = useState();
+    const { breeds, getBreeds } = useBreeds();
     const [page, setPage] = React.useState(2);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -18,19 +18,21 @@ const BreedList = () => {
     };
 
 
-    // console.log(breeds)
+    console.log(breeds)
     const handleChangeRowsPerPage = (event) => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
 
-    // useEffect(() => {
-    //     console.log('useefect')
-    //     getBreedsList().then((r)=>{
-    //         console.log( 'conseguidas razas');
-    //         setBreeds(r)
-    //     })
-    // }, []);
+    useEffect(() => {
+        // console.log('useeffect')
+        // getBreeds()
+        // console.log('useefect')
+        // getBreedsList().then((r)=>{
+            // console.log( 'conseguidas razas');
+            // setBreeds(r)
+        // })
+    }, []);
 
     
 if(breeds){console.log(breeds.docs[0])}

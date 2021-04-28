@@ -173,11 +173,10 @@ export default function Checkout() {
                             {activeStep === steps.length ? (
                                 <React.Fragment>
                                     <Typography variant="h5" gutterBottom>
-                                        Thank you for your order.
+                                        Your pet's data has been successfully saved!
                 </Typography>
                                     <Typography variant="subtitle1">
-                                        Your order number is #2001539. We have emailed your order confirmation, and will
-                                        send you an update when your order has shipped.
+                                        You can now control and enhance your pet's health thanks to Pet&Vet and CarePet.
                 </Typography>
                                 </React.Fragment>
                             ) : (

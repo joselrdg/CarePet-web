@@ -6,8 +6,11 @@ import SelectInput from '../../../../common/SelectInput';
 import { DOGBREED } from '../../../../../constants/constants';
 import { InputAdornment } from '@material-ui/core';
 import { DatePicker, } from '@material-ui/pickers';
+import { useBreeds } from '../../../../hooks/useBreed';
 
 export default function AddressForm({ valuesField, handleTextFieldChange }) {
+  const { breedsNames } = useBreeds();
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -18,7 +21,7 @@ export default function AddressForm({ valuesField, handleTextFieldChange }) {
           <SelectInput value={valuesField.species} handleChange={handleTextFieldChange} items={['Perro', 'Gato', 'Ave', 'Reptil', 'Anfibio', 'Otro']} itemname='species' label='Especie' />
         </Grid>
         <Grid item xs={12} sm={6}  >
-          <SelectInput value={valuesField.breed} handleChange={handleTextFieldChange} items={DOGBREED} itemname='breed' label='Raza' />
+          <SelectInput value={valuesField.breed} handleChange={handleTextFieldChange} items={breedsNames} itemname='breed' label='Raza' />
         </Grid>
         <Grid item xs={12} sm={3}  >
           <SelectInput value={valuesField.sex} handleChange={handleTextFieldChange} items={['Macho', 'Hembra', 'Indifinido']} itemname='sex' label='Sexo' />

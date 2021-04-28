@@ -4,17 +4,24 @@ const http = create()
 
 
 
-
-
-
 export const getBreedsList = () => {
-    
-    const options = {
-        page: 1,
-        limit: 10,
-        collation: {
-          locale: 'en',
-        },
-      };
-    return http.get('/breeds/list', options)
+    console.log('getBreedsList')
+    return http.get(`/breeds/list/`)
 }
+
+export const getBreedsGroup = (groupQ, pageQ,limitQ) => {
+    console.log('service get breeds group')
+    console.log(groupQ, pageQ,limitQ)
+       const group = groupQ || 1
+       const page = pageQ || 1
+       const limit = limitQ || 10;
+        // const options = {
+        //     page: 1,
+        //     limit: 10,
+        //     collation: {
+        //       locale: 'en',
+        //     },
+        //   };
+        return http.get(`/breeds/group/${group}/${page}/${limit}/`)
+    
+    }

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import Copyright from "../copyright/Copyright";
 import { usePet } from "../hooks/usePet";
 import { useBreeds } from "../hooks/useBreed";
@@ -57,21 +57,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const CarelinkScreen = () => {
-
+const [groupSelect, setGroupSelect] = useState({group: 1})
   const { getPets, petsUser } = usePet();
-  // const {breeds, getBreeds  } = useBreeds();
+  const {breeds, getBreedsList  } = useBreeds();
   const classes = useStyles();
   const theme = useTheme();
-
+ 
   useEffect(() => {
-    getPets();
-  }, [getPets]);
+    // getPets();
+    // getBreedsList()
+  }, []);
 
-  if (!petsUser ) {
-    return "Loading...";
-  }
+  // if (!petsUser ) {
+  //   return "Loading...";
+  // }
 
-  // console.log(breeds)
 
   return (
     <>

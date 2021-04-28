@@ -56,9 +56,9 @@ function ResponsiveDrawer(props) {
   const { petsUser } = usePet();
   // const {setCategory, stateCategory} = useCategory()
 
-
+ 
   const [stateCategories] = useState({
-    petsName: petsUser && petsUser.map((pet) => pet.review.name),
+    petsName: petsUser ? petsUser.map((pet) => pet.review.name) : null,
     petNumber: 0,
     categoryNumber: 0,
     subcategoryNumber: 0,
@@ -69,6 +69,11 @@ function ResponsiveDrawer(props) {
   const { window, classes, themeDirection } = props;
   // const classes = useStyles();
   // const theme = useTheme();
+
+  
+  if (!petsUser ) {
+    return "Loading...";
+  }
 
   const {
     petsName,
@@ -118,6 +123,7 @@ function ResponsiveDrawer(props) {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
+    
 
   return (
     <>
