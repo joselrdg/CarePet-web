@@ -9,15 +9,14 @@ import TabPanel from "../TabPanel";
 import BreedList from "./BreedList";
 // import PetCharacteristics from './PetCharacteristics';
 
-const folderBox = (folder, ) => {
+const folderBox = (folder, breeds) => {
   switch (folder) {
     case 0:
-      return <BreedList />;
+      return <BreedList breeds={breeds}/>;
     case 1:
       return;
     case 2:
       return;
-    // break;
 
     default:
       break;
@@ -29,24 +28,23 @@ const BreedScreen = () => {
   const { stateCategory } = useCategory();
   const { folder } = stateCategory;
 
+  console.log(breeds);
   useEffect(() => {
-    if (breeds !== null) {
-      getBreeds()
-    }
-  }, [breeds]);
+    
+  }, []);
 
   console.log(breeds)
 
-  // if (!breedsState) {
-  //   return <p>Loading...</p>;
-  // }
+  if (!breeds) {
+    return <p>Loading...</p>;
+  }
 
   // const { petsUser } = usePet();
   return (
     <>
       <TabPanel category={1} />
       {
-        folderBox(folder, breeds)
+        folderBox(folder)
       }
     </>
   );

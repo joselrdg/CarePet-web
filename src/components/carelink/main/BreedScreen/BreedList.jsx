@@ -23,20 +23,28 @@ const BreedList = () => {
         setPage(0);
     };
 
-    useEffect(() => {
-        console.log('useefect')
-        getBreedsList().then((r)=>{
-            console.log( 'conseguidas razas');
-            setBreeds(r)
-        })
-    }, []);
+    // useEffect(() => {
+    //     console.log('useefect')
+    //     getBreedsList().then((r)=>{
+    //         console.log( 'conseguidas razas');
+    //         setBreeds(r)
+    //     })
+    // }, []);
 
+    
+if(breeds){console.log(breeds.docs[0])}
 
     return (
         <>
-            <h1>Breeds List</h1>
-            <div className=''>
-                <CardBreed />
+            <h1>Breeds List</h1>            
+                       <div className=''>
+                       {/* {
+                           breeds.docs.map((breed)=>(
+                                 <CardBreed />
+                           ))
+                       } */}
+              
+            </div> 
                 <TablePagination
                     component="div"
                     count={10}
@@ -45,7 +53,8 @@ const BreedList = () => {
                     rowsPerPage={rowsPerPage}
                     onChangeRowsPerPage={handleChangeRowsPerPage}
                 />
-            </div>
+                    
+          
         </>
     );
 };
