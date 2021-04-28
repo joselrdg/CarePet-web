@@ -1,30 +1,44 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getAccessToken } from "../stores/AccessTokenStore";
 import { UserContext } from "./UserContext";
-import { getBreedsList } from "../services/BreedService";
+import { getBreedsList, getBreedsGroup } from "../services/BreedService";
 
 export const BreedsContext = createContext();
 
 export function BreedsContextProvider({ children }) {
   const [breeds, setBreedsFci] = useState(null);
+  const [breedsNames, setBreedsName] = useState(null);
+
   const { user } = useContext(UserContext);
 
-  const getBreeds = (id) => {
-    if (id) {
-      console.log(id)
-      return getBreedsList().then((response) => setBreedsFci(response));
-    }
-  };
+
+  const breedsList = () => {
+      return getBreedsList().then((response) => {
+        const arrBreedsNames = []
+        response.docs.forEach(element => {
+          if (element.raza[1]) {
+            let name = element.raza[1].charAt(0).toUpperCase() + element.raza[1].toLowerCase().slice(1);
+            arrBreedsNames.push(name)
+          } else {
+            let name = element.raza[0].charAt(0).toUpperCase() + element.raza[0].toLowerCase().slice(1);
+            arrBreedsNames.push(name)
+          }
+        }
+        ); 
+        setBreedsFci(response);
+        setBreedsName(arrBreedsNames)
+      });
+  }
 
   useEffect(() => {
     if (user !== null) {
-      const id = user.id;
-      getBreeds(id);
+      breedsList();
     }
   }, [user]);
 
   const value = {
-    getBreeds,
+    breedsList,
+    breedsNames,
     breeds,
   };
   return <BreedsContext.Provider value={value}>{children}</BreedsContext.Provider>;
