@@ -1,22 +1,21 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getBreedsList } from "../services/BreedService";
+import { getAccessToken } from "../stores/AccessTokenStore";
 import { UserContext } from "./UserContext";
+import { getBreedsList } from "../services/BreedService";
 
 export const BreedsContext = createContext();
 
 export function BreedsContextProvider({ children }) {
-  const [breeds, setBreeds] = useState(null);
+  const [breeds, setBreedsFci] = useState(null);
   const { user } = useContext(UserContext);
 
-  const getBreeds = (id) => {
-      return getBreedsList(id).then((response) => setBreeds(response));
+  const getBreeds = () => {
+      return getBreedsList().then((response) => setBreedsFci(response));
   };
 
   useEffect(() => {
-    if (user !== null) {
       getBreeds();
-    }
-  }, [user]);
+  }, []);
 
   const value = {
     getBreeds,
