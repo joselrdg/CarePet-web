@@ -7,7 +7,7 @@ import { useBreeds } from "../../../hooks/useBreed";
 
 
 const BreedList = () => {
-    // const { breeds, getBreeds } = useBreeds();
+    const { breeds } = useBreeds();
     const [page, setPage] = React.useState(2);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -21,13 +21,20 @@ const BreedList = () => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
-
+    
+if(breeds){console.log(breeds.docs[0])}
 
     return (
         <>
-            <h1>Breeds List</h1>
-            <div className=''>
-                <CardBreed />
+            <h1>Breeds List</h1>            
+                       <div className=''>
+                       {/* {
+                           breeds.docs.map((breed)=>(
+                                 <CardBreed />
+                           ))
+                       } */}
+              
+            </div> 
                 <TablePagination
                     component="div"
                     count={10}
@@ -36,7 +43,8 @@ const BreedList = () => {
                     rowsPerPage={rowsPerPage}
                     onChangeRowsPerPage={handleChangeRowsPerPage}
                 />
-            </div>
+                    
+          
         </>
     );
 };
