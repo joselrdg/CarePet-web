@@ -20,15 +20,12 @@ const Groups = () => {
         setPage(newPage);
     };
 
-
-    console.log(groupBreeds)
     const handleChangeRowsPerPage = (event) => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
 
     useEffect(() => {
-        console.log('useEffect get group')
         return getBreedsGroup(numGroup, page, rowsPerPage).then((response) => setGroupBreedsFci(response));
     }, [numGroup, page, rowsPerPage]);
 
@@ -43,8 +40,8 @@ const Groups = () => {
             <h1>Grupos</h1>
             <div className=''>
                 {
-                    groupBreeds.docs.map((breed) => (
-                        <CardBreed {...breed}/>
+                    groupBreeds.docs.map((breed, i) => (
+                        <CardBreed key={i} {...breed}/>
                     ))
                 }
 

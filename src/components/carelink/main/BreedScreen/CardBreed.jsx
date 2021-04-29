@@ -16,6 +16,8 @@ import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
@@ -39,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CardBreed({raza,comportamiento, utilizado,historia}) {
+export default function CardBreed({raza,comportamiento, utilizado,historia, img}) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -51,6 +53,7 @@ export default function CardBreed({raza,comportamiento, utilizado,historia}) {
     let name = raza[0].charAt(0).toUpperCase() + raza[0].toLowerCase().slice(1);
     breed = (name)
   }
+
   
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -60,9 +63,7 @@ export default function CardBreed({raza,comportamiento, utilizado,historia}) {
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            R
-          </Avatar>
+          <Avatar alt="Remy Sharp" src='../descarga.jpg' />
         }
         action={
           <IconButton aria-label="settings">
@@ -74,7 +75,7 @@ export default function CardBreed({raza,comportamiento, utilizado,historia}) {
       />
       <CardMedia
         className={classes.media}
-        image="/static/images/cards/paella.jpg"
+        image='../descarga.jpg'
         title="Paella dish"
       />
       <CardContent>

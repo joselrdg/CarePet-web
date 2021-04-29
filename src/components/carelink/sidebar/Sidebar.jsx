@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
@@ -57,7 +57,7 @@ function ResponsiveDrawer(props) {
   // const {setCategory, stateCategory} = useCategory()
 
  
-  const [stateCategories] = useState({
+  const [stateCategories, setStateCategories] = useState({
     petsName: petsUser ? petsUser.map((pet) => pet.review.name) : null,
     petNumber: 0,
     categoryNumber: 0,
@@ -69,6 +69,21 @@ function ResponsiveDrawer(props) {
   const { window, classes, themeDirection } = props;
   // const classes = useStyles();
   // const theme = useTheme();
+
+  const setNames = () => {
+    setStateCategories({
+        ...stateCategories, 
+        petsName: petsUser.map((pet) => pet.review.name)
+      })
+  }
+
+  useEffect(() => {
+    console.log('use efect de los nombres')
+    if (petsUser && petsName=== null){
+      setNames()
+    }
+   
+  }, [petsUser])
 
   
   if (!petsUser ) {

@@ -13,7 +13,7 @@ export const CATEGORIES = [
     icon: <PetsIcon />, 
     subcategory: [{
       name:'Añadir mascota', 
-      folders: ['Perfil', 'Reseña', 'Add mascota'
+      folders: ['Tablero', 'Citas', 'Higiene', 'Medicación', 'Reseña', 'Raza', 'Editar'
     ]}] },
     { 
       name: "Razas", 

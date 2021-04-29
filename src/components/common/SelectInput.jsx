@@ -31,6 +31,7 @@ function getStyles(name, personName, theme) {
 
 
 function SelectInput({ items, value, handleChange, itemname, label }) {
+    console.log(items)
     const classes = useStyles();
     const theme = useTheme();
 

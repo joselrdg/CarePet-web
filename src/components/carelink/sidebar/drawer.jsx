@@ -38,6 +38,9 @@ function DrawerBox({
 
 
   const handleSubcategory = (subcategory) => {
+    if (stateCategory=== 0){
+
+    }
     setCategory((prevState) => ({
       ...prevState,
       subcategory: subcategory,
@@ -65,7 +68,7 @@ function DrawerBox({
     }
   };
 
-  if (!classes) {
+  if (!classes ) {
     return "Loading...";
   }
   return (
@@ -83,12 +86,12 @@ function DrawerBox({
               </ListItem>
             {/* </Link> */}
 
-            {category === index
+            {category === index && category !== 0
               ? CATEGORIES[category].subcategory.map((subcategoryMap, idex) => (
                   <div key={subcategoryMap.name}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                       <List component="div" disablePadding>
-                        {category === 0
+                        {category === 0 
                           ? petsName.map((name, index) => (
                               <ListItem
                                 button
