@@ -7,6 +7,7 @@ import { getBreedsList } from "../../../../services/BreedService";
 
 
 
+
 const BreedList = () => {
     const { breeds, getBreeds } = useBreeds();
     const [page, setPage] = React.useState(2);
@@ -37,10 +38,12 @@ const BreedList = () => {
     
 if(breeds){console.log(breeds.docs[0])}
 
+
     return (
         <>
-            <h1>Breeds List</h1>            
-                       <div className=''>
+            <h1>Breeds List</h1> 
+
+                      <div className=''>
                        {/* {
                            breeds.docs.map((breed)=>(
                                  <CardBreed />

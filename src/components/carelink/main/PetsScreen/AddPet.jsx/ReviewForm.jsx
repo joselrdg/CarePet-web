@@ -21,7 +21,9 @@ export default function AddressForm({ valuesField, handleTextFieldChange }) {
           <SelectInput value={valuesField.species} handleChange={handleTextFieldChange} items={['Perro', 'Gato', 'Ave', 'Reptil', 'Anfibio', 'Otro']} itemname='species' label='Especie' />
         </Grid>
         <Grid item xs={12} sm={6}  >
-          <SelectInput value={valuesField.breed} handleChange={handleTextFieldChange} items={breedsNames} itemname='breed' label='Raza' />
+        {
+         breedsNames !== null ? <SelectInput value={valuesField.breed} handleChange={handleTextFieldChange} items={breedsNames} itemname='breed' label='Raza' /> : 'Loading...'
+        }
         </Grid>
         <Grid item xs={12} sm={3}  >
           <SelectInput value={valuesField.sex} handleChange={handleTextFieldChange} items={['Macho', 'Hembra', 'Indifinido']} itemname='sex' label='Sexo' />

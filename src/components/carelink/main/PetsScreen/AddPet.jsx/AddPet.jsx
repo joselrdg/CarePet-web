@@ -116,7 +116,7 @@ export default function Checkout() {
     };
 
     const handleTextFieldChange = (event) => {
-        let name = event.target.name
+        let name = event.target ? event.target.name : ''
         let value = ''
         if (!event.target) {
             name = 'datebirth'

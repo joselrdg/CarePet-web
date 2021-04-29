@@ -10,8 +10,6 @@ export const getBreedsList = () => {
 }
 
 export const getBreedsGroup = (groupQ, pageQ,limitQ) => {
-    console.log('service get breeds group')
-    console.log(groupQ, pageQ,limitQ)
        const group = groupQ || 1
        const page = pageQ || 1
        const limit = limitQ || 10;
