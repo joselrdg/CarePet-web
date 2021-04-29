@@ -4,7 +4,7 @@ import { useCategory } from "../../../hooks/useCategory";
 import TabPanel from "../TabPanel";
 import AddPet from "./AddPet.jsx/AddPet";
 import AddPetForm from "./AddPetForm";
-import Hygiene from "./AddPet.jsx/Hygiene/Hygiene";
+import Hygiene from "./Hygiene/Hygiene";
 import Appointments from "./Appointments";
 import Medication from "./Medication";
 // import PetCharacteristics from './PetCharacteristics';

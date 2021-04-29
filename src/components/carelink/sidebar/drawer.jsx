@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Divider,
   List,
@@ -14,6 +14,8 @@ import Avatar from '@material-ui/core/Avatar';
 import { useCategory } from "../../hooks/useCategory";
 import { CATEGORIES } from "../../../constants/constants";
 import { Link, useHistory } from "react-router-dom";
+import SimpleTooltips from "../../common/ToolTip";
+import { usePet } from "../../hooks/usePet";
 
 
 // const useStyles = makeStyles((theme) => ({
@@ -34,18 +36,18 @@ function DrawerBox({
   const { setCategory, stateCategory } = useCategory();
   const [open, setOpen] = React.useState(true);
   const { category } = stateCategory;
+  const {petSelect, setPet}= usePet()
   const { push } = useHistory();
 
 
-  const handleSubcategory = (subcategory) => {
-    if (stateCategory=== 0){
-
-    }
+  const handleSubcategoryPets = (subcategory) => {
+    
     setCategory((prevState) => ({
       ...prevState,
       subcategory: subcategory,
       folder: 0,
     }));
+    setPet(subcategory)
   };
 
   const set = (index) => {
@@ -56,8 +58,10 @@ function DrawerBox({
     });
   }
 
+  console.log(stateCategory)
+
   const handleClick = (index) => {
-    const srtLink = CATEGORIES[index].name.replaceAll(' ','-')
+    const srtLink = CATEGORIES[index].name.replaceAll(' ', '-')
     setOpen(!open);
     if (index !== category) {
       push(srtLink);
@@ -68,7 +72,14 @@ function DrawerBox({
     }
   };
 
-  if (!classes ) {
+
+  useEffect(() => {
+    setPet(0)
+      // setPet(stateCategory.subcategory)
+
+  }, []);
+
+  if (!classes) {
     return "Loading...";
   }
   return (
@@ -79,43 +90,51 @@ function DrawerBox({
         {CATEGORIES.map((item, index) => (
           <div key={item.name}>
             {/* <Link to={`/CarePet/${item.name}`}> */}
-              <ListItem button onClick={() => handleClick(index)}>
-                <ListItemIcon><Avatar className={classes.pink}>{item.icon}</Avatar></ListItemIcon>
-                <ListItemText primary={item.name} />
-                {open && category === index ? <ExpandLess /> : <ExpandMore />}
-              </ListItem>
+            <ListItem button onClick={() => handleClick(index)}>
+              <ListItemIcon><Avatar className={classes.pink}>{item.icon}</Avatar></ListItemIcon>
+              <ListItemText primary={item.name} />
+              {open && category === index ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
             {/* </Link> */}
 
-            {category === index && category !== 0
+            {category === index
               ? CATEGORIES[category].subcategory.map((subcategoryMap, idex) => (
-                  <div key={subcategoryMap.name}>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                      <List component="div" disablePadding>
-                        {category === 0 
-                          ? petsName.map((name, index) => (
-                              <ListItem
-                                button
-                                onClick={() => handleSubcategory(index)}
-                                className={classes.nested}
-                                key={index}
-                              >
-                                <ListItemIcon>
-                                  <StarBorder />
-                                </ListItemIcon>
-                                <ListItemText primary={name} />
-                              </ListItem>
-                            ))
-                          : null}
-                        <ListItem button className={classes.nested}>
+                <div key={subcategoryMap.name}>
+                  <Collapse in={open} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                      {category === 0
+                        ?petsName && petsName.map((name, index) => (
+                          <ListItem
+                            button
+                            onClick={() => handleSubcategoryPets(index)}
+                            className={classes.nested}
+                            key={index}
+                          >
+                            <ListItemIcon>
+                              <StarBorder />
+                            </ListItemIcon>
+                            <ListItemText primary={name} />
+                          </ListItem>
+                        ))
+                        : null}
+                      {category
+                        !== 0 && (<ListItem button className={classes.nested}>
                           <ListItemIcon>
                             <StarBorder />
                           </ListItemIcon>
                           <ListItemText primary={subcategoryMap.name} />
                         </ListItem>
-                      </List>
-                    </Collapse>
-                  </div>
-                ))
+                        )}
+                      {
+                        category === 0 && (
+                          <ListItem>
+                            <SimpleTooltips />
+                          </ListItem>)
+                      }
+                    </List>
+                  </Collapse>
+                </div>
+              ))
               : null}
           </div>
         ))}

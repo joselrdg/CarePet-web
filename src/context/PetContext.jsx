@@ -7,13 +7,21 @@ export const PetsContext = createContext();
 
 export function PetsContextProvider({ children }) {
   const [petsUser, setPetsUser] = useState(null);
+  const [petSelect, setPetSelect] = useState()
   const { user } = useContext(UserContext);
 
   const getPets = (id) => {
     if (id) {
-      return getPetsUser(id).then((response) => setPetsUser(response));
+      return getPetsUser(id).then((response) => {
+        setPetsUser(response)
+      });
     }
   };
+
+  const setPet = (pet = 0) => {
+    petsUser !== null &&
+    setPetSelect(petsUser[pet])
+  }
 
   useEffect(() => {
     if (user !== null) {
@@ -25,6 +33,8 @@ export function PetsContextProvider({ children }) {
   const value = {
     getPets,
     petsUser,
+    setPet,
+    petSelect
   };
   return <PetsContext.Provider value={value}>{children}</PetsContext.Provider>;
 }

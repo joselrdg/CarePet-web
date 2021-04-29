@@ -53,10 +53,10 @@ import DrawerBox from "./drawer";
 // }));
 
 function ResponsiveDrawer(props) {
-  const { petsUser } = usePet();
+  const { petsUser, petSelect } = usePet();
   // const {setCategory, stateCategory} = useCategory()
 
- 
+ console.log(petSelect)
   const [stateCategories, setStateCategories] = useState({
     petsName: petsUser ? petsUser.map((pet) => pet.review.name) : null,
     petNumber: 0,
@@ -70,25 +70,23 @@ function ResponsiveDrawer(props) {
   // const classes = useStyles();
   // const theme = useTheme();
 
-  const setNames = () => {
-    setStateCategories({
-        ...stateCategories, 
-        petsName: petsUser.map((pet) => pet.review.name)
-      })
-  }
+  // const setNames = () => {
+  //   setStateCategories({
+  //       ...stateCategories, 
+  //       petsName: petsUser.map((pet) => pet.review.name)
+  //     })
+  // }
 
-  useEffect(() => {
-    console.log('use efect de los nombres')
-    if (petsUser && petsName=== null){
-      setNames()
-    }
+  // useEffect(() => {
+  //   console.log('use efect de los nombres')
+  //   if (petsUser && petsName=== null){
+  //     setNames()
+  //   }
    
-  }, [petsUser])
+  // }, [petsUser])
 
   
-  if (!petsUser ) {
-    return "Loading...";
-  }
+ 
 
   const {
     petsName,
@@ -96,34 +94,7 @@ function ResponsiveDrawer(props) {
     // categoryNumber,
     // subcategoryNumber,
   } = stateCategories;
-  const {
-    name,
-    // allergies,
-    // breed,
-    // chip,
-    // color,
-    // familyhistory,
-    // hair,
-    // previousdiseases,
-    // species,
-    // sterilized,
-    // surgeries,
-  } = petsUser[petNumber].review;
-
-  // const handleClick = (index) => {
-  //  if (categoryNumber === index) {
-  //     setOpen(!open);
-  //   } else {
-  //     setOpen(false);
-  //     setTimeout(() => {
-  //       setStateCategories((prevState) => ({
-  //         ...prevState,
-  //         categoryNumber: index,
-  //       }));
-  //       setOpen(true);
-  //     }, 300);
-  //   } 
-  // };
+ 
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -155,7 +126,7 @@ function ResponsiveDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            CarePet: {name}
+            CarePet: {petSelect && petSelect.review.name}
           </Typography>
         </Toolbar>
       </AppBar>
