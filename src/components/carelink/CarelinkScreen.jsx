@@ -64,7 +64,7 @@ const [groupSelect, setGroupSelect] = useState({group: 1})
   const theme = useTheme();
  
   useEffect(() => {
-    // getPets();
+    getPets();
     // getBreedsList()
   }, []);
 

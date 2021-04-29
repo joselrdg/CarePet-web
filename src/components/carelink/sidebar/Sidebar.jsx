@@ -56,7 +56,6 @@ function ResponsiveDrawer(props) {
   const { petsUser, petSelect } = usePet();
   // const {setCategory, stateCategory} = useCategory()
 
- console.log(petSelect)
   const [stateCategories, setStateCategories] = useState({
     petsName: petsUser ? petsUser.map((pet) => pet.review.name) : null,
     petNumber: 0,
@@ -70,20 +69,20 @@ function ResponsiveDrawer(props) {
   // const classes = useStyles();
   // const theme = useTheme();
 
-  // const setNames = () => {
-  //   setStateCategories({
-  //       ...stateCategories, 
-  //       petsName: petsUser.map((pet) => pet.review.name)
-  //     })
-  // }
+  const setNames = () => {
+    setStateCategories({
+        ...stateCategories, 
+        petsName: petsUser.map((pet) => pet.review.name)
+      })
+  }
 
-  // useEffect(() => {
-  //   console.log('use efect de los nombres')
-  //   if (petsUser && petsName=== null){
-  //     setNames()
-  //   }
+  useEffect(() => {
+    console.log('use efect de los nombres')
+    if (petsUser && petsName=== null){
+      setNames()
+    }
    
-  // }, [petsUser])
+  }, [petsUser])
 
   
  

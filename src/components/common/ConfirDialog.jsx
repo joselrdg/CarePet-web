@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -12,28 +12,23 @@ import Dialog from '@material-ui/core/Dialog';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { DatePicker } from '@material-ui/pickers';
+import { usePet } from '../hooks/usePet';
 
 const options = [
-  'None',
-  'Atria',
-  'Callisto',
-  'Dione',
-  'Ganymede',
-  'Hangouts Call',
-  'Luna',
-  'Oberon',
-  'Phobos',
-  'Pyxis',
-  'Sedna',
-  'Titania',
-  'Triton',
-  'Umbriel',
+  '1 semana',
+  '2 semanas',
+  '3 semanas',
+  '4 semanas',
+  '6 semanas',
+  '8 semanas',
 ];
 
 function ConfirmationDialogRaw(props) {
   const { onClose, value: valueProp, open, ...other } = props;
-  const [value, setValue] = React.useState(valueProp);
-  const radioGroupRef = React.useRef(null);
+  const [value, setValue] = useState(valueProp);
+  const [selectedDate, handleDateChange] = useState(new Date());
+  const radioGroupRef = useRef(null);
 
   React.useEffect(() => {
     if (!open) {
@@ -52,12 +47,13 @@ function ConfirmationDialogRaw(props) {
   };
 
   const handleOk = () => {
-    onClose(value);
+    onClose(value, selectedDate);
   };
 
   const handleChange = (event) => {
     setValue(event.target.value);
   };
+
 
   return (
     <Dialog
@@ -69,7 +65,19 @@ function ConfirmationDialogRaw(props) {
       open={open}
       {...other}
     >
-      <DialogTitle id="confirmation-dialog-title">Phone Ringtone</DialogTitle>
+      <DialogTitle id="confirmation-dialog-title">Ulima fecha y configuración de aviso:</DialogTitle>
+      <div className='__flex __jc-center'>
+        <DatePicker
+          disableFuture
+          openTo="year"
+          format="dd/MM/yyyy"
+          label="Ultimo baño:"
+          views={["year", "month", "date"]}
+          value={selectedDate}
+          onChange={handleDateChange}
+
+        />
+      </div>
       <DialogContent dividers>
         <RadioGroup
           ref={radioGroupRef}
@@ -113,28 +121,45 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ConfirDialog() {
+export default function ConfirDialog({ accion, clave }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('Dione');
+  const [valueDate, setValueDate] = React.useState(new Date());
+  const { editPet } = usePet()
+
 
   const handleClickListItem = () => {
     setOpen(true);
   };
+  const handleClose = (newValue, date) => {
+    editPet({
+      [clave]: {
+        date: date,
+        data: newValue
+      }
+    })
 
-  const handleClose = (newValue) => {
+    console.log(date)
     setOpen(false);
 
     if (newValue) {
+      setValueDate(date)
       setValue(newValue);
     }
   };
 
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const dateStr = valueDate ? valueDate.toLocaleDateString("es-ES", options) : null
+
   return (
     <div className={classes.root}>
       <List component="div" role="list">
-        <ListItem button divider disabled role="listitem">
-          <ListItemText primary="Interruptions" />
+        <ListItem divider role="listitem">
+          <ListItemText primary={`Días desde el ${accion}:`} secondary={value} />
+        </ListItem>
+        <ListItem divider role="listitem">
+          <ListItemText primary="Fecha:" secondary={dateStr} />
         </ListItem>
         <ListItem
           button
@@ -145,11 +170,11 @@ export default function ConfirDialog() {
           onClick={handleClickListItem}
           role="listitem"
         >
-          <ListItemText primary="Phone ringtone" secondary={value} />
+          <ListItemText primary="Añadir nuevo" />
         </ListItem>
-        <ListItem button divider disabled role="listitem">
-          <ListItemText primary="Default notification ringtone" secondary="Tethys" />
-        </ListItem>
+        {/* <ListItem button divider role="listitem">
+          <ListItemText primary="Estadisticas" />
+        </ListItem> */}
         <ConfirmationDialogRaw
           classes={{
             paper: classes.paper,

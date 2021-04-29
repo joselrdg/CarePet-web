@@ -58,7 +58,6 @@ function DrawerBox({
     });
   }
 
-  console.log(stateCategory)
 
   const handleClick = (index) => {
     const srtLink = CATEGORIES[index].name.replaceAll(' ', '-')

@@ -2,6 +2,7 @@ import { makeStyles, Paper } from '@material-ui/core';
 import React from 'react';
 import Pipebar from '../../../progress/Pipebar';
 import ConfirDialog from '../../../../common/ConfirDialog'
+import { usePet } from '../../../../hooks/usePet';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -19,7 +20,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Hygiene() {
+    const {petSelect}= usePet()
     const classes = useStyles();
+    const {review}= petSelect
+    console.log(review)
 
     return (
         <div>
@@ -33,7 +37,7 @@ export default function Hygiene() {
                             <Pipebar />
                         </div>
                         <Paper elevation={3} className={classes.weight}>
-                            <ConfirDialog />
+                            <ConfirDialog id={petSelect.id} clave='' accion='último baño' date={'holo'} />
                         </Paper>
                     </Paper>
                 </div>
