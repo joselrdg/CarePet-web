@@ -16,6 +16,11 @@ export const createPet = (body) => {
     return http.post(`/pets/create/${id}`, body)
 }
 
+export const editPetUser = (body, idu) => {
+    const id = idu
+    return http.put(`/pets/edit/${id}`, body)
+}
+
 export const getPetInfo = (params) => {
     return http.get(`/pets/${params}`)
 }

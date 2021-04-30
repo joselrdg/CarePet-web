@@ -72,7 +72,7 @@ export default function ScrollableTabsButtonAuto() {
           category !== 0 
           ? CATEGORIES[category].subcategory[subcategory].folders.map((category, index) => (
             <Tab key={category} label={`${category}`} {...a11yProps(index)} />
-          )): CATEGORIES[category].subcategory[subcategory].folders.map((category, index) => (
+          )): CATEGORIES[category].subcategory[0].folders.map((category, index) => (
             <Tab key={category} label={`${category}`} {...a11yProps(index)} />))
         }
           
