@@ -18,8 +18,8 @@ export function PetsContextProvider({ children }) {
     }
   };
 
-  const editPet = (body) => {
-      return editPetUser(body).then((response) => {
+  const editPet = (body,id) => {
+      return editPetUser(body, id).then((response) => {
         setPetsUser(response)
       });
   };

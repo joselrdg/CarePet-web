@@ -126,19 +126,28 @@ export default function ConfirDialog({ accion, clave }) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('Dione');
   const [valueDate, setValueDate] = React.useState(new Date());
-  const { editPet } = usePet()
+  const { editPet, petSelect } = usePet()
 
 
   const handleClickListItem = () => {
     setOpen(true);
   };
+
   const handleClose = (newValue, date) => {
+    console.log(clave)
+    let days = newValue.split(' ')[0]
+    days = parseInt(days);
+    const dateDays = date+days;
+    const id = petSelect.id
     editPet({
-      [clave]: {
-        date: date,
-        data: newValue
+      review:
+      {
+        [clave]: {
+          date: date,
+          days: dateDays
+        }
       }
-    })
+    }, id)
 
     console.log(date)
     setOpen(false);

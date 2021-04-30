@@ -16,10 +16,8 @@ export const createPet = (body) => {
     return http.post(`/pets/create/${id}`, body)
 }
 
-export const editPetUser = (body) => {
-    console.log(body)
-    const id = body.user
-    console.log(id)
+export const editPetUser = (body, idu) => {
+    const id = idu
     return http.put(`/pets/edit/${id}`, body)
 }
 

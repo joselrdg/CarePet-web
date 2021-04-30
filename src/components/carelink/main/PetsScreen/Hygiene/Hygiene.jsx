@@ -37,7 +37,7 @@ export default function Hygiene() {
                             <Pipebar />
                         </div>
                         <Paper elevation={3} className={classes.weight}>
-                            <ConfirDialog id={petSelect.id} clave='' accion='último baño' date={'holo'} />
+                            <ConfirDialog id={petSelect.id} clave='wash' accion='último baño' date={'holo'} />
                         </Paper>
                     </Paper>
                 </div>
