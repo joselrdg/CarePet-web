@@ -126,7 +126,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ItemsLabel(accion) {}
+function ItemsLabel(accion) { }
 
 export default function ConfirDialog({ accion, clave }) {
   const classes = useStyles();
@@ -134,44 +134,64 @@ export default function ConfirDialog({ accion, clave }) {
   const [value, setValue] = useState("Dione");
   const [valueDate, setValueDate] = useState();
   const { editPet, petSelect } = usePet();
-  const { wash } = petSelect;
+  const { wash, haircut, earcleaning, teethcleaning, vaccination, deworming } = petSelect;
 
   const handleClickListItem = () => {
     setOpen(true);
   };
 
   const handleClose = (newValue, date) => {
-    console.log('handleClose.........')
-    let days = newValue.split(" ")[0];
-    days = parseInt(days);
-    days = days * 7;
-    console.log("date........: " + date);
-    const d = date.getTime() + days * 24 * 60 * 60 * 1000;
-    const dateDays = new Date(d);
-    const id = petSelect.id;
-    editPet(
-      {
-        [clave]: {
-          date: date,
-          days: dateDays,
-        },
-      },
-      id
-    );
+
     setOpen(false);
 
     if (newValue) {
+      let days = newValue.split(" ")[0];
+      days = parseInt(days);
+      days = days * 7;
+      const d = date.getTime() + days * 24 * 60 * 60 * 1000;
+      const dateDays = new Date(d);
+      const id = petSelect.id;
+      editPet(
+        {
+          [clave]: {
+            date: date,
+            days: dateDays,
+          },
+        },
+        id
+      );
       setValueDate(date);
       setValue(newValue);
     }
   };
-
+  console.log('haircut. ' + haircut);
+  console.log(haircut);
+  console.log('wash: ');
   console.log(wash);
+
+
+  const icon = (clave) => {
+    if (clave === "wash") {
+      return <i class="fas fa-bath"></i>
+    }
+  }
 
   const lastdate = (clave) => {
     let date = "";
     if (clave === "wash") {
-      date = new Date(wash.days);
+      date = wash ? new Date(wash.date) : new Date();
+    } else if (clave === "haircut") {
+      date = haircut ? new Date(haircut.date) : new Date();
+    } else if (clave === "earcleaning") {
+      date = earcleaning ? new Date(earcleaning.date) : new Date();
+    } else if (clave === "teethcleaning") {
+      date = teethcleaning ? new Date(teethcleaning.date) : new Date();
+    } else if (clave === "vaccination") {
+      date = vaccination ? new Date(vaccination.date) : new Date();
+    } else if (clave === "deworming") {
+      date = deworming ? new Date(deworming.date) : new Date();
+    } else {
+      date = new Date()
     }
     const options = { year: "numeric", month: "long", day: "numeric" };
     return date.toLocaleDateString("es-ES", options)
@@ -180,10 +200,21 @@ export default function ConfirDialog({ accion, clave }) {
   const subtraction = (clave) => {
     let date = "";
     if (clave === "wash") {
-      date = new Date(wash.date);
+      date = wash ? new Date(wash.date) : new Date();
+    } else if (clave === "haircut") {
+      date = haircut ? new Date(haircut.date) : new Date();
+    } else if (clave === "earcleaning") {
+      date = earcleaning ? new Date(earcleaning.date) : new Date();
+    } else if (clave === "teethcleaning") {
+      date = teethcleaning ? new Date(teethcleaning.date) : new Date();
+    } else if (clave === "deworming") {
+      date = deworming ? new Date(deworming.date) : new Date();
+    } else if (clave === "deworming") {
+      date = deworming ? new Date(deworming.date) : new Date();
+    } else {
+      date = new Date()
     }
     const fecha = new Date();
-    console.log(date)
     const resta = fecha.getTime() - date.getTime();
     return Math.round(resta / (1000 * 60 * 60 * 24));
   };
@@ -193,7 +224,7 @@ export default function ConfirDialog({ accion, clave }) {
       <List component="div" role="list">
         <ListItem divider role="listitem">
           <ListItemText
-            primary={`Desde el ultimo ${accion}:`}
+            primary={`Desde ${accion}:`}
             secondary={`${subtraction(clave)} días`}
           />
         </ListItem>
@@ -209,7 +240,7 @@ export default function ConfirDialog({ accion, clave }) {
           onClick={handleClickListItem}
           role="listitem"
         >
-          <ListItemText primary="Añadir nuevo" />
+          <ListItemText primary={"Añadir nuevo"} />
         </ListItem>
         {/* <ListItem button divider role="listitem">
           <ListItemText primary="Estadisticas" />
