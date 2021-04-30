@@ -28,7 +28,6 @@ export default function Hygiene() {
     return (
         <div>
             Cuidados
-
             <div className='__flex __fw-w  __jc-between'>
                 <div className='__flex'>
                     <Paper elevation={3} className={classes.weight}>

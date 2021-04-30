@@ -20,7 +20,8 @@ export function PetsContextProvider({ children }) {
 
   const editPet = (body,id) => {
       return editPetUser(body, id).then((response) => {
-        setPetsUser(response)
+        console.log(response);
+        setPetSelect(response)
       });
   };
 
