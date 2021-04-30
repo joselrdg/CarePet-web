@@ -17,9 +17,10 @@ export function PetsContextProvider({ children }) {
       });
     }
   };
-
+let rederpetcontext = 0
   const editPet = (body,id) => {
       return editPetUser(body, id).then((response) => {
+        console.log('-----------------------------------------pet context respose edit')
         console.log(response);
         setPetSelect(response)
       });
@@ -35,7 +36,7 @@ export function PetsContextProvider({ children }) {
       const id = user.id;
       getPets(id);
     }
-  }, [user]);
+  }, [user, petSelect]);
 
   const value = {
     getPets,

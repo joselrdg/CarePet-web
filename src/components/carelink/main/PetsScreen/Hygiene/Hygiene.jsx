@@ -20,9 +20,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Hygiene() {
-    const {petSelect}= usePet()
+    const { petSelect } = usePet()
     const classes = useStyles();
-    const {review}= petSelect
+    const { review } = petSelect
     console.log(review)
 
     return (
@@ -32,7 +32,7 @@ export default function Hygiene() {
                 <div className='__flex'>
                     <Paper elevation={3} className={classes.weight}>
                         <div>
-                            <h3>Baño</h3>
+                            <i class="fas fa-bath fa-3x __mt-1 __mb-0 __mx-1"></i>
                             <Pipebar />
                         </div>
                         <Paper elevation={3} className={classes.weight}>
@@ -43,64 +43,59 @@ export default function Hygiene() {
                 <div className='__flex'>
                     <Paper elevation={3} className={classes.weight}>
                         <div>
-                            <h3>Pelo</h3>
+                            <i class="fas fa-cut fa-3x __mt-1 __mb-0 __mx-1"></i>
                             <Pipebar />
                         </div>
                         <Paper elevation={3} className={classes.weight}>
-                            <h3>Pelo</h3>
-                            <Pipebar />
+                            <ConfirDialog id={petSelect.id} clave='haircut' accion='último corte' date={'holo'} />
                         </Paper>
                     </Paper>
                 </div>
                 <div className='__flex'>
                     <Paper elevation={3} className={classes.weight}>
                         <div>
-                            <h3>Oídos</h3>
+                            <i class="fas fa-hand-sparkles fa-3x __mt-1 __mb-0 __mx-1"></i>
                             <Pipebar />
                         </div>
                         <Paper elevation={3} className={classes.weight}>
-                            <h3>Oídos</h3>
-                            <Pipebar />
+                            <ConfirDialog id={petSelect.id} clave='earcleaning' accion='última limpieza de oídos' date={'holo'} />
                         </Paper>
                     </Paper>
                 </div>
                 <div className='__flex'>
                     <Paper elevation={3} className={classes.weight}>
                         <div>
-                            <h3>Dientes</h3>
+                            <i class="fas fa-tooth fa-3x __mt-1 __mb-0 __mx-1"></i>
                             <Pipebar />
                         </div>
                         <Paper elevation={3} className={classes.weight}>
-                            <h3>Dientes</h3>
-                            <Pipebar />
+                            <ConfirDialog id={petSelect.id} clave='teethcleaning' accion='última limpieza de dientes' date={'holo'} />
                         </Paper>
                     </Paper>
                 </div>
                 <div className='__flex'>
                     <Paper elevation={3} className={classes.weight}>
                         <div>
-                            <h3>Vacunación</h3>
+                        <i className="fas fa-syringe fa-3x __mt-1 __mb-0 __mx-1"></i>
                             <Pipebar />
                         </div>
                         <Paper elevation={3} className={classes.weight}>
-                            <h3>Vacunación</h3>
-                            <Pipebar />
+                            <ConfirDialog id={petSelect.id} clave='vaccination' accion='última vacuna' date={'holo'} />
                         </Paper>
                     </Paper>
                 </div>
                 <div className='__flex'>
-                    <Paper elevation={3} className={classes.weight}>
+                <Paper elevation={3} className={classes.weight}>
                         <div>
-                            <h3>Desparasitación</h3>
+                        <i className="fas fa-bug fa-3x __mt-1 __mb-0 __mx-1"></i>
                             <Pipebar />
                         </div>
                         <Paper elevation={3} className={classes.weight}>
-                            <h3>Desparasitación</h3>
-                            <Pipebar />
+                            <ConfirDialog id={petSelect.id} clave='deworming' accion='última vacuna' date={'holo'} />
                         </Paper>
                     </Paper>
                 </div>
-                
+
             </div>
 
         </div>
