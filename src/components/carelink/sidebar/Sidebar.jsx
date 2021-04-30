@@ -57,7 +57,7 @@ function ResponsiveDrawer(props) {
   // const {setCategory, stateCategory} = useCategory()
 
   const [stateCategories, setStateCategories] = useState({
-    petsName: petsUser ? petsUser.map((pet) => pet.review.name) : null,
+    petsName: null,
     petNumber: 0,
     categoryNumber: 0,
     subcategoryNumber: 0,

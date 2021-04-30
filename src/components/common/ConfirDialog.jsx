@@ -1,27 +1,27 @@
-import React, { useState, useRef } from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogActions from '@material-ui/core/DialogActions';
-import Dialog from '@material-ui/core/Dialog';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Radio from '@material-ui/core/Radio';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { DatePicker } from '@material-ui/pickers';
-import { usePet } from '../hooks/usePet';
+import React, { useState, useRef } from "react";
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogActions from "@material-ui/core/DialogActions";
+import Dialog from "@material-ui/core/Dialog";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import Radio from "@material-ui/core/Radio";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { DatePicker } from "@material-ui/pickers";
+import { usePet } from "../hooks/usePet";
 
 const options = [
-  '1 semana',
-  '2 semanas',
-  '3 semanas',
-  '4 semanas',
-  '6 semanas',
-  '8 semanas',
+  "1 semana",
+  "2 semanas",
+  "3 semanas",
+  "4 semanas",
+  "6 semanas",
+  "8 semanas",
 ];
 
 function ConfirmationDialogRaw(props) {
@@ -54,7 +54,6 @@ function ConfirmationDialogRaw(props) {
     setValue(event.target.value);
   };
 
-
   return (
     <Dialog
       disableBackdropClick
@@ -65,8 +64,10 @@ function ConfirmationDialogRaw(props) {
       open={open}
       {...other}
     >
-      <DialogTitle id="confirmation-dialog-title">Ulima fecha y configuración de aviso:</DialogTitle>
-      <div className='__flex __jc-center'>
+      <DialogTitle id="confirmation-dialog-title">
+        Ulima fecha y configuración de aviso:
+      </DialogTitle>
+      <div className="__flex __jc-center">
         <DatePicker
           disableFuture
           openTo="year"
@@ -75,7 +76,6 @@ function ConfirmationDialogRaw(props) {
           views={["year", "month", "date"]}
           value={selectedDate}
           onChange={handleDateChange}
-
         />
       </div>
       <DialogContent dividers>
@@ -87,7 +87,12 @@ function ConfirmationDialogRaw(props) {
           onChange={handleChange}
         >
           {options.map((option) => (
-            <FormControlLabel value={option} key={option} control={<Radio />} label={option} />
+            <FormControlLabel
+              value={option}
+              key={option}
+              control={<Radio />}
+              label={option}
+            />
           ))}
         </RadioGroup>
       </DialogContent>
@@ -111,64 +116,89 @@ ConfirmationDialogRaw.propTypes = {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
+    width: "100%",
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
   paper: {
-    width: '80%',
+    width: "80%",
     maxHeight: 435,
   },
 }));
 
+function ItemsLabel(accion) {}
+
 export default function ConfirDialog({ accion, clave }) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState('Dione');
-  const [valueDate, setValueDate] = React.useState(new Date());
-  const { editPet, petSelect } = usePet()
-
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState("Dione");
+  const [valueDate, setValueDate] = useState();
+  const { editPet, petSelect } = usePet();
+  const { wash } = petSelect;
 
   const handleClickListItem = () => {
     setOpen(true);
   };
 
   const handleClose = (newValue, date) => {
-    console.log(clave)
-    let days = newValue.split(' ')[0]
+    console.log('handleClose.........')
+    let days = newValue.split(" ")[0];
     days = parseInt(days);
-    const dateDays = date+days;
-    const id = petSelect.id
-    editPet({
-      review:
+    days = days * 7;
+    console.log("date........: " + date);
+    const d = date.getTime() + days * 24 * 60 * 60 * 1000;
+    const dateDays = new Date(d);
+    const id = petSelect.id;
+    editPet(
       {
         [clave]: {
           date: date,
-          days: dateDays
-        }
-      }
-    }, id)
-
-    console.log(date)
+          days: dateDays,
+        },
+      },
+      id
+    );
     setOpen(false);
 
     if (newValue) {
-      setValueDate(date)
+      setValueDate(date);
       setValue(newValue);
     }
   };
 
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  const dateStr = valueDate ? valueDate.toLocaleDateString("es-ES", options) : null
+  console.log(wash);
+
+  const lastdate = (clave) => {
+    let date = "";
+    if (clave === "wash") {
+      date = new Date(wash.days);
+    }
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return date.toLocaleDateString("es-ES", options)
+  };
+
+  const subtraction = (clave) => {
+    let date = "";
+    if (clave === "wash") {
+      date = new Date(wash.date);
+    }
+    const fecha = new Date();
+    console.log(date)
+    const resta = fecha.getTime() - date.getTime();
+    return Math.round(resta / (1000 * 60 * 60 * 24));
+  };
 
   return (
     <div className={classes.root}>
       <List component="div" role="list">
         <ListItem divider role="listitem">
-          <ListItemText primary={`Días desde el ${accion}:`} secondary={value} />
+          <ListItemText
+            primary={`Desde el ultimo ${accion}:`}
+            secondary={`${subtraction(clave)} días`}
+          />
         </ListItem>
         <ListItem divider role="listitem">
-          <ListItemText primary="Fecha:" secondary={dateStr} />
+          <ListItemText primary="Fecha del siguiente:" secondary={lastdate(clave)} />
         </ListItem>
         <ListItem
           button
