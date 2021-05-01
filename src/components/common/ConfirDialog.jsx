@@ -126,13 +126,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ItemsLabel(accion) { }
 
 export default function ConfirDialog({ accion, clave }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("Dione");
-  const [valueDate, setValueDate] = useState();
+  const [
+    valueDate, 
+    setValueDate] = useState();
   const { editPet, petSelect } = usePet();
   const { wash, haircut, earcleaning, teethcleaning, vaccination, deworming } = petSelect;
 
@@ -160,7 +161,7 @@ export default function ConfirDialog({ accion, clave }) {
         },
         id
       );
-      setValueDate(date);
+      // setValueDate(date);
       setValue(newValue);
     }
   };
@@ -169,12 +170,6 @@ export default function ConfirDialog({ accion, clave }) {
   console.log('wash: ');
   console.log(wash);
 
-
-  const icon = (clave) => {
-    if (clave === "wash") {
-      return <i class="fas fa-bath"></i>
-    }
-  }
 
   const lastdate = (clave) => {
     let date = "";
@@ -234,7 +229,7 @@ export default function ConfirDialog({ accion, clave }) {
         <ListItem
           button
           divider
-          aria-haspopup="true"
+          // aria-haspopup="true"
           aria-controls="ringtone-menu"
           aria-label="phone ringtone"
           onClick={handleClickListItem}

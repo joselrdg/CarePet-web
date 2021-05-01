@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { makeStyles } from '@material-ui/core/styles';
-import CardBreed from './CardBreed'
+import React, { useEffect } from "react";
+// import { makeStyles } from '@material-ui/core/styles';
+// import CardBreed from './CardBreed'
 import TablePagination from '@material-ui/core/TablePagination';
 import { useBreeds } from "../../../hooks/useBreed";
-import { getBreedsList } from "../../../../services/BreedService";
 
 
 
 
 const BreedList = () => {
-    const { breeds, getBreeds } = useBreeds();
+    const { breeds } = useBreeds();
     const [page, setPage] = React.useState(2);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 

@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getPetsUser, editPetUser } from "../services/PetService";
-import { getAccessToken } from "../stores/AccessTokenStore";
 import { UserContext } from "./UserContext";
 
 export const PetsContext = createContext();
@@ -17,7 +16,6 @@ export function PetsContextProvider({ children }) {
       });
     }
   };
-let rederpetcontext = 0
   const editPet = (body,id) => {
       return editPetUser(body, id).then((response) => {
         console.log('-----------------------------------------pet context respose edit')

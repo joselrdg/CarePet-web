@@ -3,7 +3,6 @@ import { useCategory } from "../../../hooks/useCategory";
 // import { usePet } from '../../hooks/usePet';
 import TabPanel from "../TabPanel";
 import AddPet from "./AddPet.jsx/AddPet";
-import AddPetForm from "./AddPetForm";
 import Hygiene from "./Hygiene/Hygiene";
 import Appointments from "./Appointments";
 import Medication from "./Medication";

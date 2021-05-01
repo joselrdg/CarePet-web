@@ -1,8 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
-import SimpleTooltips from '../../../common/ToolTip';
 import FormDialog from '../../../common/FormDialog';
 
 
@@ -31,12 +29,13 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+
 const columns = [
     { id: 'name', label: 'Fármaco', minWidth: 170 },
-    { id: 'valor', label: 'Dosis', minWidth: 100 },
-    { id: 'name', label: 'Intervalo', minWidth: 100 },
-    { id: 'valor', label: 'Fecha inicio', minWidth: 100 },
-    { id: 'valor', label: 'Fecha final', minWidth: 100 }]
+    { id: 'Dosis', label: 'Dosis', minWidth: 100 },
+    { id: 'Intervalo', label: 'Intervalo', minWidth: 100 },
+    { id: 'inicio', label: 'Fecha inicio', minWidth: 100 },
+    { id: 'final', label: 'Fecha final', minWidth: 100 }]
 
     
 

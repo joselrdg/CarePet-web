@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 // import Copyright from "../copyright/Copyright";
 import { usePet } from "../hooks/usePet";
-import { useBreeds } from "../hooks/useBreed";
+// import { useBreeds } from "../hooks/useBreed";
 import { green, pink } from '@material-ui/core/colors';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Sidebar from "./sidebar/Sidebar";
-import {getRaza }from "../../services/ScraperService";
+// import {getRaza }from "../../services/ScraperService";
 
 
 
@@ -57,16 +57,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const CarelinkScreen = () => {
-const [groupSelect, setGroupSelect] = useState({group: 1})
-  const { getPets, petsUser } = usePet();
-  const {breeds, getBreedsList  } = useBreeds();
+// const [groupSelect, setGroupSelect] = useState({group: 1})
+  const { getPets } = usePet();
+  // const {breeds, getBreedsList  } = useBreeds();
   const classes = useStyles();
   const theme = useTheme();
  
   useEffect(() => {
     getPets();
     // getBreedsList()
-  }, []);
+  }, [getPets]);
 
   // if (!petsUser ) {
   //   return "Loading...";

@@ -1,11 +1,6 @@
 import PetsIcon from "@material-ui/icons/Pets";
 import LocalHospitalIcon from "@material-ui/icons/LocalHospital";
 import TodayIcon from '@material-ui/icons/Today';
-import FolderSpecialIcon from '@material-ui/icons/FolderSpecial';
-import AndroidIcon from '@material-ui/icons/Android';
-import BeenhereIcon from '@material-ui/icons/Beenhere';
-import ColorizeIcon from '@material-ui/icons/Colorize';
-import OutdoorGrillIcon from '@material-ui/icons/OutdoorGrill';
 
 export const CATEGORIES = [
   { 
