@@ -11,6 +11,7 @@ import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
+import { usePet } from "../hooks/usePet";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -84,6 +85,7 @@ const names = [
 ];
 
 export default function FormDialog() {
+  const { editPet, petSelect } = usePet();
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   // const theme = useTheme();
@@ -117,12 +119,18 @@ export default function FormDialog() {
   };
 
   const handleClose = (submit) => {
-    console.log(submit)
     if (submit) {
-      const data = {
-        ...fields,
-        hours: parseInt(fields.hours.split(' ')[0])
-      }
+      const id = petSelect.id;
+      editPet(
+        {
+          medication: 
+          {
+            ...fields,
+            hours: parseInt(fields.hours.split(' ')[0])
+          }
+        },
+        id
+      );
 
     }
     setOpen(false);

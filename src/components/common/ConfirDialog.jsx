@@ -131,11 +131,16 @@ export default function ConfirDialog({ accion, clave }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("Dione");
-  const [
-    valueDate, 
-    setValueDate] = useState();
+  // const [valueDate, setValueDate] = useState();
   const { editPet, petSelect } = usePet();
   const { wash, haircut, earcleaning, teethcleaning, vaccination, deworming } = petSelect;
+
+  const lastwash = wash[wash.length-1]
+  const lasthaircut = haircut[haircut.length-1]
+  const lastearcleaning = earcleaning[earcleaning.length-1]
+  const lastteethcleaning = teethcleaning[teethcleaning.length-1]
+  const lastvaccination = vaccination[vaccination.length-1]
+  const lastdeworming = deworming[deworming.length-1]
 
   const handleClickListItem = () => {
     setOpen(true);
@@ -174,17 +179,17 @@ export default function ConfirDialog({ accion, clave }) {
   const lastdate = (clave) => {
     let date = "";
     if (clave === "wash") {
-      date = wash ? new Date(wash.date) : new Date();
+      date = lastwash ? new Date(lastwash.date) : new Date();
     } else if (clave === "haircut") {
-      date = haircut ? new Date(haircut.date) : new Date();
+      date = lasthaircut ? new Date(lasthaircut.date) : new Date();
     } else if (clave === "earcleaning") {
-      date = earcleaning ? new Date(earcleaning.date) : new Date();
+      date = lastearcleaning ? new Date(lastearcleaning.date) : new Date();
     } else if (clave === "teethcleaning") {
-      date = teethcleaning ? new Date(teethcleaning.date) : new Date();
+      date = lastteethcleaning ? new Date(lastteethcleaning.date) : new Date();
     } else if (clave === "vaccination") {
-      date = vaccination ? new Date(vaccination.date) : new Date();
+      date = lastvaccination ? new Date(lastvaccination.date) : new Date();
     } else if (clave === "deworming") {
-      date = deworming ? new Date(deworming.date) : new Date();
+      date = lastdeworming ? new Date(lastdeworming.date) : new Date();
     } else {
       date = new Date()
     }
@@ -195,17 +200,17 @@ export default function ConfirDialog({ accion, clave }) {
   const subtraction = (clave) => {
     let date = "";
     if (clave === "wash") {
-      date = wash ? new Date(wash.date) : new Date();
+      date = lastwash ? new Date(lastwash.date) : new Date();
     } else if (clave === "haircut") {
-      date = haircut ? new Date(haircut.date) : new Date();
+      date = lasthaircut ? new Date(lasthaircut.date) : new Date();
     } else if (clave === "earcleaning") {
-      date = earcleaning ? new Date(earcleaning.date) : new Date();
+      date = lastearcleaning ? new Date(lastearcleaning.date) : new Date();
     } else if (clave === "teethcleaning") {
-      date = teethcleaning ? new Date(teethcleaning.date) : new Date();
+      date = lastteethcleaning ? new Date(lastteethcleaning.date) : new Date();
+    } else if (clave === "vaccination") {
+      date = lastvaccination ? new Date(lastvaccination.date) : new Date();
     } else if (clave === "deworming") {
-      date = deworming ? new Date(deworming.date) : new Date();
-    } else if (clave === "deworming") {
-      date = deworming ? new Date(deworming.date) : new Date();
+      date = lastdeworming ? new Date(lastdeworming.date) : new Date();
     } else {
       date = new Date()
     }
