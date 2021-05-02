@@ -17,14 +17,16 @@ export function BreedsContextProvider({ children }) {
         const arrBreedsNames = []
         response.docs.forEach(element => {
           if (element.raza[1]) {
-            let name = element.raza[1].charAt(0).toUpperCase() + element.raza[1].toLowerCase().slice(1);
+            const name = {name: element.raza[1].charAt(0).toUpperCase() + element.raza[1].toLowerCase().slice(1), id: element.id};
             arrBreedsNames.push(name)
           } else {
-            let name = element.raza[0].charAt(0).toUpperCase() + element.raza[0].toLowerCase().slice(1);
+            const name = {name: element.raza[0].charAt(0).toUpperCase() + element.raza[0].toLowerCase().slice(1), id: element.id};
             arrBreedsNames.push(name)
           }
         }
         ); 
+        console.log('-------------------------------------')
+        console.log(arrBreedsNames)
         setBreedsFci(response);
         setBreedsName(arrBreedsNames)
       });

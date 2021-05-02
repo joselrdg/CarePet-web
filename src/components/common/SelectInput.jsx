@@ -35,7 +35,7 @@ function SelectInput({ items, value, handleChange, itemname, label }) {
     const classes = useStyles();
     const theme = useTheme();
 
-    // console.log(itemname)
+    console.log(items)
 
     return (
         <FormControl >
@@ -51,11 +51,11 @@ function SelectInput({ items, value, handleChange, itemname, label }) {
                 value={value}
                 className={classes.formControl}
             >
-                {items.map((name) => (
-                    <MenuItem key={name}  value={name} style={getStyles(name, label, theme)}>
+                {/* {items.map((name, i) => (
+                    <MenuItem key={name.id}  value={name.name} style={getStyles(name, label, theme)}>
                         {name}
                     </MenuItem>
-                ))}
+                ))} */}
             </Select>
         </FormControl>
     );
