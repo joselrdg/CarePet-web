@@ -1,12 +1,13 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { UserContext } from "./UserContext";
-import { getBreedsList } from "../services/BreedService";
+import { getBreedsList, getBreed } from "../services/BreedService";
 
 export const BreedsContext = createContext();
 
 export function BreedsContextProvider({ children }) {
   const [breeds, setBreedsFci] = useState(null);
   const [breedsNames, setBreedsName] = useState(null);
+
 
   const { user } = useContext(UserContext);
 
@@ -29,6 +30,7 @@ export function BreedsContextProvider({ children }) {
       });
   }
 
+ 
   useEffect(() => {
     if (user !== null) {
       breedsList();

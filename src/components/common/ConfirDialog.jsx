@@ -170,11 +170,6 @@ export default function ConfirDialog({ accion, clave }) {
       setValue(newValue);
     }
   };
-  console.log('haircut. ' + haircut);
-  console.log(haircut);
-  console.log('wash: ');
-  console.log(wash);
-
 
   const lastdate = (clave) => {
     let date = "";
