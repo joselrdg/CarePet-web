@@ -23,7 +23,6 @@ export const getBreedsGroup = (groupQ, pageQ, limitQ) => {
     return http.get(`/breeds/group/${group}/${page}/${limit}/`)
 }
 
-export const getBreed = (breed) => {
-    console.log(breed)
-    return http.get(`/breeds/breed/${breed}`)
+export const getBreed = (breedid) => {
+    return http.get(`/breeds/breed/${breedid}`)
 }

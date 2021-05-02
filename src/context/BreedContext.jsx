@@ -25,8 +25,6 @@ export function BreedsContextProvider({ children }) {
           }
         }
         ); 
-        console.log('-------------------------------------')
-        console.log(arrBreedsNames)
         setBreedsFci(response);
         setBreedsName(arrBreedsNames)
       });

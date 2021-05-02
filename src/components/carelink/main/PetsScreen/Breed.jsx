@@ -11,6 +11,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import SimpleCard from '../../../common/SimpleCardTwo';
+import { useBreeds } from '../../../hooks/useBreed';
 
 
 const useStyles = makeStyles({
@@ -27,12 +28,14 @@ export default function Breed() {
     const classes = useStyles();
     const { petSelect } = usePet();
     const [oneBreed, setOneBreed] = useState(null);
+    const { breedsNames } = useBreeds();
     const breedName = petSelect.review.breed
 
 
     useEffect(() => {
-        getBreed(breedName).then((response) => { setOneBreed(response) })
-    }, [breedName]);
+        let id = petSelect.review.breed.id
+        getBreed(id).then((response) => { setOneBreed(response) })
+    }, [petSelect.review.breed.id]);
 
 
 
@@ -99,14 +102,14 @@ export default function Breed() {
                             {nameTwo ? nameOne : null}
                         </Typography>
                         <Typography variant="body2" component="p">
-                           Grupo: {grupo}
+                            Grupo: {grupo}
                             <br />
                             Origen: {origen}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
             </Card>
-            
+
             {
                 historia &&
                 <SimpleCard item='Historia' text={historia} />

@@ -130,6 +130,7 @@ export default function Checkout() {
   };
 
   const handleTextFieldChange = (event) => {
+    console.log(event.target)
     let name = event.target ? event.target.name : "";
     let value = "";
     if (!event.target) {
@@ -153,6 +154,7 @@ export default function Checkout() {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log(valuesField)
     createPet(valuesField).then((response) => {
       console.log(response);
       handleNext();

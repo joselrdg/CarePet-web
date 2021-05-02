@@ -69,7 +69,7 @@ export default function Review({ valuesField }) {
                             </TableRow>
                             <TableRow>
                                 <TableCell>Raza</TableCell>
-                                <TableCell>{valuesField.breed}</TableCell>
+                                <TableCell>{valuesField.breed.name}</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell>Sexo</TableCell>
