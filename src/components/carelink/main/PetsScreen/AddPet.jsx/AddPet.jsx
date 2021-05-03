@@ -14,6 +14,7 @@ import Review from "./Review";
 import { createPet, editPetUser } from "../../../../../services/PetService";
 import { useUser } from "../../../../hooks/useUser";
 import { usePet } from "../../../../hooks/usePet";
+import DeleteDialog from "./DeleteDialog";
 
 function Copyright() {
   return (
@@ -166,6 +167,7 @@ export default function Checkout({ action }) {
     // formData.append('breed', { id: valuesField.breed.id, name: valuesField.breed.name })
     // formData.append('weight', { date: valuesField.weight.date, kg: valuesField.weight.kg })
 console.log(action)
+console.log(formData)
     if (action === 'add') {
       const id = user.id
       createPet(formData, id).then((response) => {
@@ -173,9 +175,8 @@ console.log(action)
         handleNext();
       });
     } else if (action === 'edit'){
-      console.log(formData)
       const id = petSelect.id
-      editPetUser(fieldsOk, id).then((response) => {
+      editPetUser(formData, id).then((response) => {
         console.log(response);
         handleNext();
       });
@@ -224,6 +225,7 @@ console.log(action)
                     handleTextFieldChange
                   )}
                   <div className={classes.buttons}>
+                  {action === 'edit' && (<DeleteDialog className='' id={petSelect.id}/>)}
                     {activeStep !== 0 && (
                       <Button onClick={handleBack} className={classes.button}>
                         Back

@@ -41,6 +41,7 @@ function DrawerBox({
 
 
   const handleSubcategoryPets = (subcategory) => {
+  console.log('handletoooltip')
     
     setCategory((prevState) => ({
       ...prevState,
@@ -58,6 +59,13 @@ function DrawerBox({
     });
   }
 
+const handletooltip = () => {
+  console.log('handletoooltip')
+  setCategory((prevState)=> ({
+    ...prevState,
+    folder: 7
+  }))
+}
 
   const handleClick = (index) => {
     const srtLink = CATEGORIES[index].name.replaceAll(' ', '-')
@@ -126,8 +134,8 @@ function DrawerBox({
                         )}
                       {
                         category === 0 && (
-                          <ListItem>
-                            <SimpleTooltips />
+                          <ListItem button onClick={() => handletooltip(7)}>
+                            <SimpleTooltips/>
                           </ListItem>)
                       }
                     </List>

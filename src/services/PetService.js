@@ -20,7 +20,18 @@ export const createPet = (body, id) => {
 export const editPetUser = (body, idu) => {
     console.log(body)
     const id = idu
+    return http.put(`/pets/editfield/${id}`, body)
+}
+
+export const editOnePetUser = (body, idu) => {
+    console.log(body)
+    const id = idu
     return http.put(`/pets/edit/${id}`, body)
+}
+
+export const deletePetUser = (idu) => {
+    console.log('acaaaaaaaa')
+    return http.put(`/pets/delete/${idu}`)
 }
 
 export const getPetInfo = (params) => {

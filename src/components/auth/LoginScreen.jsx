@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { login } from "../../services/AuthService";
 import { setAccessToken } from "../../stores/AccessTokenStore";
 import { useUser } from "../hooks/useUser";
+import { Redirect } from 'react-router-dom'
 
 //eslint-disable-next-line
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -118,9 +119,8 @@ export const LoginScreen = () => {
           <div className="auth__alert-error">{errors.email}</div>
         )}
         <input
-          className={`auth__input ${
-            errors.email && touched.email ? "auth__invalid" : ""
-          }`}
+          className={`auth__input ${errors.email && touched.email ? "auth__invalid" : ""
+            }`}
           type="text"
           placeholder="Email"
           name="email"
@@ -131,9 +131,8 @@ export const LoginScreen = () => {
           autoComplete="off"
         />
         <input
-          className={`auth__input ${
-            errors.password && touched.password ? "auth__invalid" : ""
-          }`}
+          className={`auth__input ${errors.password && touched.password ? "auth__invalid" : ""
+            }`}
           type="password"
           placeholder="Password"
           name="password"
@@ -144,9 +143,8 @@ export const LoginScreen = () => {
           autoComplete="off"
         />
         <button
-          className={`btn ${
-            isValid() ? "btn-primary" : "btn-primary-d"
-          } btn-block`}
+          className={`btn ${isValid() ? "btn-primary" : "btn-primary-d"
+            } btn-block`}
           type="submit"
           disabled={!isValid()}
         >
