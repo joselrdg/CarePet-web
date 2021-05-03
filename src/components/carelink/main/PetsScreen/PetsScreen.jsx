@@ -26,7 +26,9 @@ const folderBox = (folder) => {
     case 5:
       return <Breed />;
     case 6:
-      return <AddPet />;
+      return <AddPet action='edit'/>;
+    case 7:
+      return <AddPet action='add'/>;
     default:
       break;
   }

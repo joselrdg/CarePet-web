@@ -5,23 +5,22 @@ import { usePet } from '../../../hooks/usePet';
 
 export default function Review() {
     const { petSelect } = usePet()
-    const { review } = petSelect
-    console.log(review)
+    const { name, breed, chip, hair, color, specialpeculiarities, sex, origin, family, habitat } = petSelect
     return (
         <div>
             <SimpleCard 
-            name={review.name} 
-            breed={review.breed} 
-            chip={review.chip} 
-            hair={review.hair} 
-            color={review.color} 
-            specialpeculiarities={review.specialpeculiarities} 
-            sex={review.sex} 
-            sex={review.sex} 
-            sex={review.sex} 
-            origin={review.origin}
-            family={review.family}
-            habitat={review.habitat}
+            name={name} 
+            breed={breed} 
+            chip={chip} 
+            hair={hair} 
+            color={color} 
+            specialpeculiarities={specialpeculiarities} 
+            sex={sex} 
+            sex={sex} 
+            sex={sex} 
+            origin={origin}
+            family={family}
+            habitat={habitat}
             />
         </div>
     )

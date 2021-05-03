@@ -87,7 +87,7 @@ function ResponsiveDrawer(props) {
     if (petsUser && petsName=== null){
       setStateCategories({
         ...stateCategories, 
-        petsName: petsUser.map((pet) => pet.review.name)
+        petsName: petsUser.map((pet) => pet.name)
       })
     }
    
@@ -128,7 +128,7 @@ function ResponsiveDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            CarePet: {petSelect && petSelect.review.name}
+            CarePet: {petSelect && petSelect.name}
           </Typography>
         </Toolbar>
       </AppBar>

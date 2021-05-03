@@ -29,13 +29,14 @@ export default function Breed() {
     const { petSelect } = usePet();
     const [oneBreed, setOneBreed] = useState(null);
     const { breedsNames } = useBreeds();
-    const breedName = petSelect.review.breed
+    const breedName = petSelect.breed
 
+console.log(petSelect)
 
-    useEffect(() => {
-        let id = petSelect.review.breed.id
-        getBreed(id).then((response) => { setOneBreed(response) })
-    }, [petSelect.review.breed.id]);
+    // useEffect(() => {
+    //     let id = petSelect.breed.id
+    //     getBreed(id).then((response) => { setOneBreed(response) })
+    // }, [petSelect.breed.id]);
 
 
 
