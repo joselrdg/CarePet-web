@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import ReviewForm from "./ReviewForm";
 import ClinicalForm from "./ClinicalForm";
 import Review from "./Review";
-import { createPet } from "../../../../../services/PetService";
+import { createPet, editPetUser } from "../../../../../services/PetService";
 import { useUser } from "../../../../hooks/useUser";
 import { usePet } from "../../../../hooks/usePet";
 
@@ -95,7 +95,7 @@ function getStepContent(step, valuesField, handleTextFieldChange) {
   }
 }
 
-export default function Checkout({action}) {
+export default function Checkout({ action }) {
   const classes = useStyles();
   const { user } = useUser();
   const { petSelect } = usePet();
@@ -147,32 +147,39 @@ export default function Checkout({action}) {
 
     setValuesField({
       ...valuesField,
-      ...valuesField.review,
       [name]: value,
     });
   };
-  
+
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(valuesField);
     const fieldsOk = {
       ...valuesField,
-      breed: valuesField.breed.name,
-      breedid: valuesField.breed.id
+      breed: valuesField.breed ? valuesField.breed.name : '',
+      breedid: valuesField.breed ?  valuesField.breed.id : ''
     }
     const formData = new FormData();
     Object.entries(fieldsOk).forEach(([key, value]) => {
-        formData.append(key, value)
+      formData.append(key, value)
     });
     // formData.append('breed', { id: valuesField.breed.id, name: valuesField.breed.name })
     // formData.append('weight', { date: valuesField.weight.date, kg: valuesField.weight.kg })
-
-
-    const id = user.id
-    createPet(formData, id).then((response) => {
-      console.log(response);
-      handleNext();
-    });
+console.log(action)
+    if (action === 'add') {
+      const id = user.id
+      createPet(formData, id).then((response) => {
+        console.log(response);
+        handleNext();
+      });
+    } else if (action === 'edit'){
+      console.log(formData)
+      const id = petSelect.id
+      editPetUser(fieldsOk, id).then((response) => {
+        console.log(response);
+        handleNext();
+      });
+    }
   };
 
   return (
