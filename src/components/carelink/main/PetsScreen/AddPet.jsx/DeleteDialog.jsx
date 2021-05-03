@@ -21,8 +21,7 @@ export default function DeleteDialog({id}) {
     setOpen(true);
   };
   
-  // lasdkjfjñasdkfjlñ
-
+ 
   const handleDelete = () => {
     console.log(id)
     deletePetUser(id)
