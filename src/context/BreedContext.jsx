@@ -1,13 +1,13 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getAccessToken } from "../stores/AccessTokenStore";
 import { UserContext } from "./UserContext";
-import { getBreedsList, getBreedsGroup } from "../services/BreedService";
+import { getBreedsList, getBreed } from "../services/BreedService";
 
 export const BreedsContext = createContext();
 
 export function BreedsContextProvider({ children }) {
   const [breeds, setBreedsFci] = useState(null);
   const [breedsNames, setBreedsName] = useState(null);
+
 
   const { user } = useContext(UserContext);
 
@@ -17,10 +17,10 @@ export function BreedsContextProvider({ children }) {
         const arrBreedsNames = []
         response.docs.forEach(element => {
           if (element.raza[1]) {
-            let name = element.raza[1].charAt(0).toUpperCase() + element.raza[1].toLowerCase().slice(1);
+            const name = {name: element.raza[1].charAt(0).toUpperCase() + element.raza[1].toLowerCase().slice(1), id: element.id};
             arrBreedsNames.push(name)
           } else {
-            let name = element.raza[0].charAt(0).toUpperCase() + element.raza[0].toLowerCase().slice(1);
+            const name = {name: element.raza[0].charAt(0).toUpperCase() + element.raza[0].toLowerCase().slice(1), id: element.id};
             arrBreedsNames.push(name)
           }
         }
@@ -30,6 +30,7 @@ export function BreedsContextProvider({ children }) {
       });
   }
 
+ 
   useEffect(() => {
     if (user !== null) {
       breedsList();

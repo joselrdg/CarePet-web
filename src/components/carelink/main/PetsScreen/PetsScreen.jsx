@@ -3,7 +3,6 @@ import { useCategory } from "../../../hooks/useCategory";
 // import { usePet } from '../../hooks/usePet';
 import TabPanel from "../TabPanel";
 import AddPet from "./AddPet.jsx/AddPet";
-import AddPetForm from "./AddPetForm";
 import Hygiene from "./Hygiene/Hygiene";
 import Appointments from "./Appointments";
 import Medication from "./Medication";
@@ -27,7 +26,9 @@ const folderBox = (folder) => {
     case 5:
       return <Breed />;
     case 6:
-      return <AddPet />;
+      return <AddPet action='edit'/>;
+    case 7:
+      return <AddPet action='add'/>;
     default:
       break;
   }

@@ -8,8 +8,6 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { CATEGORIES } from "../../../constants/constants";
 import { useCategory } from "../../hooks/useCategory";
-import {Link, useHistory} from 'react-router-dom'
-import { usePet } from "../../hooks/usePet";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -45,7 +43,6 @@ function a11yProps(index) {
 
 export default function ScrollableTabsButtonAuto() {
   const {stateCategory, setCategory} = useCategory()
-  const {petsUser } = usePet
 
 
   const handleChange = (event, newValue) => {

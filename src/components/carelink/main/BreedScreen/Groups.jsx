@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { makeStyles } from '@material-ui/core/styles';
 import CardBreed from './CardBreed'
 import TablePagination from '@material-ui/core/TablePagination';
-import { useBreeds } from "../../../hooks/useBreed";
-import { getBreedsGroup, getBreedsList } from "../../../../services/BreedService";
+import { getBreedsGroup } from "../../../../services/BreedService";
 
 
 
@@ -11,7 +9,6 @@ const Groups = () => {
     const [groupBreeds, setGroupBreedsFci] = useState();
     const [numGroup, setNumGroup] = useState(0);
 
-    const { breeds, getBreeds } = useBreeds();
     const [page, setPage] = React.useState(1);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 

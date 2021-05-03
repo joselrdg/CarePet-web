@@ -22,9 +22,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Hygiene() {
     const { petSelect } = usePet()
     const classes = useStyles();
-    const { review } = petSelect
-    console.log(review)
-
+    // const { review } = petSelect
     return (
         <div>
             Cuidados
@@ -36,7 +34,7 @@ export default function Hygiene() {
                             <Pipebar />
                         </div>
                         <Paper elevation={3} className={classes.weight}>
-                            <ConfirDialog id={petSelect.id} clave='wash' accion='último baño' date={'holo'} />
+                            <ConfirDialog id={petSelect.id} clave='wash' accion='último baño' />
                         </Paper>
                     </Paper>
                 </div>
@@ -47,7 +45,7 @@ export default function Hygiene() {
                             <Pipebar />
                         </div>
                         <Paper elevation={3} className={classes.weight}>
-                            <ConfirDialog id={petSelect.id} clave='haircut' accion='último corte' date={'holo'} />
+                            <ConfirDialog id={petSelect.id} clave='haircut' accion='último corte' />
                         </Paper>
                     </Paper>
                 </div>
@@ -58,7 +56,7 @@ export default function Hygiene() {
                             <Pipebar />
                         </div>
                         <Paper elevation={3} className={classes.weight}>
-                            <ConfirDialog id={petSelect.id} clave='earcleaning' accion='última limpieza de oídos' date={'holo'} />
+                            <ConfirDialog id={petSelect.id} clave='earcleaning' accion='última limpieza de oídos' />
                         </Paper>
                     </Paper>
                 </div>
@@ -69,7 +67,7 @@ export default function Hygiene() {
                             <Pipebar />
                         </div>
                         <Paper elevation={3} className={classes.weight}>
-                            <ConfirDialog id={petSelect.id} clave='teethcleaning' accion='última limpieza de dientes' date={'holo'} />
+                            <ConfirDialog id={petSelect.id} clave='teethcleaning' accion='última limpieza de dientes' />
                         </Paper>
                     </Paper>
                 </div>
@@ -80,7 +78,7 @@ export default function Hygiene() {
                             <Pipebar />
                         </div>
                         <Paper elevation={3} className={classes.weight}>
-                            <ConfirDialog id={petSelect.id} clave='vaccination' accion='última vacuna' date={'holo'} />
+                            <ConfirDialog id={petSelect.id} clave='vaccination' accion='última vacuna' />
                         </Paper>
                     </Paper>
                 </div>
@@ -91,7 +89,7 @@ export default function Hygiene() {
                             <Pipebar />
                         </div>
                         <Paper elevation={3} className={classes.weight}>
-                            <ConfirDialog id={petSelect.id} clave='deworming' accion='última vacuna' date={'holo'} />
+                            <ConfirDialog id={petSelect.id} clave='deworming' accion='última vacuna' />
                         </Paper>
                     </Paper>
                 </div>

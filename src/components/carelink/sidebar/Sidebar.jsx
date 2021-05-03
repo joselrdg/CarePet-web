@@ -69,30 +69,33 @@ function ResponsiveDrawer(props) {
   // const classes = useStyles();
   // const theme = useTheme();
 
-  const setNames = () => {
-    setStateCategories({
-        ...stateCategories, 
-        petsName: petsUser.map((pet) => pet.review.name)
-      })
-  }
+  // const setNames = () => {
+  //   setStateCategories({
+  //       ...stateCategories, 
+  //       petsName: petsUser.map((pet) => pet.review.name)
+  //     })
+  // }
+
+  const {
+    petsName,
+    // categoryNumber,
+    // subcategoryNumber,
+  } = stateCategories;
 
   useEffect(() => {
     console.log('use efect de los nombres')
     if (petsUser && petsName=== null){
-      setNames()
+      setStateCategories({
+        ...stateCategories, 
+        petsName: petsUser.map((pet) => pet.name)
+      })
     }
    
-  }, [petsUser])
+  }, [petsUser, petsName,stateCategories])
 
   
  
 
-  const {
-    petsName,
-    petNumber,
-    // categoryNumber,
-    // subcategoryNumber,
-  } = stateCategories;
  
 
   const handleDrawerToggle = () => {
@@ -125,7 +128,7 @@ function ResponsiveDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            CarePet: {petSelect && petSelect.review.name}
+            CarePet: {petSelect && petSelect.name}
           </Typography>
         </Toolbar>
       </AppBar>

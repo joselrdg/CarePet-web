@@ -13,7 +13,7 @@ import StarBorder from "@material-ui/icons/StarBorder";
 import Avatar from '@material-ui/core/Avatar';
 import { useCategory } from "../../hooks/useCategory";
 import { CATEGORIES } from "../../../constants/constants";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import SimpleTooltips from "../../common/ToolTip";
 import { usePet } from "../../hooks/usePet";
 
@@ -36,7 +36,7 @@ function DrawerBox({
   const { setCategory, stateCategory } = useCategory();
   const [open, setOpen] = React.useState(true);
   const { category } = stateCategory;
-  const {petSelect, setPet}= usePet()
+  const { setPet}= usePet()
   const { push } = useHistory();
 
 

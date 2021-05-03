@@ -33,6 +33,7 @@ const columns = [
 export default function Review({ valuesField }) {
     const classes = useStyles();
 
+    console.log(valuesField)
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>
@@ -54,7 +55,7 @@ export default function Review({ valuesField }) {
                                 ))}
                             </TableRow>
                         </TableHead>
-                        <TableBody>                            
+                        <TableBody>
                             <TableRow>
                                 <TableCell>Nombre</TableCell>
                                 <TableCell>{valuesField.name}</TableCell>
@@ -67,10 +68,11 @@ export default function Review({ valuesField }) {
                                 <TableCell>Especie</TableCell>
                                 <TableCell>{valuesField.species}</TableCell>
                             </TableRow>
-                            <TableRow>
-                                <TableCell>Raza</TableCell>
-                                <TableCell>{valuesField.breed}</TableCell>
-                            </TableRow>
+                            {valuesField.breed &&
+                                (<TableRow>
+                                    <TableCell>Raza</TableCell>
+                                    <TableCell>{valuesField.breed.name}</TableCell>
+                                </TableRow>)}
                             <TableRow>
                                 <TableCell>Sexo</TableCell>
                                 <TableCell>{valuesField.sex}</TableCell>

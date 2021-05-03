@@ -5,7 +5,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { CarelinkScreen } from "../components/carelink/CarelinkScreen";
 
 import PetsScreen from "../components/carelink/main/PetsScreen/PetsScreen";
-import ScheduleScreen from "../components/carelink/main/ScheduleScreen/ScheduleScreen";
 import { BreedsRouter } from "./BreedsRouter";
 
 const useStyles = makeStyles((theme) => ({

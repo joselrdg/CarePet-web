@@ -1,10 +1,6 @@
 
-import React, { useEffect, useState } from "react";
-import { getBreedsList } from "../../../../services/BreedService";
-import { useBreeds } from "../../../hooks/useBreed";
+import React from "react";
 import { useCategory } from "../../../hooks/useCategory";
-import { usePet } from "../../../hooks/usePet";
-// import { usePet } from '../../hooks/usePet';
 import TabPanel from "../TabPanel";
 import BreedList from "./BreedList";
 import Groups from "./Groups";
@@ -25,7 +21,6 @@ const folderBox = (folder, breeds) => {
 };
 
 const BreedScreen = () => {
-  const { breeds } = useBreeds();
   const { stateCategory } = useCategory();
   const { folder } = stateCategory;
 

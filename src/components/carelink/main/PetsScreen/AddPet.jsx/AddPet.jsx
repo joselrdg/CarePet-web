@@ -11,8 +11,9 @@ import Typography from "@material-ui/core/Typography";
 import ReviewForm from "./ReviewForm";
 import ClinicalForm from "./ClinicalForm";
 import Review from "./Review";
-import { createPet } from "../../../../../services/PetService";
+import { createPet, editPetUser } from "../../../../../services/PetService";
 import { useUser } from "../../../../hooks/useUser";
+import { usePet } from "../../../../hooks/usePet";
 
 function Copyright() {
   return (
@@ -71,21 +72,21 @@ function getStepContent(step, valuesField, handleTextFieldChange) {
     case 0:
       return (
         <ReviewForm
-          valuesField={valuesField.review}
+          valuesField={valuesField}
           handleTextFieldChange={handleTextFieldChange}
         />
       );
     case 1:
       return (
         <ClinicalForm
-          valuesField={valuesField.review}
+          valuesField={valuesField}
           handleTextFieldChange={handleTextFieldChange}
         />
       );
     case 2:
       return (
         <Review
-          valuesField={valuesField.review}
+          valuesField={valuesField}
           handleTextFieldChange={handleTextFieldChange}
         />
       );
@@ -94,31 +95,31 @@ function getStepContent(step, valuesField, handleTextFieldChange) {
   }
 }
 
-export default function Checkout() {
-  const { user } = useUser();
+export default function Checkout({ action }) {
   const classes = useStyles();
+  const { user } = useUser();
+  const { petSelect } = usePet();
   const [activeStep, setActiveStep] = useState(0);
   const [valuesField, setValuesField] = useState({
     user: user.id,
-    review: {
-      name: "",
-      chip: "",
-      species: "",
-      breed: "",
-      sex: "",
-      hair: "",
-      color: "",
-      sterilized: "",
-      weight: { date: new Date(), kg: "" },
-      datebirth: new Date(),
-      familyhistory: "",
-      previousdiseases: "",
-      surgeries: "",
-      allergies: "",
-      origin: "",
-      habitat: "",
-      family: "",
-    },
+    name: action === 'add' ? "" : petSelect.name,
+    chip: action === 'add' ? "" : petSelect.chip,
+    species: action === 'add' ? "" : petSelect.species,
+    breed: action === 'add' ? "" : petSelect.breed,
+    sex: action === 'add' ? "" : petSelect.sex,
+    hair: action === 'add' ? "" : petSelect.hair,
+    color: action === 'add' ? "" : petSelect.color,
+    sterilized: action === 'add' ? "" : petSelect.sterilized,
+    weight: { date: new Date(), kg: "" },
+    datebirth: new Date(),
+    familyhistory: action === 'add' ? "" : petSelect.familyhistory,
+    previousdiseases: action === 'add' ? "" : petSelect.previousdiseases,
+    surgeries: action === 'add' ? "" : petSelect.surgeries,
+    allergies: action === 'add' ? "" : petSelect.allergies,
+    origin: action === 'add' ? "" : petSelect.origin,
+    habitat: action === 'add' ? "" : petSelect.habitat,
+    family: action === 'add' ? "" : petSelect.family,
+    file: action === 'add' ? "" : petSelect.file,
   });
 
   const handleNext = () => {
@@ -130,33 +131,55 @@ export default function Checkout() {
   };
 
   const handleTextFieldChange = (event) => {
+    console.log(event.target)
     let name = event.target ? event.target.name : "";
     let value = "";
     if (!event.target) {
       name = "datebirth";
       value = event;
     } else if (event.target.name === "weight") {
-      value = { ...valuesField.review.weight, kg: event.target.value };
+      value = { ...valuesField.weight, kg: event.target.value };
+    } else if (event.target.type === 'file') {
+      value = event.target.files[0]
     } else {
       value = event.target.value;
     }
 
     setValuesField({
       ...valuesField,
-      review: {
-        ...valuesField.review,
-        [name]: value,
-      },
+      [name]: value,
     });
-    console.log(valuesField);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    createPet(valuesField).then((response) => {
-      console.log(response);
-      handleNext();
+    console.log(valuesField);
+    const fieldsOk = {
+      ...valuesField,
+      breed: valuesField.breed ? valuesField.breed.name : '',
+      breedid: valuesField.breed ?  valuesField.breed.id : ''
+    }
+    const formData = new FormData();
+    Object.entries(fieldsOk).forEach(([key, value]) => {
+      formData.append(key, value)
     });
+    // formData.append('breed', { id: valuesField.breed.id, name: valuesField.breed.name })
+    // formData.append('weight', { date: valuesField.weight.date, kg: valuesField.weight.kg })
+console.log(action)
+    if (action === 'add') {
+      const id = user.id
+      createPet(formData, id).then((response) => {
+        console.log(response);
+        handleNext();
+      });
+    } else if (action === 'edit'){
+      console.log(formData)
+      const id = petSelect.id
+      editPetUser(fieldsOk, id).then((response) => {
+        console.log(response);
+        handleNext();
+      });
+    }
   };
 
   return (
@@ -173,7 +196,7 @@ export default function Checkout() {
         <form onSubmit={onSubmit}>
           <Paper className={classes.paper}>
             <Typography component="h1" variant="h4" align="center">
-              Añadir mascota
+              {action === 'add' ? 'Añadir mascota' : 'Editar mascota'}
             </Typography>
             <Stepper activeStep={activeStep} className={classes.stepper}>
               {steps.map((label) => (
