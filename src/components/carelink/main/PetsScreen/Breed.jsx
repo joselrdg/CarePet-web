@@ -33,10 +33,10 @@ export default function Breed() {
 
 console.log(petSelect)
 
-    // useEffect(() => {
-    //     let id = petSelect.breed.id
-    //     getBreed(id).then((response) => { setOneBreed(response) })
-    // }, [petSelect.breed.id]);
+    useEffect(() => {
+        let id = petSelect.breedid
+        getBreed(id).then((response) => { setOneBreed(response) })
+    }, [petSelect.breedid]);
 
 
 

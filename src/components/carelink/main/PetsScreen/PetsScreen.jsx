@@ -37,6 +37,7 @@ const folderBox = (folder) => {
 const PetsScreen = () => {
   const { stateCategory } = useCategory();
   const { folder } = stateCategory;
+  console.log(folder)
   // const { petsUser } = usePet();
   return (
     <>
