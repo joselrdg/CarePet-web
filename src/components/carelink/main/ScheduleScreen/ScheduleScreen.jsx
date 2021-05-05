@@ -8,7 +8,8 @@ const ScheduleScreen = () => {
     const { petSelect, setPet } = usePet();
     const { wash, haircut, earcleaning, teethcleaning, vaccination, deworming } = petSelect;
     const data = [...wash, ...haircut, ...earcleaning, ...teethcleaning, ...vaccination, ...deworming]
-    const datadate = [...data]
+    let datadate = []
+  
     return (
         <div>
             <Schedule data={datadate}/>
