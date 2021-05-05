@@ -18,8 +18,6 @@ export function PetsContextProvider({ children }) {
   };
   const editPet = (body,id) => {
       return editPetUser(body, id).then((response) => {
-        console.log('-----------------------------------------pet context respose edit')
-        console.log(response);
         setPetSelect(response)
       });
   };

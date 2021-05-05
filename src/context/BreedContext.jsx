@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { UserContext } from "./UserContext";
-import { getBreedsList, getBreed } from "../services/BreedService";
+import { getBreedsList } from "../services/BreedService";
 
 export const BreedsContext = createContext();
 

@@ -143,7 +143,7 @@ export default function FormDialog() {
       </Button>
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={()=>handleClose(false)}
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">Añadir farmaco:</DialogTitle>

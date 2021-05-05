@@ -23,8 +23,13 @@ export const editPetUser = (body, idu) => {
     return http.put(`/pets/editfield/${id}`, body)
 }
 
-export const editOnePetUser = (body, idu) => {
+export const imagePetUser = (body, idu) => {
     console.log(body)
+    const id = idu
+    return http.put(`/pets/editfield/${id}`, body)
+}
+
+export const editOnePetUser = (body, idu) => {
     const id = idu
     return http.put(`/pets/edit/${id}`, body)
 }

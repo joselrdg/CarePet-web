@@ -6,6 +6,7 @@ import { CarelinkScreen } from "../components/carelink/CarelinkScreen";
 
 import PetsScreen from "../components/carelink/main/PetsScreen/PetsScreen";
 import { BreedsRouter } from "./BreedsRouter";
+import ScheduleScreen from "../components/carelink/main/ScheduleScreen/ScheduleScreen";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,6 +43,7 @@ export const CarelinkRouter = () => {
             {/* <Route exact path="/carelink/pet/:id/edit" component={CarelinkScreen} /> */}
 
             <Route exact path="/CarePet/Razas" component={BreedsRouter} />
+            <Route exact path="/CarePet/Agenda" component={ScheduleScreen} />
             {/* <Route exact path="/carelink/schedule" component={ScheduleScreen} /> */}
             <Route
               exact

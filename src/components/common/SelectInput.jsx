@@ -33,12 +33,14 @@ function getStyles(name, personName, theme) {
 function SelectInput({ items, value, handleChange, itemname, label }) {
     const classes = useStyles();
     const theme = useTheme();
-
+    if(itemname==='breed'){
+console.log(items)
+    }
     return (
         <FormControl >
             <InputLabel >{label}</InputLabel>
             <Select
-                labelId="demo-mutiple-name-label"
+                // labelId="label"
                 id={label}
                 // multiple
                 name={itemname}
@@ -51,7 +53,7 @@ function SelectInput({ items, value, handleChange, itemname, label }) {
                 {
                     itemname === 'breed'
                    ? items.map((name, i) => (
-                    <MenuItem key={name.id}  value={name} style={getStyles(name, label, theme)}>
+                    <MenuItem key={name.id}  value={name}  style={getStyles(name, label, theme)}>
                         {name.name}
                     </MenuItem>
                 )) 

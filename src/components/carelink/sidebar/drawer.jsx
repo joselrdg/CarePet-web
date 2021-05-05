@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Divider,
   List,
@@ -36,17 +36,17 @@ function DrawerBox({
   const { setCategory, stateCategory } = useCategory();
   const [open, setOpen] = React.useState(true);
   const { category } = stateCategory;
-  const { setPet}= usePet()
+  const { setPet } = usePet()
   const { push } = useHistory();
 
 
   const handleSubcategoryPets = (subcategory) => {
-  console.log('handletoooltip')
-    
+    console.log('handletoooltip')
+
     setCategory((prevState) => ({
       ...prevState,
       subcategory: subcategory,
-      folder: 0,
+      createpet: false
     }));
     setPet(subcategory)
   };
@@ -56,35 +56,31 @@ function DrawerBox({
       category: index,
       subcategory: 0,
       folder: 0,
+      createpet: false
     });
   }
 
-const handletooltip = () => {
-  console.log('handletoooltip')
-  setCategory((prevState)=> ({
-    ...prevState,
-    folder: 7
-  }))
-}
+  const handletooltip = () => {
+    console.log('handletoooltip')
+    setCategory((prevState) => ({
+      ...prevState,
+      folder: 5,
+      createpet: true
+    }))
+  }
 
   const handleClick = (index) => {
     const srtLink = CATEGORIES[index].name.replaceAll(' ', '-')
+    set(index)
     setOpen(!open);
-    if (index !== category) {
-      push(srtLink);
-      setTimeout(() => {
-        set(index)
-      }, 280);
-      setOpen(true);
-    }
+    setTimeout(() => {
+      if (index !== category) {
+        push(srtLink);
+        setOpen(true);
+      }
+    }, 280);
   };
 
-
-  useEffect(() => {
-    setPet(0)
-      // setPet(stateCategory.subcategory)
-
-  }, []);
 
   if (!classes) {
     return "Loading...";
@@ -110,7 +106,7 @@ const handletooltip = () => {
                   <Collapse in={open} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                       {category === 0
-                        ?petsName && petsName.map((name, index) => (
+                        ? petsName && petsName.map((name, index) => (
                           <ListItem
                             button
                             onClick={() => handleSubcategoryPets(index)}
@@ -135,7 +131,7 @@ const handletooltip = () => {
                       {
                         category === 0 && (
                           <ListItem button onClick={() => handletooltip(7)}>
-                            <SimpleTooltips/>
+                            <SimpleTooltips />
                           </ListItem>)
                       }
                     </List>

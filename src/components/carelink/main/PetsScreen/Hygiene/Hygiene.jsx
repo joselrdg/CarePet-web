@@ -30,7 +30,7 @@ export default function Hygiene() {
                 <div className='__flex'>
                     <Paper elevation={3} className={classes.weight}>
                         <div>
-                            <i class="fas fa-bath fa-3x __mt-1 __mb-0 __mx-1"></i>
+                            <i className="fas fa-bath fa-3x __mt-1 __mb-0 __mx-1"></i>
                             <Pipebar />
                         </div>
                         <Paper elevation={3} className={classes.weight}>
@@ -41,7 +41,7 @@ export default function Hygiene() {
                 <div className='__flex'>
                     <Paper elevation={3} className={classes.weight}>
                         <div>
-                            <i class="fas fa-cut fa-3x __mt-1 __mb-0 __mx-1"></i>
+                            <i className="fas fa-cut fa-3x __mt-1 __mb-0 __mx-1"></i>
                             <Pipebar />
                         </div>
                         <Paper elevation={3} className={classes.weight}>
@@ -52,7 +52,7 @@ export default function Hygiene() {
                 <div className='__flex'>
                     <Paper elevation={3} className={classes.weight}>
                         <div>
-                            <i class="fas fa-hand-sparkles fa-3x __mt-1 __mb-0 __mx-1"></i>
+                            <i className="fas fa-hand-sparkles fa-3x __mt-1 __mb-0 __mx-1"></i>
                             <Pipebar />
                         </div>
                         <Paper elevation={3} className={classes.weight}>
@@ -63,7 +63,7 @@ export default function Hygiene() {
                 <div className='__flex'>
                     <Paper elevation={3} className={classes.weight}>
                         <div>
-                            <i class="fas fa-tooth fa-3x __mt-1 __mb-0 __mx-1"></i>
+                            <i className="fas fa-tooth fa-3x __mt-1 __mb-0 __mx-1"></i>
                             <Pipebar />
                         </div>
                         <Paper elevation={3} className={classes.weight}>

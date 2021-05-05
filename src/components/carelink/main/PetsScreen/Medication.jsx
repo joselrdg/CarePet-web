@@ -77,7 +77,7 @@ export default function Review({ valuesField }) {
                             {
                                 medication.map((pauta) => (
 
-                                    <TableRow>
+                                    <TableRow key={pauta.id}>
                                         <TableCell>{pauta.name}</TableCell>
                                         <TableCell>{pauta.dosage}</TableCell>
                                         <TableCell>{pauta.hours}</TableCell>

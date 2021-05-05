@@ -3,7 +3,6 @@ import { Link, useHistory } from "react-router-dom";
 import { login } from "../../services/AuthService";
 import { setAccessToken } from "../../stores/AccessTokenStore";
 import { useUser } from "../hooks/useUser";
-import { Redirect } from 'react-router-dom'
 
 //eslint-disable-next-line
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
