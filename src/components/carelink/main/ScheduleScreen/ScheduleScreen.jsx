@@ -3,7 +3,8 @@ import { usePet } from '../../../hooks/usePet';
 import Schedule from './Schedule';
 // import TabPanel from "../main/TabPanel";
 
-
+//asdf jlkjasdlkñfj lksadñjf lksadjfñlk sajdflñkjsealfdñdjl
+// ladsihfklñsa
 const ScheduleScreen = () => {
     const { petSelect, setPet } = usePet();
     const { wash, haircut, earcleaning, teethcleaning, vaccination, deworming } = petSelect;
