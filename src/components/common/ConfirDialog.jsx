@@ -188,17 +188,17 @@ export default function ConfirDialog({ accion, clave }) {
   const lastdate = (clave) => {
     let date = "";
     if (clave === "wash") {
-      date = lastwash ? new Date(lastwash.startDate) : new Date();
+      date = lastwash ? new Date(lastwash.startDate.startDate) : new Date();
     } else if (clave === "haircut") {
-      date = lasthaircut ? new Date(lasthaircut.startDate) : new Date();
+      date = lasthaircut ? new Date(lasthaircut.startDate.startDate) : new Date();
     } else if (clave === "earcleaning") {
-      date = lastearcleaning ? new Date(lastearcleaning.startDate) : new Date();
+      date = lastearcleaning ? new Date(lastearcleaning.startDate.startDate) : new Date();
     } else if (clave === "teethcleaning") {
-      date = lastteethcleaning ? new Date(lastteethcleaning.startDate) : new Date();
+      date = lastteethcleaning ? new Date(lastteethcleaning.startDate.startDate) : new Date();
     } else if (clave === "vaccination") {
-      date = lastvaccination ? new Date(lastvaccination.startDate) : new Date();
+      date = lastvaccination ? new Date(lastvaccination.startDate.startDate) : new Date();
     } else if (clave === "deworming") {
-      date = lastdeworming ? new Date(lastdeworming.startDate) : new Date();
+      date = lastdeworming ? new Date(lastdeworming.startDate.startDate) : new Date();
     } else {
       date = new Date()
     }
@@ -209,17 +209,17 @@ export default function ConfirDialog({ accion, clave }) {
   const subtraction = (clave) => {
     let date = "";
     if (clave === "wash") {
-      date = lastwash ? new Date(lastwash.startDate) : new Date();
+      date = lastwash ? new Date(lastwash.startDate.startDate) : new Date();
     } else if (clave === "haircut") {
-      date = lasthaircut ? new Date(lasthaircut.startDate) : new Date();
+      date = lasthaircut ? new Date(lasthaircut.startDate.startDate) : new Date();
     } else if (clave === "earcleaning") {
-      date = lastearcleaning ? new Date(lastearcleaning.startDate) : new Date();
+      date = lastearcleaning ? new Date(lastearcleaning.startDate.startDate) : new Date();
     } else if (clave === "teethcleaning") {
-      date = lastteethcleaning ? new Date(lastteethcleaning.startDate) : new Date();
+      date = lastteethcleaning ? new Date(lastteethcleaning.startDate.startDate) : new Date();
     } else if (clave === "vaccination") {
-      date = lastvaccination ? new Date(lastvaccination.startDate) : new Date();
+      date = lastvaccination ? new Date(lastvaccination.startDate.startDate) : new Date();
     } else if (clave === "deworming") {
-      date = lastdeworming ? new Date(lastdeworming.startDate) : new Date();
+      date = lastdeworming ? new Date(lastdeworming.startDate.startDate) : new Date();
     } else {
       date = new Date()
     }

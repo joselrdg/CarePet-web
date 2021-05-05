@@ -7,10 +7,11 @@ import Schedule from './Schedule';
 const ScheduleScreen = () => {
     const { petSelect, setPet } = usePet();
     const { wash, haircut, earcleaning, teethcleaning, vaccination, deworming } = petSelect;
-    const data = [...wash, ...haircut, earcleaning, teethcleaning, vaccination, deworming]
+    const data = [...wash, ...haircut, ...earcleaning, ...teethcleaning, ...vaccination, ...deworming]
+    const datadate = [...data]
     return (
         <div>
-            <Schedule data={data}/>
+            <Schedule data={datadate}/>
         </div>
     )
 }
