@@ -36,15 +36,33 @@ const PetProfile = () => {
     if (!petSelect) {
         return "Loading...";
     }
-    const { wash, haircut, earcleaning, teethcleaning, vaccination, deworming } = petSelect;
+    const { 
+        wash, willwash, 
+        haircut, willhaircut, 
+        earcleaning, willearcleaning, 
+        willteethcleaning, teethcleaning, 
+        vaccination, willvaccination, 
+        deworming, willdeworming
+    } = petSelect;
 
     const lastwash = wash[wash.length - 1]
+    const willlastwash = willwash[willwash.length - 1]
+
     const lasthaircut = haircut[haircut.length - 1]
+    const willlasthaircut = willhaircut[willhaircut.length - 1]
+
     const lastearcleaning = earcleaning[earcleaning.length - 1]
+    const willlastearcleaning = willearcleaning[willearcleaning.length - 1]
+
     const lastteethcleaning = teethcleaning[teethcleaning.length - 1]
+    const willlastteethcleaning = willteethcleaning[willteethcleaning.length - 1]
+
     const lastvaccination = vaccination[vaccination.length - 1]
+    const willlastvaccination = willvaccination[willvaccination.length - 1]
+
     const lastdeworming = deworming[deworming.length - 1]
-    console.log(lastwash)
+    const willlastdeworming = willdeworming[willdeworming.length - 1]
+ 
     // const { review} = petsUser[0]
 
     // console.log(
@@ -54,17 +72,17 @@ const PetProfile = () => {
     const sum = (clave) => {
         let date = "";
         if (clave === "wash") {
-            date = lastwash ? new Date(lastwash.endDate.startDate) : new Date();
+            date = willlastwash ? new Date(willlastwash.startDate) : new Date();
         } else if (clave === "haircut") {
-            date = lasthaircut ? new Date(lasthaircut.endDate.startDate) : new Date();
+            date = willlasthaircut ? new Date(willlasthaircut.startDate) : new Date();
         } else if (clave === "earcleaning") {
-            date = lastearcleaning ? new Date(lastearcleaning.endDate.startDate) : new Date();
+            date = willlastearcleaning ? new Date(willlastearcleaning.startDate) : new Date();
         } else if (clave === "teethcleaning") {
-            date = lastteethcleaning ? new Date(lastteethcleaning.endDate.startDate) : new Date();
+            date = willlastteethcleaning ? new Date(willlastteethcleaning.startDate) : new Date();
         } else if (clave === "vaccination") {
-            date = lastvaccination ? new Date(lastvaccination.endDate.startDate) : new Date();
+            date = willlastvaccination ? new Date(willlastvaccination.startDate) : new Date();
         } else if (clave === "deworming") {
-            date = lastdeworming ? new Date(lastdeworming.endDate.startDate) : new Date();
+            date = willlastdeworming ? new Date(willlastdeworming.startDate) : new Date();
         } else {
             date = new Date()
         }
@@ -76,17 +94,17 @@ const PetProfile = () => {
     const subtraction = (clave) => {
         let date = "";
         if (clave === "wash") {
-            date = lastwash ? new Date(lastwash.startDate.startDate) : new Date();
+            date = lastwash ? new Date(lastwash.startDate) : new Date();
         } else if (clave === "haircut") {
-            date = lasthaircut ? new Date(lasthaircut.startDate.startDate) : new Date();
+            date = lasthaircut ? new Date(lasthaircut.startDate) : new Date();
         } else if (clave === "earcleaning") {
-            date = lastearcleaning ? new Date(lastearcleaning.startDate.startDate) : new Date();
+            date = lastearcleaning ? new Date(lastearcleaning.startDate) : new Date();
         } else if (clave === "teethcleaning") {
-            date = lastteethcleaning ? new Date(lastteethcleaning.startDate.startDate) : new Date();
+            date = lastteethcleaning ? new Date(lastteethcleaning.startDate) : new Date();
         } else if (clave === "vaccination") {
-            date = lastvaccination ? new Date(lastvaccination.startDate.startDate) : new Date();
+            date = lastvaccination ? new Date(lastvaccination.startDate) : new Date();
         } else if (clave === "deworming") {
-            date = lastdeworming ? new Date(lastdeworming.startDate.startDate) : new Date();
+            date = lastdeworming ? new Date(lastdeworming.startDate) : new Date();
         } else {
             date = new Date()
         }
@@ -99,23 +117,23 @@ const PetProfile = () => {
         let date = "";
         let lastdate = "";
         if (clave === "wash") {
-            lastdate = lastwash ? new Date(lastwash.startDate.startDate) : new Date();
-            date = lastwash ? new Date(lastwash.endDate.startDate) : new Date();
+            lastdate = lastwash ? new Date(lastwash.startDate) : new Date();
+            date = willlastwash ? new Date(willlastwash.startDate) : new Date();
         } else if (clave === "haircut") {
-            lastdate = lasthaircut ? new Date(lasthaircut.startDate.startDate) : new Date();
-            date = lasthaircut ? new Date(lasthaircut.endDate.startDate) : new Date();
+            lastdate = lasthaircut ? new Date(lasthaircut.startDate) : new Date();
+            date = willlasthaircut ? new Date(willlasthaircut.startDate) : new Date();
         } else if (clave === "earcleaning") {
-            lastdate = lastearcleaning ? new Date(lastearcleaning.startDate.startDate) : new Date();
-            date = lastearcleaning ? new Date(lastearcleaning.endDate.startDate) : new Date();
+            lastdate = lastearcleaning ? new Date(lastearcleaning.startDate) : new Date();
+            date = willlastearcleaning ? new Date(willlastearcleaning.startDate) : new Date();
         } else if (clave === "teethcleaning") {
-            lastdate = lastteethcleaning ? new Date(lastteethcleaning.startDate.startDate) : new Date();
-            date = lastteethcleaning ? new Date(lastteethcleaning.endDate.startDate) : new Date();
+            lastdate = lastteethcleaning ? new Date(lastteethcleaning.startDate) : new Date();
+            date = willlastteethcleaning ? new Date(willlastteethcleaning.startDate) : new Date();
         } else if (clave === "vaccination") {
-            lastdate = lastvaccination ? new Date(lastvaccination.startDate.startDate) : new Date();
-            date = lastvaccination ? new Date(lastvaccination.endDate.startDate) : new Date();
+            lastdate = lastvaccination ? new Date(lastvaccination.startDate) : new Date();
+            date = willlastvaccination ? new Date(willlastvaccination.startDate) : new Date();
         } else if (clave === "deworming") {
-            lastdate = lastdeworming ? new Date(lastdeworming.startDate.startDate) : new Date();
-            date = lastdeworming ? new Date(lastdeworming.endDate.startDate) : new Date();
+            lastdate = lastdeworming ? new Date(lastdeworming.startDate) : new Date();
+            date = willlastdeworming ? new Date(willlastdeworming.startDate) : new Date();
         }
         const resta = date.getTime() - lastdate.getTime();
         const total = Math.round(resta / (1000 * 60 * 60 * 24));

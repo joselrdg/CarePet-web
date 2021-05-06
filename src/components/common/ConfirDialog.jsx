@@ -135,12 +135,12 @@ export default function ConfirDialog({ accion, clave }) {
   const { editPet, petSelect } = usePet();
   const { wash, haircut, earcleaning, teethcleaning, vaccination, deworming } = petSelect;
 
-  const lastwash = wash[wash.length-1]
-  const lasthaircut = haircut[haircut.length-1]
-  const lastearcleaning = earcleaning[earcleaning.length-1]
-  const lastteethcleaning = teethcleaning[teethcleaning.length-1]
-  const lastvaccination = vaccination[vaccination.length-1]
-  const lastdeworming = deworming[deworming.length-1]
+  const lastwash = wash[wash.length - 1]
+  const lasthaircut = haircut[haircut.length - 1]
+  const lastearcleaning = earcleaning[earcleaning.length - 1]
+  const lastteethcleaning = teethcleaning[teethcleaning.length - 1]
+  const lastvaccination = vaccination[vaccination.length - 1]
+  const lastdeworming = deworming[deworming.length - 1]
 
   const handleClickListItem = () => {
     setOpen(true);
@@ -157,30 +157,27 @@ export default function ConfirDialog({ accion, clave }) {
       const d = date.getTime() + days * 24 * 60 * 60 * 1000;
       const dateDays = new Date(d);
       const id = petSelect.id;
+      const idlength = petSelect[clave].length
       editPet(
         {
-          [clave]: 
+          [clave]:
           {
-            startDate: {
-              startDate: date,
-              allDay: true,
-              title: `Se ${clave} ${petSelect.name}`,
-            },
-            endDate: {
-              startDate: dateDays,
-              allDay: true,
-              title: `${clave} a ${petSelect.name}`
-            }
+            // id: `${clave}start${idlength}`,
+            startDate: date,
+            allDay: true,
+            title: `Se ${clave} ${petSelect.name}`,
+            action: clave
           },
-          // {
-          //   startDate: date,
-          //   endDate: dateDays,
-          //   title: clave
-          // },
+          [`will${clave}`]: {
+            // id: `${clave}end${idlength}`,
+            startDate: dateDays,
+            allDay: true,
+            title: `${clave} a ${petSelect.name}`,
+            action: `will${clave}`
+          }
         },
         id
       );
-      // setValueDate(date);
       setValue(newValue);
     }
   };
@@ -188,17 +185,17 @@ export default function ConfirDialog({ accion, clave }) {
   const lastdate = (clave) => {
     let date = "";
     if (clave === "wash") {
-      date = lastwash ? new Date(lastwash.startDate.startDate) : new Date();
+      date = lastwash ? new Date(lastwash.startDate) : new Date();
     } else if (clave === "haircut") {
-      date = lasthaircut ? new Date(lasthaircut.startDate.startDate) : new Date();
+      date = lasthaircut ? new Date(lasthaircut.startDate) : new Date();
     } else if (clave === "earcleaning") {
-      date = lastearcleaning ? new Date(lastearcleaning.startDate.startDate) : new Date();
+      date = lastearcleaning ? new Date(lastearcleaning.startDate) : new Date();
     } else if (clave === "teethcleaning") {
-      date = lastteethcleaning ? new Date(lastteethcleaning.startDate.startDate) : new Date();
+      date = lastteethcleaning ? new Date(lastteethcleaning.startDate) : new Date();
     } else if (clave === "vaccination") {
-      date = lastvaccination ? new Date(lastvaccination.startDate.startDate) : new Date();
+      date = lastvaccination ? new Date(lastvaccination.startDate) : new Date();
     } else if (clave === "deworming") {
-      date = lastdeworming ? new Date(lastdeworming.startDate.startDate) : new Date();
+      date = lastdeworming ? new Date(lastdeworming.startDate) : new Date();
     } else {
       date = new Date()
     }
@@ -209,17 +206,17 @@ export default function ConfirDialog({ accion, clave }) {
   const subtraction = (clave) => {
     let date = "";
     if (clave === "wash") {
-      date = lastwash ? new Date(lastwash.startDate.startDate) : new Date();
+      date = lastwash ? new Date(lastwash.startDate) : new Date();
     } else if (clave === "haircut") {
-      date = lasthaircut ? new Date(lasthaircut.startDate.startDate) : new Date();
+      date = lasthaircut ? new Date(lasthaircut.startDate) : new Date();
     } else if (clave === "earcleaning") {
-      date = lastearcleaning ? new Date(lastearcleaning.startDate.startDate) : new Date();
+      date = lastearcleaning ? new Date(lastearcleaning.startDate) : new Date();
     } else if (clave === "teethcleaning") {
-      date = lastteethcleaning ? new Date(lastteethcleaning.startDate.startDate) : new Date();
+      date = lastteethcleaning ? new Date(lastteethcleaning.startDate) : new Date();
     } else if (clave === "vaccination") {
-      date = lastvaccination ? new Date(lastvaccination.startDate.startDate) : new Date();
+      date = lastvaccination ? new Date(lastvaccination.startDate) : new Date();
     } else if (clave === "deworming") {
-      date = lastdeworming ? new Date(lastdeworming.startDate.startDate) : new Date();
+      date = lastdeworming ? new Date(lastdeworming.startDate) : new Date();
     } else {
       date = new Date()
     }

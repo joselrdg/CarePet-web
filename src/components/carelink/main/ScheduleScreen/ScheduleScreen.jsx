@@ -1,19 +1,35 @@
 import React from 'react';
 import { usePet } from '../../../hooks/usePet';
+// import {Schedule} from './Schedule';
 import Schedule from './Schedule';
 // import TabPanel from "../main/TabPanel";
 
-//asdf jlkjasdlkñfj lksadñjf lksadjfñlk sajdflñkjsealfdñdjl
-// ladsihfklñsa
+
 const ScheduleScreen = () => {
-    const { petSelect, setPet } = usePet();
-    const { wash, haircut, earcleaning, teethcleaning, vaccination, deworming } = petSelect;
-    const data = [...wash, ...haircut, ...earcleaning, ...teethcleaning, ...vaccination, ...deworming]
-    let datadate = []
-  
+    const { petSelect, editPet } = usePet();
+
+    const {
+        wash, willwash,
+        haircut, willhaircut,
+        earcleaning, willearcleaning,
+        teethcleaning, willteethcleaning,
+        vaccination, willvaccination,
+        deworming, willdeworming
+    } = petSelect;
+
+    const data = [
+        ...wash, ...willwash,
+        ...haircut, ...willhaircut, 
+        ...earcleaning, ...willearcleaning,
+        ...teethcleaning, ...willteethcleaning,
+        ...vaccination, ...willvaccination,
+        ...deworming, ...willdeworming
+        ]
+
+    const datap = data.map((e, i) => { e.id = i; e.startDate = new Date(e.startDate); return e })
     return (
         <div>
-            <Schedule data={datadate}/>
+            <Schedule datap={datap} editPet={editPet}/>
         </div>
     )
 }
