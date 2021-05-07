@@ -18,47 +18,7 @@ import {
 import { withStyles } from '@material-ui/core/styles';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import {
-  teal, indigo,
-} from '@material-ui/core/colors';
-import { editPetUser } from "../../../../services/PetService";
 
-const appointments = [{
-  title: 'Website Re-Design Plan',
-  startDate: new Date(2018, 5, 25, 12, 35),
-  endDate: new Date(2018, 5, 25, 15, 0),
-  id: 0,
-  members: [1, 3, 5],
-  action: 'wash',
-}, {
-  title: 'Book Flights to San Fran for Sales Trip',
-  startDate: new Date(2018, 5, 26, 12, 35),
-  endDate: new Date(2018, 5, 26, 15, 0),
-  id: 1,
-  members: [2, 4],
-  action: 'willwash',
-}, {
-  title: 'Install New Router in Dev Room',
-  startDate: new Date(2018, 5, 27, 12, 35),
-  endDate: new Date(2018, 5, 27, 15, 0),
-  id: 2,
-  members: [3],
-  action: 'Room 3',
-}, {
-  title: 'Approve Personal Computer Upgrade Plan',
-  startDate: new Date(2018, 5, 28, 12, 35),
-  endDate: new Date(2018, 5, 28, 15, 0),
-  id: 3,
-  members: [4, 1],
-  action: 'Room 4',
-}, {
-  title: 'Final Budget Review',
-  startDate: new Date(2018, 5, 29, 12, 35),
-  endDate: new Date(2018, 5, 29, 15, 0),
-  id: 4,
-  members: [5, 1, 3],
-  action: 'Room 5',
-}];
 
 const styles = theme => ({
   container: {
@@ -123,7 +83,7 @@ export default class Demo extends React.PureComponent {
             { id: 'deworming', text: 'Desparasitación' },
             { id: 'willdeworming', text: 'Siguiente desparasitación' },
             { id: 'teethcleaning', text: 'Limpieza bucal' },
-            { id: 'willteethcleaning', text: 'Siguiente limpieza bucal' },         
+            { id: 'willteethcleaning', text: 'Siguiente limpieza bucal' },
             { id: 'vaccination', text: 'Vacunación' },
             { id: 'willvaccination', text: 'Siguiente vacunación' },
           ],
@@ -140,7 +100,9 @@ export default class Demo extends React.PureComponent {
     this.changeEditingAppointment = this.changeEditingAppointment.bind(this);
     this.changeMainResource = this.changeMainResource.bind(this);
     this.editPet = props.editPet
-    console.log(props.datap)
+    this.editPetSchedule = props.editPetSchedule
+    this.deletePetSchedule = props.deletePetSchedule
+    this.idp = props.idp
   }
 
   changeMainResource(mainResourceName) {
@@ -160,44 +122,58 @@ export default class Demo extends React.PureComponent {
   }
 
   commitChanges({ added, changed, deleted }) {
+    let databd = {}
     this.setState((state) => {
       let { data } = state;
       if (added) {
-        console.log(added)
+        added = { ...added }
+        if (!added.action) {
+          added.action = 'others'
+        }
+        console.log(added.action)
+        databd = { [added.action]: added }
+        console.log(databd)
         const startingAddedId = data.length > 0 ? data[data.length - 1].id + 1 : 0;
         data = [...data, { id: startingAddedId, ...added }];
+        this.editPet(databd, this.idp);
       }
-      if (changed) {
-        let databd = {}
+      else if (changed) {
+        console.log(changed)
         data = data.map(appointment => {
-          if(changed[appointment.id]){
-           databd = { ...appointment, ...changed[appointment.id] };}
-           return (
-          changed[appointment.id] ? { ...appointment, ...changed[appointment.id] } : appointment)
+          if (changed[appointment.id]) {
+            databd = { ...appointment, ...changed[appointment.id] }
+          }
+          return (
+            changed[appointment.id] ? { ...appointment, ...changed[appointment.id] } : appointment)
         });
-          this.editPet(databd, databd._id);
+
+        this.editPetSchedule(databd, this.idp);
+      } else
+        if (deleted !== undefined) {
+          data = data.filter((appointment) => {
+            if (appointment.id === deleted) {
+              databd = appointment
+            }
+            return appointment.id !== deleted
+          });
           console.log(databd)
-          
-      }
-      if (deleted !== undefined) {
-        data = data.filter(appointment => appointment.id !== deleted);
-      }
+          this.deletePetSchedule(databd, this.idp);
+        }
       console.log(data)
       return { data };
     });
   }
 
   render() {
-    const {  
-      currentDate, 
-      data, 
-      resources, 
-      mainResourceName, 
-      addedAppointment, 
-      appointmentChanges, 
-      editingAppointment, 
+    const {
+      currentDate,
+      data,
+      resources,
+      mainResourceName,
+      addedAppointment,
+      appointmentChanges,
+      editingAppointment,
     } = this.state;
-    console.log(data)
     return (
       <React.Fragment>
         <ResourceSwitcher
@@ -212,8 +188,8 @@ export default class Demo extends React.PureComponent {
             height={660}
           >
             <ViewState
-            currentDate={currentDate}
-            onCurrentDateChange={this.currentDateChange}
+              currentDate={currentDate}
+              onCurrentDateChange={this.currentDateChange}
             />
 
             <EditingState
@@ -222,8 +198,8 @@ export default class Demo extends React.PureComponent {
               addedAppointment={addedAppointment}
               onAddedAppointmentChange={this.changeAddedAppointment}
 
-              appointmentChanges={appointmentChanges}
-              onAppointmentChangesChange={this.changeAppointmentChanges}
+              // appointmentChanges={appointmentChanges}
+              // onAppointmentChangesChange={this.changeAppointmentChanges}
 
               editingAppointment={editingAppointment}
               onEditingAppointmentChange={this.changeEditingAppointment}
@@ -233,7 +209,7 @@ export default class Demo extends React.PureComponent {
               startDayHour={8.5}
               endDayHour={20}
             />
-             <AllDayPanel />
+            <AllDayPanel />
             <EditRecurrenceMenu />
             <ConfirmationDialog />
             <Toolbar />

@@ -28,19 +28,19 @@ const useStyles = makeStyles((theme) => ({
     tooltips: {
         bottom: theme.spacing(0),
     },
-    notes:{
-        maxWidth:120
+    notes: {
+        maxWidth: 120
     }
 }));
 
 
 const columns = [
-    { id: 'name', label: 'Fármaco', minWidth: 170 },
+    { id: 'name', label: 'Fármaco', minWidth: 120 },
     { id: 'Dosis', label: 'Dosis', minWidth: 100 },
     { id: 'Intervalo', label: 'Intervalo', minWidth: 100 },
     { id: 'inicio', label: 'Fecha inicio', minWidth: 100 },
     { id: 'final', label: 'Fecha final', minWidth: 100 },
-    { id: 'notas', label: 'Notas', minWidth: 100 },
+    { id: 'notas', label: 'Notas', minWidth: 170 },
 ]
 
 
@@ -48,8 +48,22 @@ const columns = [
 export default function Review({ valuesField }) {
     const { petSelect } = usePet();
     const classes = useStyles();
+
+    if (!petSelect) {
+        return (
+            'Loading...'
+        )
+    }
+
     const { medication } = petSelect
-    console.log(medication)
+    const data = medication.map((e) => {
+        // const con = [];
+        const da = e.startDate.substring(0, 10).replace('-', '/')
+        // con.push(d[2]).push(d[1]).push(d[0]);
+        // const date = con.join('-');
+        e.endDate = new Date(e.endDate); e.startDate = (da); return e
+    })
+    console.log(data)
     return (
         <div className='__m-2'>
             {/* <Typography variant="h6" gutterBottom>
@@ -75,14 +89,14 @@ export default function Review({ valuesField }) {
                         </TableHead>
                         <TableBody>
                             {
-                                medication.map((pauta) => (
+                                data.map((pauta) => (
 
                                     <TableRow key={pauta.id}>
-                                        <TableCell>{pauta.name}</TableCell>
+                                        <TableCell>{pauta.title}</TableCell>
                                         <TableCell>{pauta.dosage}</TableCell>
-                                        <TableCell>{pauta.hours}</TableCell>
-                                        <TableCell>{pauta.startdate}</TableCell>
-                                        <TableCell>{pauta.lastday}</TableCell>
+                                        <TableCell> {pauta.hours} h</TableCell>
+                                        <TableCell>{new Date(pauta.startDate).toLocaleDateString()}</TableCell>
+                                        <TableCell>{(pauta.endDate).toLocaleDateString()}</TableCell>
                                         <TableCell className={classes.notes}>{pauta.notes}</TableCell>
                                     </TableRow>
 

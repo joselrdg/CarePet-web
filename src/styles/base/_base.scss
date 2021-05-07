@@ -31,8 +31,13 @@ main {
     cursor: pointer;
 }
 
+.__icon-light{
+  color:rgb(111, 122, 189)
+}
 
-
+.__schedule{
+  width: 300px
+}
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
@@ -169,6 +174,10 @@ a:active {
 
 /* width */
 
+
+.__w-e {
+  width: 100%;
+}
 .__w-1 {
   width: 2rem;
 }
@@ -314,6 +323,10 @@ a:active {
   margin-right: 5rem;
 }
 
+.__mx-p-1 {
+  margin-right: 20px;
+  margin-left: 20px;
+}
 /* padding */
 .__p-0 {
   padding: 0;

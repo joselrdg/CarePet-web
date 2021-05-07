@@ -5,6 +5,7 @@ import Pipebar from "../../../progress/Pipebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Review from "../Review/Review";
+import Schedule from "./Schedule";
 import LinearDeterminate from "../../../../common/LinearDeterminate";
 
 const useStyles = makeStyles((theme) => ({
@@ -20,6 +21,12 @@ const useStyles = makeStyles((theme) => ({
         width: 300,
         margin: 20
     },
+    review: {
+        margin: 20
+    },
+    schedule: {
+        maxWidth: 100
+    }
 }));
 
 const PetProfile = () => {
@@ -36,14 +43,30 @@ const PetProfile = () => {
     if (!petSelect) {
         return "Loading...";
     }
-    const { 
-        wash, willwash, 
-        haircut, willhaircut, 
-        earcleaning, willearcleaning, 
-        willteethcleaning, teethcleaning, 
-        vaccination, willvaccination, 
-        deworming, willdeworming
+    const {
+        wash, willwash,
+        haircut, willhaircut,
+        earcleaning, willearcleaning,
+        willteethcleaning, teethcleaning,
+        vaccination, willvaccination,
+        deworming, willdeworming,
+        medication, others
     } = petSelect;
+
+
+    const data = [
+        ...wash, ...willwash,
+        ...haircut, ...willhaircut,
+        ...earcleaning, ...willearcleaning,
+        ...teethcleaning, ...willteethcleaning,
+        ...vaccination, ...willvaccination,
+        ...deworming, ...willdeworming,
+        ...medication, ...others
+    ]
+
+    const datap = data.map((e, i) => { e.id = i; e.startDate = new Date(e.startDate); return e })
+
+
 
     const lastwash = wash[wash.length - 1]
     const willlastwash = willwash[willwash.length - 1]
@@ -62,7 +85,7 @@ const PetProfile = () => {
 
     const lastdeworming = deworming[deworming.length - 1]
     const willlastdeworming = willdeworming[willdeworming.length - 1]
- 
+
     // const { review} = petsUser[0]
 
     // console.log(
@@ -144,16 +167,21 @@ const PetProfile = () => {
     return (
         <>
             <div className={classes.root}>
-                <Review />
+                <Paper elevation={3} className={classes.review}>
+                    <Review />
+                </Paper>
+                <Paper elevation={3} className={classes.review}>
+                    <Schedule className='__schedule' datap={datap} />
+                </Paper>
                 <Paper elevation={3} className={classes.weight}>
                     <div className='__flex __ai-center'>
-                        <i className="fas fa-bath fa-3x __mt-1 __mx-1 __my-1"></i>
+                        <i className="fas fa-bath fa-3x __mt-1 __mx-1 __my-1 __icon-light"></i>
                     </div>
                     <h4 className='__my-1'>{subtraction('wash')} días desde el ultimo baño.</h4>
                     <LinearDeterminate petprogess={percentage('wash')} />
                     <h4 className='__my-1'>Faltan {sum('wash')} días para el siguiente.</h4>
                     <div className='__flex __ai-center'>
-                        <i className="fas fa-cut fa-3x __mt-1 __mb-0 __mx-1"></i>
+                        <i className="fas fa-cut fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
                     </div>
                     <h4 className='__my-1'>{subtraction("haircut")} días desde el ultimo corte.</h4>
                     <LinearDeterminate petprogess={percentage("haircut")} />
@@ -161,13 +189,13 @@ const PetProfile = () => {
                 </Paper>
                 <Paper elevation={3} className={classes.weight}>
                     <div className='__flex __ai-center'>
-                        <i className="fas fa-tooth fa-3x __mt-1 __mb-0 __mx-1"></i>
+                        <i className="fas fa-tooth fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
                     </div>
                     <h4 className='__my-1'>{subtraction("teethcleaning")} días desde la última limpieza.</h4>
                     <LinearDeterminate petprogess={percentage("teethcleaning")} />
                     <h4 className='__my-1'>Faltan {sum("teethcleaning")} días para el siguiente.</h4>
                     <div className='__flex __ai-center'>
-                    <i className="fas fa-hand-sparkles fa-3x __mt-1 __mb-0 __mx-1"></i>
+                        <i className="fas fa-hand-sparkles fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
                     </div>
                     <h4 className='__my-1'>{subtraction("earcleaning")} días desde la limpieza de oídos.</h4>
                     <LinearDeterminate petprogess={percentage("earcleaning")} />
@@ -175,13 +203,13 @@ const PetProfile = () => {
                 </Paper>
                 <Paper elevation={3} className={classes.weight}>
                     <div className='__flex __ai-center'>
-                    <i className="fas fa-bug fa-3x __mt-1 __mb-0 __mx-1"></i>
+                        <i className="fas fa-bug fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
                     </div>
                     <h4 className='__my-1'>{subtraction("teethcleaning")} días desde la última desparasitación.</h4>
                     <LinearDeterminate petprogess={percentage("teethcleaning")} />
                     <h4 className='__my-1'>Faltan {sum("teethcleaning")} días para el siguiente.</h4>
                     <div className='__flex __ai-center'>
-                    <i className="fas fa-syringe fa-3x __mt-1 __mb-0 __mx-1"></i>
+                        <i className="fas fa-syringe fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
                     </div>
                     <h4 className='__my-1'>{subtraction("vaccination")} días desde la última vacuna.</h4>
                     <LinearDeterminate petprogess={percentage("vaccination")} />

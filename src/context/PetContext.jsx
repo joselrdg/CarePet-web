@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getPetsUser, editPetUser } from "../services/PetService";
+import { getPetsUser, editPetUser, editPetUserSchedule, deletePetUserSchedule } from "../services/PetService";
 import { UserContext } from "./UserContext";
 
 export const PetsContext = createContext();
@@ -22,6 +22,17 @@ export function PetsContextProvider({ children }) {
       });
   };
 
+  const editPetSchedule = (body,id) => {
+      return editPetUserSchedule(body, id).then((response) => {
+        setPetSelect(response)
+      });
+  };
+  const deletePetSchedule = (body,id) => {
+      return deletePetUserSchedule(body, id).then((response) => {
+        setPetSelect(response)
+      });
+  };
+
   const setPet = (pet = 0) => {
     petsUser !== null &&
     setPetSelect(petsUser[pet])
@@ -39,7 +50,9 @@ export function PetsContextProvider({ children }) {
     editPet,
     petsUser,
     setPet,
-    petSelect
+    petSelect,
+    editPetSchedule,
+    deletePetSchedule
   };
   return <PetsContext.Provider value={value}>{children}</PetsContext.Provider>;
 }

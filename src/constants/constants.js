@@ -21,7 +21,7 @@ export const CATEGORIES = [
     name: "Agenda", 
     icon: <TodayIcon />, 
     subcategory: [{ 
-      name: 'Añadir aviso', 
+      name: 'Calendario', 
       folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
     }] },
   { 

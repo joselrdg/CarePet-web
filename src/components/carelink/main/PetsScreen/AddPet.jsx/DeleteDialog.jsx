@@ -9,6 +9,8 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import { deletePetUser } from "../../../../../services/PetService";
 import { useHistory } from 'react-router';
+import { IconButton } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 
 export default function DeleteDialog({id}) {
@@ -35,9 +37,12 @@ export default function DeleteDialog({id}) {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Eliminar mascota
-      </Button>
+      </Button> */}
+      <IconButton aria-label="delete" onClick={handleClickOpen} >
+          <DeleteIcon className='__mt-1' fontSize="large" />
+        </IconButton>
       <Dialog
         fullScreen={fullScreen}
         open={open}
@@ -47,7 +52,7 @@ export default function DeleteDialog({id}) {
         <DialogTitle id="responsive-dialog-title">{"Esta seguro de eliminar a su mascota?"}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Esté proceso no se puede revertir.
+            Está acción no se podrá revertir.
           </DialogContentText>
         </DialogContent>
         <DialogActions>

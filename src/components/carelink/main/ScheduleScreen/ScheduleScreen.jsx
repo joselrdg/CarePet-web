@@ -6,32 +6,58 @@ import Schedule from './Schedule';
 
 
 const ScheduleScreen = () => {
-    const { petSelect, editPet } = usePet();
+    const { petSelect, editPet, editPetSchedule, deletePetSchedule } = usePet();
 
-    const {
-        wash, willwash,
-        haircut, willhaircut,
-        earcleaning, willearcleaning,
-        teethcleaning, willteethcleaning,
-        vaccination, willvaccination,
-        deworming, willdeworming
-    } = petSelect;
 
-    const data = [
-        ...wash, ...willwash,
-        ...haircut, ...willhaircut, 
-        ...earcleaning, ...willearcleaning,
-        ...teethcleaning, ...willteethcleaning,
-        ...vaccination, ...willvaccination,
-        ...deworming, ...willdeworming
+    if (petSelect) {
+        const {
+            wash, 
+            willwash,
+            haircut, willhaircut,
+            earcleaning, willearcleaning,
+            teethcleaning, willteethcleaning,
+            vaccination, willvaccination,
+            deworming, willdeworming,
+            medication, others
+        } = petSelect;
+
+        const datap = [
+            ...wash, ...willwash,
+            ...haircut, ...willhaircut,
+            ...earcleaning, ...willearcleaning,
+            ...teethcleaning, ...willteethcleaning,
+            ...vaccination, ...willvaccination,
+            ...deworming, ...willdeworming,
+            ...medication, ...others
         ]
 
-    const datap = data.map((e, i) => { e.id = i; e.startDate = new Date(e.startDate); return e })
-    return (
-        <div>
-            <Schedule datap={datap} editPet={editPet}/>
-        </div>
-    )
+        console.log(datap)
+        // const datap = data.map((e, i) => { e.id = i; e.startDate = new Date(e.startDate); return e })
+        return (
+            <div>
+                <Schedule
+                    datap={datap}
+                    editPet={editPet}
+                    editPetSchedule={editPetSchedule}
+                    deletePetSchedule={deletePetSchedule}
+                    idp={petSelect.id} />
+            </div>
+        )
+    } else {
+        const datap = [{id: 0, startDate: new Date(), allday: true, title: 'Añade una mascota'}]
+        return (
+            <div>
+                <Schedule
+                    datap={datap}
+                    editPet={editPet}
+                    editPetSchedule={editPetSchedule}
+                    deletePetSchedule={deletePetSchedule}
+                    // idp={petSelect.id}
+                     />
+            </div>
+        )
+
+    }
 }
 
 export default ScheduleScreen
