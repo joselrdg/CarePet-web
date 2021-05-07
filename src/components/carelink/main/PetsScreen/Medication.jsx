@@ -56,14 +56,23 @@ export default function Review({ valuesField }) {
     }
 
     const { medication } = petSelect
-    const data = medication.map((e) => {
-        // const con = [];
-        const da = e.startDate.substring(0, 10).replace('-', '/')
-        // con.push(d[2]).push(d[1]).push(d[0]);
-        // const date = con.join('-');
-        e.endDate = new Date(e.endDate); e.startDate = (da); return e
-    })
-    console.log(data)
+    // const data = medication.map((e) => {
+    //     // const con = [];
+    //     const da = e.startDate.substring(0, 10).replace('-', '/')
+    //     // con.push(d[2]).push(d[1]).push(d[0]);
+    //     // const date = con.join('-');
+    //     e.endDate = new Date(e.endDate); e.startDate = (da); return e
+    // })
+
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const datap = medication.map((e, i) => {
+        const timeSt = new Date(e.startDate).getTime()
+        const timeEnd = new Date(e.endDate).getTime()
+         e.startDate = (timeSt);
+         e.endDate = (timeEnd); 
+         return e 
+        })
+
     return (
         <div className='__m-2'>
             {/* <Typography variant="h6" gutterBottom>
@@ -89,14 +98,14 @@ export default function Review({ valuesField }) {
                         </TableHead>
                         <TableBody>
                             {
-                                data.map((pauta) => (
+                                datap.map((pauta) => (
 
                                     <TableRow key={pauta.id}>
                                         <TableCell>{pauta.title}</TableCell>
                                         <TableCell>{pauta.dosage}</TableCell>
                                         <TableCell> {pauta.hours} h</TableCell>
-                                        <TableCell>{new Date(pauta.startDate).toLocaleDateString()}</TableCell>
-                                        <TableCell>{(pauta.endDate).toLocaleDateString()}</TableCell>
+                                        <TableCell >{new Date(pauta.startDate).toLocaleDateString("es-ES", options)}</TableCell>
+                                    <TableCell>{new Date(pauta.endDate).toLocaleDateString("es-ES", options)}</TableCell>
                                         <TableCell className={classes.notes}>{pauta.notes}</TableCell>
                                     </TableRow>
 

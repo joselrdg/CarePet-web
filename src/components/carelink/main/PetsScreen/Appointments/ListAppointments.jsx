@@ -35,7 +35,7 @@ const columns = [
     { id: 'titulo', label: 'Título', minWidth: 170 },
     { id: 'startdate', label: 'Fecha de inicio', minWidth: 100 },
     { id: 'enddate', label: 'Fecha final', minWidth: 100 },]
-export default function ListAppointments() {
+export default function ListAppointments({ actionStart, actionEnd }) {
     const classes = useStyles()
 
     const { petSelect, editPet, editPetSchedule, deletePetSchedule } = usePet();
@@ -61,17 +61,33 @@ export default function ListAppointments() {
         ...medication, ...others
     ]
 
-    // const datap = data.map((e) => {
-    //     // const con = [];
-    //     if (e.action === 'medication') {
-    //         e.endDate = new Date();  return e
-    //     }
-    //     return e
-    // })
 
-    console.log(data)
-    // const datap = data.map((e, i) => { e.startDate = new Date(e.startDate); return e })
-    // console.log(datap)
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    // console.log(
+    //     fecha.toLocaleDateString("es-ES", options)
+    //   );
+
+    let datap = data.map((e, i) => {
+        const timeSt = new Date(e.startDate).getTime()
+        const timeEnd = new Date(e.endDate).getTime()
+        e.startDate = (timeSt);
+        e.endDate = (timeEnd);
+        return e
+    })
+
+    datap.sort(function (a, b) {
+        return b.startDate - a.startDate
+    })
+
+    const dataFilter = datap.filter((e) => {
+        if (actionStart === 'all') {
+            return e
+        } else if (e.action === actionStart || e.action === actionEnd) {
+            return e
+        } else {
+            return e
+        }
+    })
     return (
         <Paper className={classes.root}>
             <TableContainer className={classes.container}>
@@ -91,11 +107,11 @@ export default function ListAppointments() {
                     </TableHead>
                     <TableBody>
                         {
-                            data.map((appointment, i) => (
+                            dataFilter.map((appointment, i) => (
                                 <TableRow key={i}>
                                     <TableCell>{appointment.title}</TableCell>
-                                    <TableCell>{(appointment.startDate)}</TableCell>
-                                    <TableCell>{(appointment.endDate)}</TableCell>
+                                    <TableCell >{new Date(appointment.startDate).toLocaleDateString("es-ES", options)}</TableCell>
+                                    <TableCell>{new Date(appointment.endDate).toLocaleDateString("es-ES", options)}</TableCell>
                                 </TableRow>
                             ))
                         }

@@ -22,6 +22,9 @@ const options = [
   "4 semanas",
   "6 semanas",
   "8 semanas",
+  "3 meses",
+  "6 meses",
+  "Anual",
 ];
 
 function ConfirmationDialogRaw(props) {
@@ -151,28 +154,61 @@ export default function ConfirDialog({ accion, clave }) {
     setOpen(false);
 
     if (newValue) {
-      let days = newValue.split(" ")[0];
-      days = parseInt(days);
-      days = days * 7;
+      let days = 0;
+      if (newValue === '3 meses') {
+        days = 90;
+      } if (newValue === '6 meses') {
+        days = 180;
+      } if (newValue === 'Anual') {
+        days = 365;
+      } else {
+        days = newValue.split(" ")[0];
+        days = parseInt(days);
+        days = days * 7;
+      }
       const d = date.getTime() + days * 24 * 60 * 60 * 1000;
       const dateDays = new Date(d);
       const id = petSelect.id;
       const idlength = petSelect[clave].length
+      let starTitle = ''
+      let endTitle = ''
+      if (clave === 'wash') {
+        starTitle = 'Se dio un baño a'
+        endTitle = 'Bañar a'
+      } else if (clave === 'haircut') {
+        starTitle = 'Se corto el pelo a'
+        endTitle = 'Cortar el pelo a'
+      } else if (clave === 'earcleaning') {
+        starTitle = 'Se limpio los oidos a'
+        endTitle = 'Limpiar los oidos a'
+      } else if (clave === 'teethcleaning') {
+        starTitle = 'Se hizo limpieza de dientes a'
+        endTitle = 'Limpieza de dientes programada para'
+      } else if (clave === 'deworming') {
+        starTitle = 'Se desparasitó a'
+        endTitle = 'Desparasitar a'
+      } else if (clave === 'vaccination') {
+        starTitle = 'Se vacunó a'
+        endTitle = 'Vacunar a'
+      }
+
       editPet(
         {
           [clave]:
           {
             // id: `${clave}start${idlength}`,
             startDate: date,
+            endDate: date,
             allDay: true,
-            title: `Se ${clave} ${petSelect.name}`,
+            title: `${starTitle} ${petSelect.name}`,
             action: clave
           },
           [`will${clave}`]: {
             // id: `${clave}end${idlength}`,
             startDate: dateDays,
+            endDate: dateDays,
             allDay: true,
-            title: `${clave} a ${petSelect.name}`,
+            title: `${endTitle} ${petSelect.name}`,
             action: `will${clave}`
           }
         },

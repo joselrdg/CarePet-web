@@ -87,10 +87,7 @@ const PetProfile = () => {
     const willlastdeworming = willdeworming[willdeworming.length - 1]
 
     // const { review} = petsUser[0]
-
-    // console.log(
-    //     fecha.toLocaleDateString("es-ES", options)
-    //   );
+  
 
     const sum = (clave) => {
         let date = "";
