@@ -6,42 +6,38 @@ const data = [
   { name: "Group B", value: 2 },
 ];
 // const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-const COLORS = ["#55f9aa", "#e60404"];
+const COLORS = ["#55f9aa", "#e91e63"];
 
-export default class Circularbar extends PureComponent {
-  render() {
-    return (
-      <div style={{ width: "250px", height: "250px", position: "relative" }}>
-        <PieChart width={250} height={250} onMouseEnter={this.onPieEnter}>
-          <h1>hola</h1>
-          <Pie
-            data={data}
-            cx={120}
-            cy={120}
-            startAngle={180}
-            endAngle={-180}
-            innerRadius={80}
-            outerRadius={100}
-            fill="hola"
-            paddingAngle={0}
-            dataKey="value"
-          >
-            {data.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
-          </Pie>
-        </PieChart>
-        <h1
-          style={{
-            position: "absolute",
-          }}
-        >
-          hola
-        </h1>
-      </div>
-    );
+export const Circularbar = ({ data, height, innerRadius, outerRadius, cy, cx }) => {
+  if (!data) {
+    return 'Loading...'
   }
+  return (
+    <div style={{ width: "250px", height:`${height}`, position: "relative" }}>
+      <PieChart width={250} height={250}
+      //  onMouseEnter={this.onPieEnter}
+       >      
+        <Pie
+          data={data}
+          cx={cx}
+          cy={cy}
+          startAngle={180}
+          endAngle={-180}
+          innerRadius={innerRadius}
+          outerRadius={outerRadius}
+          fill=  {<h1>hola</h1>}
+          paddingAngle={0}
+          dataKey="value"
+        >
+          {data.map((entry, index) => (
+            <Cell
+              key={`cell-${index}`}
+              fill={COLORS[index % COLORS.length]}
+            />
+          ))}
+        </Pie>
+      </PieChart>
+   
+    </div>
+  );
 }

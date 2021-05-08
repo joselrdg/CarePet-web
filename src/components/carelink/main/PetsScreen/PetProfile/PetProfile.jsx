@@ -7,6 +7,7 @@ import Paper from "@material-ui/core/Paper";
 import Review from "../Review/Review";
 import Schedule from "./Schedule";
 import LinearDeterminate from "../../../../common/LinearDeterminate";
+import { Circularbar } from '../../../progress/Circularbar';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -68,23 +69,23 @@ const PetProfile = () => {
 
 
 
-    const lastwash = wash[wash.length - 1]
-    const willlastwash = willwash[willwash.length - 1]
+    const lastwash = wash[wash.length - 1] ? wash[wash.length - 1] : { startDate: new Date(2019, 11, 17) }
+    const willlastwash = willwash[willwash.length - 1] ? willwash[willwash.length - 1] : { startDate: new Date(2020, 12, 17) }
 
-    const lasthaircut = haircut[haircut.length - 1]
-    const willlasthaircut = willhaircut[willhaircut.length - 1]
+    const lasthaircut = haircut[haircut.length - 1] ? haircut[haircut.length - 1] : { startDate: new Date(2019, 11, 17) }
+    const willlasthaircut = willhaircut[willhaircut.length - 1] ? willhaircut[willhaircut.length - 1] : { startDate: new Date(2020, 12, 17) }
 
-    const lastearcleaning = earcleaning[earcleaning.length - 1]
-    const willlastearcleaning = willearcleaning[willearcleaning.length - 1]
+    const lastearcleaning = earcleaning[earcleaning.length - 1] ? earcleaning[earcleaning.length - 1] : { startDate: new Date(2019, 11, 17) }
+    const willlastearcleaning = willearcleaning[willearcleaning.length - 1] ? willearcleaning[willearcleaning.length - 1] : { startDate: new Date(2020, 12, 17) }
 
-    const lastteethcleaning = teethcleaning[teethcleaning.length - 1]
-    const willlastteethcleaning = willteethcleaning[willteethcleaning.length - 1]
+    const lastteethcleaning = teethcleaning[teethcleaning.length - 1] ? teethcleaning[teethcleaning.length - 1] : { startDate: new Date(2019, 11, 17) }
+    const willlastteethcleaning = willteethcleaning[willteethcleaning.length - 1] ? willteethcleaning[willteethcleaning.length - 1] : { startDate: new Date(2020, 12, 17) }
 
-    const lastvaccination = vaccination[vaccination.length - 1]
-    const willlastvaccination = willvaccination[willvaccination.length - 1]
+    const lastvaccination = vaccination[vaccination.length - 1] ? vaccination[vaccination.length - 1] : { startDate: new Date(2019, 11, 17) }
+    const willlastvaccination = willvaccination[willvaccination.length - 1] ? willvaccination[willvaccination.length - 1] : { startDate: new Date(2020, 12, 17) }
 
-    const lastdeworming = deworming[deworming.length - 1]
-    const willlastdeworming = willdeworming[willdeworming.length - 1]
+    const lastdeworming = deworming[deworming.length - 1] ? deworming[deworming.length - 1] : { startDate: new Date(2019, 11, 17) }
+    const willlastdeworming = willdeworming[willdeworming.length - 1] ? willdeworming[willdeworming.length - 1] : { startDate: new Date(2020, 12, 17) }
 
     // const { review} = petsUser[0]
   
@@ -161,6 +162,30 @@ const PetProfile = () => {
         return percentage
     }
 
+    const datachart = (thisstartDate, thisendDate) => {
+        // dias que llevamos
+        const fecha = new Date();
+        const fechaGetTime = fecha.getTime();
+
+        const lastdate = thisstartDate ? new Date(thisstartDate) : new Date();
+        const date = thisendDate ? new Date(thisendDate) : new Date();
+
+        let resta = date.getTime() - fechaGetTime;
+        const daysMas = Math.round(resta / (1000 * 60 * 60 * 24));
+
+        resta = fechaGetTime - lastdate.getTime();
+        // const daysMenos = Math.round(resta / (1000 * 60 * 60 * 24));
+
+
+        resta = date.getTime() - lastdate.getTime();
+        const total = Math.round(resta / (1000 * 60 * 60 * 24));
+        const percentage = (daysMas * 100) / total
+        return [
+            { name: "Group A", value: percentage },
+            { name: "Group B", value: 100 - percentage },
+        ];
+    }
+
     return (
         <>
             <div className={classes.root}>
@@ -171,45 +196,87 @@ const PetProfile = () => {
                     <Schedule className='__schedule' datap={datap} />
                 </Paper>
                 <Paper elevation={3} className={classes.weight}>
-                    <div className='__flex __ai-center'>
+                    <div className='__flex __jc-center'>
                         <i className="fas fa-bath fa-3x __mt-1 __mx-1 __my-1 __icon-light"></i>
+                        <Circularbar
+                                cx={180}                            
+                                cy={40}
+                                outerRadius={30}
+                                innerRadius={18}
+                                height='80px'
+                                data={datachart(lastwash.startDate, willlastwash.startDate)} />
                     </div>
                     <h4 className='__my-1'>{subtraction('wash')} días desde el ultimo baño.</h4>
                     <LinearDeterminate petprogess={percentage('wash')} />
-                    <h4 className='__my-1'>Faltan {sum('wash')} días para el siguiente.</h4>
+                    <h4 className='__my-1'>Faltan {sum('wash') > 0 ? sum('wash'):0} días para el siguiente.</h4>
                     <div className='__flex __ai-center'>
-                        <i className="fas fa-cut fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
+                        <i className="fas fa-cut fa-3x  __mt-1 __mx-1 __my-1 __icon-light"></i>
+                         <Circularbar
+                                cx={180}                            
+                                cy={40}
+                                outerRadius={30}
+                                innerRadius={18}
+                                height='80px'
+                                data={datachart(lasthaircut.startDate, willlasthaircut.startDate)} />
                     </div>
                     <h4 className='__my-1'>{subtraction("haircut")} días desde el ultimo corte.</h4>
                     <LinearDeterminate petprogess={percentage("haircut")} />
-                    <h4 className='__my-1'>Faltan {sum("haircut")} días para el siguiente.</h4>
+                    <h4 className='__my-1'>Faltan {sum("haircut") > 0 ? sum('haircut'):0} días para el siguiente.</h4>
                 </Paper>
                 <Paper elevation={3} className={classes.weight}>
                     <div className='__flex __ai-center'>
                         <i className="fas fa-tooth fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
+                        <Circularbar
+                                cx={180}                            
+                                cy={40}
+                                outerRadius={30}
+                                innerRadius={18}
+                                height='80px'
+                                data={datachart(lastteethcleaning.startDate, willlastteethcleaning.startDate)} />
                     </div>
                     <h4 className='__my-1'>{subtraction("teethcleaning")} días desde la última limpieza.</h4>
                     <LinearDeterminate petprogess={percentage("teethcleaning")} />
-                    <h4 className='__my-1'>Faltan {sum("teethcleaning")} días para el siguiente.</h4>
+                    <h4 className='__my-1'>Faltan {sum("teethcleaning") > 0 ? sum('teethcleaning'):0} días para el siguiente.</h4>
                     <div className='__flex __ai-center'>
                         <i className="fas fa-hand-sparkles fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
+                        <Circularbar
+                                cx={180}                            
+                                cy={40}
+                                outerRadius={30}
+                                innerRadius={18}
+                                height='80px'
+                                data={datachart(lastearcleaning.startDate, willlastearcleaning.startDate)} />
                     </div>
-                    <h4 className='__my-1'>{subtraction("earcleaning")} días desde la limpieza de oídos.</h4>
-                    <LinearDeterminate petprogess={percentage("earcleaning")} />
-                    <h4 className='__my-1'>Faltan {sum("earcleaning")} días para el siguiente.</h4>
+                    <h4 className='__my-1'>{subtraction("deworming")} días desde la limpieza de oídos.</h4>
+                    <LinearDeterminate petprogess={percentage("deworming")} />
+                    <h4 className='__my-1'>Faltan {sum("deworming") > 0 ? sum('deworming'):0} días para el siguiente.</h4>
                 </Paper>
                 <Paper elevation={3} className={classes.weight}>
                     <div className='__flex __ai-center'>
                         <i className="fas fa-bug fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
+                        <Circularbar
+                                cx={180}                            
+                                cy={40}
+                                outerRadius={30}
+                                innerRadius={18}
+                                height='80px'
+                                data={datachart(lastteethcleaning.startDate, willlastteethcleaning.startDate)} />
                     </div>
                     <h4 className='__my-1'>{subtraction("teethcleaning")} días desde la última desparasitación.</h4>
                     <LinearDeterminate petprogess={percentage("teethcleaning")} />
-                    <h4 className='__my-1'>Faltan {sum("teethcleaning")} días para el siguiente.</h4>
+                    <h4 className='__my-1'>Faltan {sum("teethcleaning") > 0 ? sum('teethcleaning'):0} días para el siguiente.</h4>
                     <div className='__flex __ai-center'>
                         <i className="fas fa-syringe fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
+                         <Circularbar
+                                cx={180}                            
+                                cy={40}
+                                outerRadius={30}
+                                innerRadius={18}
+                                height='80px'
+                                data={datachart(lastvaccination.startDate, willlastvaccination.startDate)} />
                     </div>
                     <h4 className='__my-1'>{subtraction("vaccination")} días desde la última vacuna.</h4>
-                    <LinearDeterminate petprogess={percentage("vaccination")} />
+                    <LinearDeterminate petprogess={percentage("vaccination") > 0 ? sum('vaccination'):0} />
                     <h4 className='__my-1'>Faltan {sum("vaccination")} días para el siguiente.</h4>
                 </Paper>
             </div>

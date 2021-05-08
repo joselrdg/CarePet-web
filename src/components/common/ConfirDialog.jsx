@@ -130,7 +130,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function ConfirDialog({ accion, clave, setRender, render }) {
+export default function ConfirDialog({ accion, clave }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("Dione");
@@ -191,12 +191,7 @@ export default function ConfirDialog({ accion, clave, setRender, render }) {
         starTitle = 'Se vacunó a'
         endTitle = 'Vacunar a'
       }
-      setRender((prev) => ({
-        ...prev,
-        [`last${clave}`]: date,
-        [`willlast${clave}`]: dateDays,
-      }))
-
+    
       editPet(
         {
           [clave]:

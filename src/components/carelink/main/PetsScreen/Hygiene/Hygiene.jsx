@@ -1,6 +1,7 @@
 import { makeStyles, Paper } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { Pipebar } from '../../../progress/Pipebar';
+import { Circularbar } from '../../../progress/Circularbar';
 import ConfirDialog from '../../../../common/ConfirDialog'
 import { usePet } from '../../../../hooks/usePet';
 import { editPetUser } from "../../../../../services/PetService";
@@ -44,32 +45,28 @@ export default function Hygiene() {
         medication, others
     } = petSelect;
 
-    const [render, setRender] = useState({
-    })
-    const lastwash = wash[wash.length - 1] ? wash[wash.length - 1] : { startDate: new Date(1995, 11, 17) }
-    const willlastwash = willwash[willwash.length - 1] ? willwash[willwash.length - 1] : { startDate: new Date(1996, 12, 17) }
 
-    const lasthaircut = haircut[haircut.length - 1] ? haircut[haircut.length - 1] : { startDate: new Date(1995, 11, 17) }
-    const willlasthaircut = willhaircut[willhaircut.length - 1] ? willhaircut[willhaircut.length - 1] : { startDate: new Date(1996, 12, 17) }
+    const lastwash = wash[wash.length - 1] ? wash[wash.length - 1] : { startDate: new Date(2019, 11, 17) }
+    const willlastwash = willwash[willwash.length - 1] ? willwash[willwash.length - 1] : { startDate: new Date(2020, 12, 17) }
 
-    const lastearcleaning = earcleaning[earcleaning.length - 1] ? earcleaning[earcleaning.length - 1] : { startDate: new Date(1995, 11, 17) }
-    const willlastearcleaning = willearcleaning[willearcleaning.length - 1] ? willearcleaning[willearcleaning.length - 1] : { startDate: new Date(1996, 12, 17) }
+    const lasthaircut = haircut[haircut.length - 1] ? haircut[haircut.length - 1] : { startDate: new Date(2019, 11, 17) }
+    const willlasthaircut = willhaircut[willhaircut.length - 1] ? willhaircut[willhaircut.length - 1] : { startDate: new Date(2020, 12, 17) }
 
-    const lastteethcleaning = teethcleaning[teethcleaning.length - 1] ? teethcleaning[teethcleaning.length - 1] : { startDate: new Date(1995, 11, 17) }
-    const willlastteethcleaning = willteethcleaning[willteethcleaning.length - 1] ? willteethcleaning[willteethcleaning.length - 1] : { startDate: new Date(1996, 12, 17) }
+    const lastearcleaning = earcleaning[earcleaning.length - 1] ? earcleaning[earcleaning.length - 1] : { startDate: new Date(2019, 11, 17) }
+    const willlastearcleaning = willearcleaning[willearcleaning.length - 1] ? willearcleaning[willearcleaning.length - 1] : { startDate: new Date(2020, 12, 17) }
 
-    const lastvaccination = vaccination[vaccination.length - 1] ? vaccination[vaccination.length - 1] : { startDate: new Date(1995, 11, 17) }
-    const willlastvaccination = willvaccination[willvaccination.length - 1] ? willvaccination[willvaccination.length - 1] : { startDate: new Date(1996, 12, 17) }
+    const lastteethcleaning = teethcleaning[teethcleaning.length - 1] ? teethcleaning[teethcleaning.length - 1] : { startDate: new Date(2019, 11, 17) }
+    const willlastteethcleaning = willteethcleaning[willteethcleaning.length - 1] ? willteethcleaning[willteethcleaning.length - 1] : { startDate: new Date(2020, 12, 17) }
 
-    const lastdeworming = deworming[deworming.length - 1] ? deworming[deworming.length - 1] : { startDate: new Date(1995, 11, 17) }
-    const willlastdeworming = willdeworming[willdeworming.length - 1] ? willdeworming[willdeworming.length - 1] : { startDate: new Date(1996, 12, 17) }
+    const lastvaccination = vaccination[vaccination.length - 1] ? vaccination[vaccination.length - 1] : { startDate: new Date(2019, 11, 17) }
+    const willlastvaccination = willvaccination[willvaccination.length - 1] ? willvaccination[willvaccination.length - 1] : { startDate: new Date(2020, 12, 17) }
+
+    const lastdeworming = deworming[deworming.length - 1] ? deworming[deworming.length - 1] : { startDate: new Date(2019, 11, 17) }
+    const willlastdeworming = willdeworming[willdeworming.length - 1] ? willdeworming[willdeworming.length - 1] : { startDate: new Date(2020, 12, 17) }
 
 
-    const setPetSel = (pet) => {
-        setPetSelect(pet)
-    }
 
-    const datap = (thisstartDate, thisendDate) => {
+    const datachart = (thisstartDate, thisendDate) => {
         // dias que llevamos
         const fecha = new Date();
         const fechaGetTime = fecha.getTime();
@@ -96,17 +93,9 @@ export default function Hygiene() {
 
     console.log(lastwash.startDate)
     console.log(willlastwash.startDate)
-    console.log(datap(lastwash.startDate, willlastwash.startDate))
+    console.log(datachart(lastwash.startDate, willlastwash.startDate))
 
-    useEffect(() => {
-        // console.log('render')
-        // getOnePet(petSelect.id)
-        // .then((p)=>{
-        //     setPetSelect(p)
-        // })
-    }, [render]);
 
-    const charwash = datap(lastwash.startDate, willlastwash.startDate)
     console.log(petSelect.id)
     return (
         <div>
@@ -116,10 +105,16 @@ export default function Hygiene() {
                     <Paper elevation={3} className={classes.weight}>
                         <div>
                             <i className="fas fa-bath fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
-                            <Pipebar data={datap(lastwash.startDate, willlastwash.startDate)} />
+                            <Circularbar
+                                cx={120}                            
+                                cy={60}
+                                outerRadius={60}
+                                innerRadius={40}
+                                height='100px'
+                                data={datachart(lastwash.startDate, willlastwash.startDate)} />
                         </div>
                         <Paper elevation={3} className={classes.weight}>
-                            <ConfirDialog render={render} setPetSelect={setPetSelect} setRender={setRender} id={petSelect.id} clave='wash' accion='último baño' />
+                            <ConfirDialog setPetSelect={setPetSelect} id={petSelect.id} clave='wash' accion='último baño' />
                         </Paper>
                     </Paper>
                 </div>
@@ -127,7 +122,13 @@ export default function Hygiene() {
                     <Paper elevation={3} className={classes.weight}>
                         <div>
                             <i className="fas fa-cut fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
-                            <Pipebar data={datap(lasthaircut.startDate, willlasthaircut.startDate)} />
+                            <Circularbar
+                                cx={120}                            
+                                cy={60}
+                                outerRadius={60}
+                                innerRadius={40}
+                                height='100px'
+                                data={datachart(lasthaircut.startDate, willlasthaircut.startDate)} />
                         </div>
                         <Paper elevation={3} className={classes.weight}>
                             <ConfirDialog id={petSelect.id} clave='haircut' accion='último corte' />
@@ -138,7 +139,12 @@ export default function Hygiene() {
                     <Paper elevation={3} className={classes.weight}>
                         <div>
                             <i className="fas fa-hand-sparkles fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
-                            <Pipebar data={datap(lastearcleaning.startDate, willlastearcleaning.startDate)} />
+                            <Circularbar
+                                cx={120}                            
+                                cy={60}
+                                outerRadius={60}
+                                innerRadius={40} height='100px'
+                                data={datachart(lastearcleaning.startDate, willlastearcleaning.startDate)} />
                         </div>
                         <Paper elevation={3} className={classes.weight}>
                             <ConfirDialog id={petSelect.id} clave='earcleaning' accion='limpieza de oídos' />
@@ -149,7 +155,13 @@ export default function Hygiene() {
                     <Paper elevation={3} className={classes.weight}>
                         <div>
                             <i className="fas fa-tooth fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
-                            <Pipebar data={datap(lastteethcleaning.startDate, willlastteethcleaning.startDate)} />
+                            <Circularbar
+                                cx={120}                            
+                                cy={60}
+                                outerRadius={60}
+                                innerRadius={40}
+                                height='100px'
+                                data={datachart(lastteethcleaning.startDate, willlastteethcleaning.startDate)} />
                         </div>
                         <Paper elevation={3} className={classes.weight}>
                             <ConfirDialog id={petSelect.id} clave='teethcleaning' accion='limpieza de dientes' />
@@ -160,7 +172,14 @@ export default function Hygiene() {
                     <Paper elevation={3} className={classes.weight}>
                         <div>
                             <i className="fas fa-syringe fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
-                            <Pipebar data={datap(lastvaccination.startDate, willlastvaccination.startDate)} />
+                            <Circularbar
+                                cx={120}                            
+                                cy={60}
+                                cy={60}
+                                outerRadius={60}
+                                innerRadius={40}
+                                height='100px'
+                                data={datachart(lastvaccination.startDate, willlastvaccination.startDate)} />
                         </div>
                         <Paper elevation={3} className={classes.weight}>
                             <ConfirDialog id={petSelect.id} clave='vaccination' accion='última vacuna' />
@@ -171,7 +190,13 @@ export default function Hygiene() {
                     <Paper elevation={3} className={classes.weight}>
                         <div>
                             <i className="fas fa-bug fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
-                            <Pipebar data={datap(lastdeworming.startDate, willlastdeworming.startDate)} />
+                            <Circularbar
+                                cy={60}
+                                cx={120}                            
+                                outerRadius={60}
+                                innerRadius={40}
+                                height='100px'
+                                data={datachart(lastdeworming.startDate, willlastdeworming.startDate)} />
                         </div>
                         <Paper elevation={3} className={classes.weight}>
                             <ConfirDialog id={petSelect.id} clave='deworming' accion='desparasitación' />
