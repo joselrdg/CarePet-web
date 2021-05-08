@@ -56,12 +56,7 @@ function ResponsiveDrawer(props) {
   const { petsUser, petSelect } = usePet();
   // const {setCategory, stateCategory} = useCategory()
 
-  const [stateCategories, setStateCategories] = useState({
-    petsName: null,
-    petNumber: 0,
-    categoryNumber: 0,
-    subcategoryNumber: 0,
-  });
+  const { stateCategories, setStateCategories } = usePet();
   // const [open, setOpen] = React.useState(true);
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -83,20 +78,19 @@ function ResponsiveDrawer(props) {
   } = stateCategories;
 
   useEffect(() => {
-    console.log('use efect de los nombres')
-    if (petsUser && petsName=== null){
+    if (petsUser && petsName === null) {
       setStateCategories({
-        ...stateCategories, 
+        ...stateCategories,
         petsName: petsUser.map((pet) => pet.name)
       })
     }
-   
-  }, [petsUser, petsName,stateCategories])
 
-  
- 
+  }, [petsUser])
 
- 
+
+
+
+
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -111,7 +105,7 @@ function ResponsiveDrawer(props) {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
-    
+
 
   return (
     <>
@@ -149,12 +143,12 @@ function ResponsiveDrawer(props) {
             }}
           >
             <DrawerBox
-              classes={{...classes}}
+              classes={{ ...classes }}
               // open={open}
               // categoryNumber={categoryNumber}
               petsName={petsName}
-              // handleClick={(h) => handleClick(h)}
-              // handleSubcategory={(h) => handleSubcategory(h)}
+            // handleClick={(h) => handleClick(h)}
+            // handleSubcategory={(h) => handleSubcategory(h)}
             />
 
             {/* {drawer} */}
@@ -166,15 +160,15 @@ function ResponsiveDrawer(props) {
               paper: classes.drawerPaper,
             }}
             variant="permanent"
-            // open
+          // open
           >
             <DrawerBox
-              classes={{...classes}}
+              classes={{ ...classes }}
               // open={open}
               // categoryNumber={categoryNumber}
               petsName={petsName}
-              // handleClick={(h) => handleClick(h)}
-              // handleSubcategory={(h) => handleSubcategory(h)}
+            // handleClick={(h) => handleClick(h)}
+            // handleSubcategory={(h) => handleSubcategory(h)}
             />
             {/* {drawer} */}
           </Drawer>

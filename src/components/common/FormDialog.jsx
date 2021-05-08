@@ -85,6 +85,7 @@ const names = [
   "24  horas",
 ];
 
+
 export default function FormDialog() {
   const { editPet, petSelect } = usePet();
   const classes = useStyles();
@@ -94,6 +95,7 @@ export default function FormDialog() {
     {
       title: '',
       dosage: '',
+      allDay: false,
       startDate: new Date(),
       endDate: '',
       hours: '8 horas',

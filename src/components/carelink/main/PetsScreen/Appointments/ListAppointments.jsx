@@ -35,7 +35,7 @@ const columns = [
     { id: 'titulo', label: 'Título', minWidth: 170 },
     { id: 'startdate', label: 'Fecha de inicio', minWidth: 100 },
     { id: 'enddate', label: 'Fecha final', minWidth: 100 },]
-export default function ListAppointments({ actionStart, actionEnd }) {
+export default function ListAppointments({ actionOpen }) {
     const classes = useStyles()
 
     const { petSelect, editPet, editPetSchedule, deletePetSchedule } = usePet();
@@ -79,15 +79,22 @@ export default function ListAppointments({ actionStart, actionEnd }) {
         return b.startDate - a.startDate
     })
 
-    const dataFilter = datap.filter((e) => {
-        if (actionStart === 'all') {
+    const dataFilter  = []
+    datap.map((e) => {
+        console.log(e.action === actionOpen.actionStart)
+        console.log(e.action)
+        console.log(actionOpen.actionEnd)
+        if (actionOpen.actionStart === 'all') {
+            dataFilter.push(e)
             return e
-        } else if (e.action === actionStart || e.action === actionEnd) {
+        } else if (e.action === actionOpen.actionStart || e.action === actionOpen.actionEnd) {
+            dataFilter.push(e)
             return e
         } else {
             return e
         }
     })
+    console.log(dataFilter)
     return (
         <Paper className={classes.root}>
             <TableContainer className={classes.container}>

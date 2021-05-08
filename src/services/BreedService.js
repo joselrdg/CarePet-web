@@ -5,7 +5,6 @@ const http = create()
 
 
 export const getBreedsList = () => {
-    console.log('getBreedsList')
     return http.get(`/breeds/list/`)
 }
 

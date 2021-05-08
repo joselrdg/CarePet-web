@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useHistory } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
@@ -11,11 +11,13 @@ import Typography from "@material-ui/core/Typography";
 import ReviewForm from "./ReviewForm";
 import ClinicalForm from "./ClinicalForm";
 import Review from "./Review";
-import { createPet, editOnePetUser } from "../../../../../services/PetService";
+import { createPet, editOnePetUser, getPetsUser } from "../../../../../services/PetService";
 import { useUser } from "../../../../hooks/useUser";
 import { usePet } from "../../../../hooks/usePet";
 import DeleteDialog from "./DeleteDialog";
 import { useBreeds } from "../../../../hooks/useBreed";
+import { useCategory } from "../../../../hooks/useCategory";
+
 
 function Copyright() {
   return (
@@ -102,12 +104,16 @@ export default function Checkout({ action }) {
   const classes = useStyles();
   const { breedsNames } = useBreeds();
   const { user } = useUser();
-  const { petSelect, getPets } = usePet();
+  const { petSelect, getPets, setPet, petsUser, setPetsUser, setPetSelect, setRenderPets, 
+    stateCategories,
+    setStateCategories} = usePet();
+  const {stateCategory, setCategory} = useCategory()
+
   const [activeStep, setActiveStep] = useState(0);
   // const [fieldImage, setFieldImage] = useState()
   const [valuesField, setValuesField] = useState({
     user: user.id,
-    breed: action === 'add' ? '' : {name: petSelect.breed, id: petSelect.breedid},
+    breed: action === 'add' ? '' : { name: petSelect.breed, id: petSelect.breedid },
     breedid: action === 'add' ? "" : petSelect.breedid,
     name: action === 'add' ? "" : petSelect.name,
     chip: action === 'add' ? "" : petSelect.chip,
@@ -144,7 +150,7 @@ export default function Checkout({ action }) {
   };
 
   const handleTextFieldChange = (event) => {
-  
+
     let name = event.target ? event.target.name : "";
     let value = "";
     if (!event.target) {
@@ -162,7 +168,6 @@ export default function Checkout({ action }) {
       ...valuesField,
       [name]: value,
     });
-    console.log(valuesField);
   };
 
   const onSubmit = (e) => {
@@ -170,11 +175,9 @@ export default function Checkout({ action }) {
     let index = 0
     let breedId = ''
     if (valuesField.breed) {
-      index = breedsNames.find((e) => { e.name.includes(valuesField.breed)})
+      index = breedsNames.find((e) => { e.name.includes(valuesField.breed) })
       // breedId = breedsNames[index]
     }
-    console.log(valuesField.breed)
-    console.log(index)
     const fieldsOk = {
       ...valuesField,
       breed: valuesField.breed.name ? valuesField.breed.name : '',
@@ -189,15 +192,41 @@ export default function Checkout({ action }) {
       const id = user.id
       createPet(formData, id).then((response) => {
         handleNext();
+        setPetSelect(response)
+        getPetsUser(id)
+        .then((r)=>{
+          setPetsUser(r)
+          setStateCategories({
+            ...stateCategories,
+            petsName: r.map((pet) => pet.name)
+          })
+          setCategory({
+            ...stateCategory,
+            folder: 0
+          })
+        })
       });
     } else if (action === 'edit') {
       const id = petSelect.id
       editOnePetUser(formData, id).then((response) => {
-        handleNext();
-        getPets(petSelect.id.user)
+          handleNext();
+          setPetSelect(response)
+          getPetsUser(id)
+          .then((r)=>{
+            setPetsUser(r)
+            setStateCategories({
+              ...stateCategories,
+              petsName: r.map((pet) => pet.name)
+            })
+            setCategory({
+              ...stateCategory,
+              folder: 0
+            })
+          })
       });
     }
   };
+
 
   return (
     <React.Fragment>

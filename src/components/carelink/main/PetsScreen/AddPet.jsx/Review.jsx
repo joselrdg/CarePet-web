@@ -31,10 +31,9 @@ const columns = [
     { id: 'name', label: 'Característica', minWidth: 170 },
     { id: 'valor', label: 'Valor', minWidth: 100 },]
 
-export default function Review({ valuesField, open }) {
+export default function Review({ valuesField }) {
     const classes = useStyles();
 
-    console.log(open)
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>

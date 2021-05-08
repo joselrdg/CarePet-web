@@ -20,6 +20,9 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
 
+
+
+
 const styles = theme => ({
   container: {
     display: 'flex',
@@ -31,6 +34,36 @@ const styles = theme => ({
     marginRight: theme.spacing(2),
   },
 });
+
+const messages = {
+  detailsLabel: 'Título',
+  titleLabel: 'Título',
+  moreInformationLabel: 'Notas',
+  repeatLabel: 'Repetir',
+  allDayLabel: 'Día completo',
+  notesLabel: 'Notas',
+  daily: 'Diario',
+  weekly: 'Semanal',
+  monthly: 'Mensual',
+  yearly: 'Anual',
+  repeatEveryLabel: 'Repetir cada',
+  daysLabel: 'dia(s)',
+  endRepeatLabel: 'Terminar',
+  never: 'Nunca',
+  onLabel: 'En',
+  occurrencesLabel: 'Repeticion(es)',
+  afterLabel: 'El día',
+  commitCommand: <i class="fas fa-save  fa-2x"></i>,
+};
+
+const messagesdiag = {
+  discardButton: 'Descartar',
+  deleteButton: 'Eliminar',
+  cancelButton: 'Cancelar',
+  confirmDeleteMessage: '¿Estás seguro de que deseas eliminar esta cita?',
+  confirmCancelMessage: '¿Descartar los cambios sin guardados?',
+}
+
 
 const ResourceSwitcher = withStyles(styles, { name: 'ResourceSwitcher' })(
   ({
@@ -66,28 +99,34 @@ export default class Demo extends React.PureComponent {
           fieldName: 'action',
           title: 'Cuidados',
           instances: [
+            { id: 'medication', text: 'Medicación' },
             { id: 'wash', text: 'Baño realizado' },
             { id: 'willwash', text: 'Siguiente baño' },
             { id: 'haircut', text: 'Corte de pelo' },
             { id: 'willhaircut', text: 'Siguiete corte de pelo' },
             { id: 'earcleaning', text: 'Limpieza de oídos' },
             { id: 'willearcleaning', text: 'Siguiente limpieza de oídos' },
-          ],
-        },
-        {
-          fieldName: 'members',
-          title: 'Salud',
-          allowMultiple: true,
-          instances: [
-            { id: 'vet', text: 'Revisión anual' },
             { id: 'deworming', text: 'Desparasitación' },
             { id: 'willdeworming', text: 'Siguiente desparasitación' },
             { id: 'teethcleaning', text: 'Limpieza bucal' },
             { id: 'willteethcleaning', text: 'Siguiente limpieza bucal' },
             { id: 'vaccination', text: 'Vacunación' },
             { id: 'willvaccination', text: 'Siguiente vacunación' },
+            { id: 'vet', text: 'Revisión anual' },
           ],
         },
+        // {
+        //   fieldName: 'members',
+        //   title: 'Salud',
+        //   allowMultiple: true,
+        //   instances: [
+        //     { id: 'vet', text: 'Revisión anual' },
+        //     { id: 'teethcleaning', text: 'Limpieza bucal' },
+        //     { id: 'willteethcleaning', text: 'Siguiente limpieza bucal' },
+        //     { id: 'vaccination', text: 'Vacunación' },
+        //     { id: 'willvaccination', text: 'Siguiente vacunación' },
+        //   ],
+        // },
       ],
       addedAppointment: {},
       appointmentChanges: {},
@@ -130,15 +169,12 @@ export default class Demo extends React.PureComponent {
         if (!added.action) {
           added.action = 'others'
         }
-        console.log(added.action)
         databd = { [added.action]: added }
-        console.log(databd)
         const startingAddedId = data.length > 0 ? data[data.length - 1].id + 1 : 0;
         data = [...data, { id: startingAddedId, ...added }];
         this.editPet(databd, this.idp);
       }
       else if (changed) {
-        console.log(changed)
         data = data.map(appointment => {
           if (changed[appointment.id]) {
             databd = { ...appointment, ...changed[appointment.id] }
@@ -156,10 +192,8 @@ export default class Demo extends React.PureComponent {
             }
             return appointment.id !== deleted
           });
-          console.log(databd)
           this.deletePetSchedule(databd, this.idp);
         }
-      console.log(data)
       return { data };
     });
   }
@@ -176,11 +210,11 @@ export default class Demo extends React.PureComponent {
     } = this.state;
     return (
       <React.Fragment>
-        <ResourceSwitcher
+        {/* <ResourceSwitcher
           resources={resources}
           mainResourceName={mainResourceName}
           onChange={this.changeMainResource}
-        />
+        /> */}
 
         <Paper>
           <Scheduler
@@ -211,7 +245,10 @@ export default class Demo extends React.PureComponent {
             />
             <AllDayPanel />
             <EditRecurrenceMenu />
-            <ConfirmationDialog />
+            <ConfirmationDialog
+              messages={messagesdiag}
+
+            />
             <Toolbar />
             <DateNavigator />
             <TodayButton />
@@ -219,12 +256,17 @@ export default class Demo extends React.PureComponent {
             <AppointmentTooltip
               showOpenButton
               showDeleteButton
+
             />
             <Resources
               data={resources}
               mainResourceName={mainResourceName}
             />
-            <AppointmentForm />
+            <AppointmentForm
+              // basicLayoutComponent={BasicLayout}
+              // textEditorComponent={TextEditor}
+              messages={messages}
+            />
           </Scheduler>
         </Paper>
       </React.Fragment>

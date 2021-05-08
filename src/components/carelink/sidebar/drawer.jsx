@@ -41,7 +41,6 @@ function DrawerBox({
 
 
   const handleSubcategoryPets = (subcategory) => {
-    console.log('handletoooltip')
 
     setCategory((prevState) => ({
       ...prevState,
@@ -61,7 +60,6 @@ function DrawerBox({
   }
 
   const handletooltip = () => {
-    console.log('handletoooltip')
     setCategory((prevState) => ({
       ...prevState,
       folder: 5,

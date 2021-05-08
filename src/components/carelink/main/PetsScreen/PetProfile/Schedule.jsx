@@ -37,7 +37,6 @@ export default class Schedule extends React.PureComponent {
       data,
     } = this.state;
 
-    console.log(data)
     return (
       <React.Fragment>
           <Paper

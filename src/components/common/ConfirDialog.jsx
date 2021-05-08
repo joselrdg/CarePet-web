@@ -130,7 +130,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function ConfirDialog({ accion, clave }) {
+export default function ConfirDialog({ accion, clave, setRender, render }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("Dione");
@@ -191,6 +191,11 @@ export default function ConfirDialog({ accion, clave }) {
         starTitle = 'Se vacunó a'
         endTitle = 'Vacunar a'
       }
+      setRender((prev) => ({
+        ...prev,
+        [`last${clave}`]: date,
+        [`willlast${clave}`]: dateDays,
+      }))
 
       editPet(
         {
@@ -199,7 +204,7 @@ export default function ConfirDialog({ accion, clave }) {
             // id: `${clave}start${idlength}`,
             startDate: date,
             endDate: date,
-            allDay: true,
+            allDay: false,
             title: `${starTitle} ${petSelect.name}`,
             action: clave
           },
@@ -207,7 +212,7 @@ export default function ConfirDialog({ accion, clave }) {
             // id: `${clave}end${idlength}`,
             startDate: dateDays,
             endDate: dateDays,
-            allDay: true,
+            allDay: false,
             title: `${endTitle} ${petSelect.name}`,
             action: `will${clave}`
           }
@@ -258,7 +263,8 @@ export default function ConfirDialog({ accion, clave }) {
     }
     const fecha = new Date();
     const resta = fecha.getTime() - date.getTime();
-    return Math.round(resta / (1000 * 60 * 60 * 24));
+    const result = Math.round(resta / (1000 * 60 * 60 * 24));
+    return result
   };
 
   return (

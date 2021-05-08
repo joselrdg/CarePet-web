@@ -7,60 +7,80 @@ import { Button } from '@material-ui/core';
 
 export default function Appointments() {
     const [open, setOpen] = useState(false)
+    const [actionOpen, setActionOpen] = useState({
+        actionStart: 'all',
+        actionEnd: 'all'
+    })
 
     const { petSelect, editPet, editPetSchedule, deletePetSchedule } = usePet();
 
-    const {
-        wash,
-        willwash,
-        haircut, willhaircut,
-        earcleaning, willearcleaning,
-        teethcleaning, willteethcleaning,
-        vaccination, willvaccination,
-        deworming, willdeworming,
-        others
-    } = petSelect;
+    // const {
+    //     wash,
+    //     willwash,
+    //     haircut, willhaircut,
+    //     earcleaning, willearcleaning,
+    //     teethcleaning, willteethcleaning,
+    //     vaccination, willvaccination,
+    //     deworming, willdeworming,
+    //     others
+    // } = petSelect;
 
-    const data = [
-        ...wash, ...willwash,
-        ...haircut, ...willhaircut,
-        ...earcleaning, ...willearcleaning,
-        ...teethcleaning, ...willteethcleaning,
-        ...vaccination, ...willvaccination,
-        ...deworming, ...willdeworming,
-        ...others
-    ]
-    let actionStart = 'all'
-    let actionEnd = 'all'
+    // const data = [
+    //     ...wash, ...willwash,
+    //     ...haircut, ...willhaircut,
+    //     ...earcleaning, ...willearcleaning,
+    //     ...teethcleaning, ...willteethcleaning,
+    //     ...vaccination, ...willvaccination,
+    //     ...deworming, ...willdeworming,
+    //     ...others
+    // ]
+
     const handleOnclick = (action) => {
         console.log(action === 'wash')
-        if (action = 'schedule') {
-            setOpen(!open)
-        } else if (action === 'wash') {
-            actionStart = 'wash';
-            actionEnd = 'willwash';
+        if (action === 'wash') {
+            setActionOpen({
+                actionStart: 'wash',
+                actionEnd: 'willwash'
+            })
         } else if (action === 'haircut') {
-            actionStart = 'haircut';
-            actionEnd = 'willhaircut';
+            setActionOpen({
+                actionStart: 'haircut',
+                actionEnd: 'willhaircut'
+            })
         } else if (action === 'earcleaning') {
-            actionStart = 'earcleaning';
-            actionEnd = 'willearcleaning';
+            setActionOpen({
+                actionStart: 'earcleaning',
+                actionEnd: 'willearcleaning'
+            })
         } else if (action === 'teethcleaning') {
-            actionStart = 'teethcleaning';
-            actionEnd = 'willteethcleaning';
+            setActionOpen({
+                actionStart: 'teethcleaning',
+                actionEnd: 'willteethcleaning'
+            })
         } else if (action === 'vaccination') {
-            actionStart = 'vaccination';
-            actionEnd = 'willvaccination';
+            setActionOpen({
+                actionStart: 'vaccination',
+                actionEnd: 'willvaccination'
+            })
         } else if (action === 'deworming') {
-            actionStart = 'deworming';
-            actionEnd = 'willdeworming';
+            setActionOpen({
+                actionStart: 'deworming',
+                actionEnd: 'willdeworming'
+            })
         } else if (action === 'others') {
-            actionStart = 'others';
-            actionEnd = 'others';
+            setActionOpen({
+                actionStart: 'others',
+                actionEnd: 'willothers'
+            })
+        } else {
+            setActionOpen({
+                actionStart: 'all',
+                actionEnd: 'all'
+            })
         }
     }
 
-    const handleSchedule = (action) => {
+    const handleSchedule = () => {
         setOpen(!open)
     }
 
@@ -75,72 +95,105 @@ export default function Appointments() {
                 color="default"
                 startIcon={<i className="fas fa-bath __icon-light"></i>}
             >
+                {
+                    actionOpen.actionStart === 'wash' && 'Baño'
+                }
             </Button>
             <Button
-                onClick={handleOnclick}
+                onClick={() => handleOnclick('haircut')}
                 name='haircut'
                 className='__m-1'
                 variant="contained"
                 color="default"
                 startIcon={<i className="fas fa-cut  __icon-light"></i>}
             >
+                {
+                    actionOpen.actionStart === 'haircut' && 'Pelu'
+                }
             </Button>
             <Button
                 name='earcleaning'
-                onClick={handleOnclick}
+                onClick={() => handleOnclick('earcleaning')}
                 className='__m-1'
                 variant="contained"
                 color="default"
                 startIcon={<i className="fas fa-tooth __icon-light"></i>}
             >
+                {
+                    actionOpen.actionStart === 'earcleaning' && 'Oídos'
+                }
             </Button>
             <Button
                 name='teethcleaning'
-                onClick={handleOnclick}
+                onClick={() => handleOnclick('teethcleaning')}
                 className='__m-1'
                 variant="contained"
                 color="default"
                 startIcon={<i className="fas fa-hand-sparkles __icon-light"></i>}
             >
+                {
+                    actionOpen.actionStart === 'teethcleaning' && 'Dientes'
+                }
             </Button>
             <Button
                 name='deworming'
-                onClick={handleOnclick}
+                onClick={() => handleOnclick('deworming')}
                 className='__m-1'
                 variant="contained"
                 color="default"
                 startIcon={<i className="fas fa-bug __icon-light"></i>}
             >
+                {
+                    actionOpen.actionStart === 'deworming' && 'Desparasitación'
+                }
             </Button>
             <Button
                 name='vaccination'
-                onClick={handleOnclick}
+                onClick={() => handleOnclick('vaccination')}
                 className='__m-1'
                 variant="contained"
                 color="default"
                 startIcon={<i className="fas fa-syringe __icon-light"></i>}
             >
+                {
+                    actionOpen.actionStart === 'vaccination' && 'Vacunación'
+                }
             </Button>
             <Button
                 name='others'
-                onClick={handleOnclick}
+                onClick={() => handleOnclick('others')}
                 className='__m-1'
                 variant="contained"
                 color="default"
-                startIcon={<i className="fas fa-syringe __icon-light"></i>}
+                startIcon={<i class="fas fa-file-medical-alt __icon-light"></i>}
             >
-                Otros
+                {
+                    actionOpen.actionStart === 'others' && 'Otros'
+                }
+            </Button>
+            {/* <i class="fas fa-deaf"></i> */}
+            <Button
+                name='all'
+                onClick={() => handleOnclick('all')}
+                className='__m-1'
+                variant="contained"
+                color="default"
+                startIcon={<i class="fas fa-folder-open  __icon-light"></i>}
+            >
+                {
+                    actionOpen.actionStart === 'all' && 'Todo'
+                }
             </Button>
             <Button
                 name='schedule'
                 onClick={handleSchedule}
-                className='__m-1'
+                className=' __m-1'
                 variant="contained"
                 color="default"
-                startIcon={<InsertInvitationIcon />}
+                startIcon={<InsertInvitationIcon className=' __icon-light'/>}
             >
             </Button>
-            <ListAppointments actionStart={actionStart} actionEnd={actionEnd} />
+            <ListAppointments actionOpen={actionOpen} />
             {
                 open &&
                 <Schedule />

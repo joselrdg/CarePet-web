@@ -31,7 +31,6 @@ const ScheduleScreen = () => {
             ...medication, ...others
         ]
 
-        console.log(datap)
         // const datap = data.map((e, i) => { e.id = i; e.startDate = new Date(e.startDate); return e })
         return (
             <div>

@@ -34,7 +34,6 @@ function SelectInput({ items, value, handleChange, itemname, label }) {
     const classes = useStyles();
     const theme = useTheme();
     if(itemname==='breed'){
-console.log(items)
     }
     return (
         <FormControl >
