@@ -40,7 +40,7 @@ const PetsScreen = () => {
   return (
     <>
       <TabPanel category={0} />
-      {petsUser.length === 0 ? folderBox(5, 'add') : folderBox(folder, createpet)}
+      {petsUser !== null && petsUser.length === 0 ? folderBox(5, 'add') : folderBox(folder, createpet)}
     </>
   );
 };
