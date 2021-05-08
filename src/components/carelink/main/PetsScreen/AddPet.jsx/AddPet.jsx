@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useHistory } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
@@ -11,10 +11,13 @@ import Typography from "@material-ui/core/Typography";
 import ReviewForm from "./ReviewForm";
 import ClinicalForm from "./ClinicalForm";
 import Review from "./Review";
-import { createPet, editPetUser } from "../../../../../services/PetService";
+import { createPet, editOnePetUser, getPetsUser } from "../../../../../services/PetService";
 import { useUser } from "../../../../hooks/useUser";
 import { usePet } from "../../../../hooks/usePet";
 import DeleteDialog from "./DeleteDialog";
+import { useBreeds } from "../../../../hooks/useBreed";
+import { useCategory } from "../../../../hooks/useCategory";
+
 
 function Copyright() {
   return (
@@ -68,13 +71,14 @@ const useStyles = makeStyles((theme) => ({
 
 const steps = ["Características", "Datos clínicos", "Review"];
 
-function getStepContent(step, valuesField, handleTextFieldChange) {
+function getStepContent(step, valuesField, handleTextFieldChange, handleFieldImage) {
   switch (step) {
     case 0:
       return (
         <ReviewForm
           valuesField={valuesField}
           handleTextFieldChange={handleTextFieldChange}
+          handleFieldImage={handleFieldImage}
         />
       );
     case 1:
@@ -98,15 +102,22 @@ function getStepContent(step, valuesField, handleTextFieldChange) {
 
 export default function Checkout({ action }) {
   const classes = useStyles();
+  const { breedsNames } = useBreeds();
   const { user } = useUser();
-  const { petSelect } = usePet();
+  const { petSelect, getPets, setPet, petsUser, setPetsUser, setPetSelect, setRenderPets, 
+    stateCategories,
+    setStateCategories} = usePet();
+  const {stateCategory, setCategory} = useCategory()
+
   const [activeStep, setActiveStep] = useState(0);
+  // const [fieldImage, setFieldImage] = useState()
   const [valuesField, setValuesField] = useState({
     user: user.id,
+    breed: action === 'add' ? '' : { name: petSelect.breed, id: petSelect.breedid },
+    breedid: action === 'add' ? "" : petSelect.breedid,
     name: action === 'add' ? "" : petSelect.name,
     chip: action === 'add' ? "" : petSelect.chip,
     species: action === 'add' ? "" : petSelect.species,
-    breed: action === 'add' ? "" : petSelect.breed,
     sex: action === 'add' ? "" : petSelect.sex,
     hair: action === 'add' ? "" : petSelect.hair,
     color: action === 'add' ? "" : petSelect.color,
@@ -123,6 +134,13 @@ export default function Checkout({ action }) {
     file: action === 'add' ? "" : petSelect.file,
   });
 
+  // const handleFieldImage = (event) => {
+  //   const value = event.target.files[0]
+  //   const formData = new FormData();
+  //   formData.append('media', value)
+  //   setFieldImage(formData)
+  // }
+
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
@@ -132,7 +150,7 @@ export default function Checkout({ action }) {
   };
 
   const handleTextFieldChange = (event) => {
-    console.log(event.target)
+
     let name = event.target ? event.target.name : "";
     let value = "";
     if (!event.target) {
@@ -154,34 +172,56 @@ export default function Checkout({ action }) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(valuesField);
+    let index = 0
+    let breedId = ''
+    if (valuesField.breed) {
+      index = breedsNames.find((e) => { e.name.includes(valuesField.breed) })
+      // breedId = breedsNames[index]
+    }
     const fieldsOk = {
       ...valuesField,
-      breed: valuesField.breed ? valuesField.breed.name : '',
-      breedid: valuesField.breed ?  valuesField.breed.id : ''
+      breed: valuesField.breed.name ? valuesField.breed.name : '',
+      breedid: valuesField.breed.id ? valuesField.breed.id : ''
     }
+    console.log(fieldsOk)
     const formData = new FormData();
     Object.entries(fieldsOk).forEach(([key, value]) => {
       formData.append(key, value)
     });
-    // formData.append('breed', { id: valuesField.breed.id, name: valuesField.breed.name })
-    // formData.append('weight', { date: valuesField.weight.date, kg: valuesField.weight.kg })
-console.log(action)
-console.log(formData)
     if (action === 'add') {
       const id = user.id
       createPet(formData, id).then((response) => {
-        console.log(response);
         handleNext();
+        setPetSelect(response)
+        getPetsUser(id)
+        .then((r)=>{
+          setPetsUser(r)
+          setStateCategories({
+            ...stateCategories,
+            petsName: r.map((pet) => pet.name)
+          })
+          setCategory({
+            ...stateCategory,
+            folder: 0
+          })
+        })
       });
-    } else if (action === 'edit'){
+    } else if (action === 'edit') {
       const id = petSelect.id
-      editPetUser(formData, id).then((response) => {
-        console.log(response);
-        handleNext();
+      editOnePetUser(formData, id).then((response) => {
+        setPetSelect(response)
+          handleNext();
+          getPetsUser(id)
+          .then((r)=>{
+            setCategory({
+              ...stateCategory,
+              folder: 0
+            })
+          })
       });
     }
   };
+
 
   return (
     <React.Fragment>
@@ -222,10 +262,10 @@ console.log(formData)
                   {getStepContent(
                     activeStep,
                     valuesField,
-                    handleTextFieldChange
+                    handleTextFieldChange,
                   )}
                   <div className={classes.buttons}>
-                  {action === 'edit' && (<DeleteDialog className='' id={petSelect.id}/>)}
+                    {action === 'edit' && (<DeleteDialog className='' id={petSelect.id} />)}
                     {activeStep !== 0 && (
                       <Button onClick={handleBack} className={classes.button}>
                         Back

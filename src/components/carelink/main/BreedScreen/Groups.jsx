@@ -7,7 +7,7 @@ import { getBreedsGroup } from "../../../../services/BreedService";
 
 const Groups = () => {
     const [groupBreeds, setGroupBreedsFci] = useState();
-    const [numGroup, setNumGroup] = useState(0);
+    // const [numGroup, setNumGroup] = useState(0);
 
     const [page, setPage] = React.useState(1);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -23,8 +23,11 @@ const Groups = () => {
     };
 
     useEffect(() => {
-        return getBreedsGroup(numGroup, page, rowsPerPage).then((response) => setGroupBreedsFci(response));
-    }, [numGroup, page, rowsPerPage]);
+        return getBreedsGroup(0, page, rowsPerPage).then((response) => setGroupBreedsFci(response));
+    }, [page, rowsPerPage]);
+    // useEffect(() => {
+    //     return getBreedsGroup(numGroup, page, rowsPerPage).then((response) => setGroupBreedsFci(response));
+    // }, [numGroup, page, rowsPerPage]);
 
 
     if (!groupBreeds) {

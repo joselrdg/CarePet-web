@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Divider,
   List,
@@ -16,14 +16,8 @@ import { CATEGORIES } from "../../../constants/constants";
 import { useHistory } from "react-router-dom";
 import SimpleTooltips from "../../common/ToolTip";
 import { usePet } from "../../hooks/usePet";
-
-
-// const useStyles = makeStyles((theme) => ({
-//   toolbar: theme.mixins.toolbar,
-//   nested: {
-//     paddingLeft: theme.spacing(4),
-//   },
-// }));
+import ScatterPlotIcon from '@material-ui/icons/ScatterPlot';
+import Expand from './Expand'
 
 function DrawerBox({
   classes,
@@ -36,17 +30,16 @@ function DrawerBox({
   const { setCategory, stateCategory } = useCategory();
   const [open, setOpen] = React.useState(true);
   const { category } = stateCategory;
-  const { setPet}= usePet()
+  const { setPet } = usePet()
   const { push } = useHistory();
 
 
   const handleSubcategoryPets = (subcategory) => {
-  console.log('handletoooltip')
-    
+
     setCategory((prevState) => ({
       ...prevState,
       subcategory: subcategory,
-      folder: 0,
+      createpet: false
     }));
     setPet(subcategory)
   };
@@ -56,35 +49,30 @@ function DrawerBox({
       category: index,
       subcategory: 0,
       folder: 0,
+      createpet: false
     });
   }
 
-const handletooltip = () => {
-  console.log('handletoooltip')
-  setCategory((prevState)=> ({
-    ...prevState,
-    folder: 7
-  }))
-}
+  const handletooltip = () => {
+    setCategory((prevState) => ({
+      ...prevState,
+      folder: 5,
+      createpet: true
+    }))
+  }
 
   const handleClick = (index) => {
     const srtLink = CATEGORIES[index].name.replaceAll(' ', '-')
+    set(index)
     setOpen(!open);
-    if (index !== category) {
-      push(srtLink);
-      setTimeout(() => {
-        set(index)
-      }, 280);
-      setOpen(true);
-    }
+    setTimeout(() => {
+      if (index !== category) {
+        push(srtLink);
+        setOpen(true);
+      }
+    }, 280);
   };
 
-
-  useEffect(() => {
-    setPet(0)
-      // setPet(stateCategory.subcategory)
-
-  }, []);
 
   if (!classes) {
     return "Loading...";
@@ -98,7 +86,7 @@ const handletooltip = () => {
           <div key={item.name}>
             {/* <Link to={`/CarePet/${item.name}`}> */}
             <ListItem button onClick={() => handleClick(index)}>
-              <ListItemIcon><Avatar className={classes.pink}>{item.icon}</Avatar></ListItemIcon>
+              <ListItemIcon><Avatar className={classes.avatar}>{item.icon}</Avatar></ListItemIcon>
               <ListItemText primary={item.name} />
               {open && category === index ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
@@ -110,24 +98,26 @@ const handletooltip = () => {
                   <Collapse in={open} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                       {category === 0
-                        ?petsName && petsName.map((name, index) => (
+                        ? petsName && petsName.map((name, index) => (
                           <ListItem
                             button
                             onClick={() => handleSubcategoryPets(index)}
                             className={classes.nested}
                             key={index}
                           >
+                          <div className='__flex __jc-between __ai-center'>
                             <ListItemIcon>
-                              <StarBorder />
+                            <i className="fas fa-dog __px-1 __icon-light "></i>
                             </ListItemIcon>
                             <ListItemText primary={name} />
+                            </div>
                           </ListItem>
                         ))
                         : null}
                       {category
                         !== 0 && (<ListItem button className={classes.nested}>
                           <ListItemIcon>
-                            <StarBorder />
+                            <ScatterPlotIcon className="__icon-light "></ScatterPlotIcon>
                           </ListItemIcon>
                           <ListItemText primary={subcategoryMap.name} />
                         </ListItem>
@@ -135,7 +125,7 @@ const handletooltip = () => {
                       {
                         category === 0 && (
                           <ListItem button onClick={() => handletooltip(7)}>
-                            <SimpleTooltips/>
+                            <SimpleTooltips />
                           </ListItem>)
                       }
                     </List>

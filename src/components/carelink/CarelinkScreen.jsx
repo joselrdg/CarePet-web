@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 // import Copyright from "../copyright/Copyright";
 import { usePet } from "../hooks/usePet";
 // import { useBreeds } from "../hooks/useBreed";
-import { green, pink } from '@material-ui/core/colors';
+import { green, pink, indigo } from '@material-ui/core/colors';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Sidebar from "./sidebar/Sidebar";
 // import {getRaza }from "../../services/ScraperService";
@@ -46,9 +46,9 @@ const useStyles = makeStyles((theme) => ({
   nested: {
     paddingLeft: theme.spacing(4),
   },
-  pink: {
-    color: theme.palette.getContrastText(pink[500]),
-    backgroundColor: pink[500],
+  avatar: {
+    color: theme.palette.getContrastText(indigo[500]),
+    backgroundColor: indigo[500],
   },
   green: {
     color: '#fff',

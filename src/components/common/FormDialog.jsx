@@ -6,10 +6,11 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { makeStyles } from "@material-ui/core";
+import { IconButton, makeStyles } from "@material-ui/core";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
+import AlarmIcon from '@material-ui/icons/Alarm';
 import Select from "@material-ui/core/Select";
 import { usePet } from "../hooks/usePet";
 
@@ -84,6 +85,7 @@ const names = [
   "24  horas",
 ];
 
+
 export default function FormDialog() {
   const { editPet, petSelect } = usePet();
   const classes = useStyles();
@@ -91,12 +93,14 @@ export default function FormDialog() {
   // const theme = useTheme();
   const [fields, setHours] = useState(
     {
-      name: '',
+      title: '',
       dosage: '',
-      startdate: new Date(),
-      lastday: '',
+      allDay: false,
+      startDate: new Date(),
+      endDate: '',
       hours: '8 horas',
-      notes: ''
+      notes: '',
+      action: 'medication'
     }
   );
 
@@ -138,12 +142,15 @@ export default function FormDialog() {
 
   return (
     <div className="__my-1">
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button className='__w-e' variant="outlined" color="primary" onClick={handleClickOpen}>
+        <AlarmIcon className='__mx-p-1'/>
         Añadir pauta
       </Button>
+      <IconButton color="secondary" aria-label="add an alarm" onClick={handleClickOpen}>
+      </IconButton>
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={()=>handleClose(false)}
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">Añadir farmaco:</DialogTitle>
@@ -153,9 +160,9 @@ export default function FormDialog() {
           </DialogContentText>
           <form className={classes.container} noValidate>
             <TextField
-              name="name"
+              name="title"
               autoFocus
-              value={fields.name}
+              value={fields.title}
               onChange={handleChange}
               margin="dense"
               id="name"
@@ -206,10 +213,10 @@ export default function FormDialog() {
               ))}
             </Select>
             <TextField
-              id="lastday"
+              id="endDate"
               label="Fecha última dosis"
               type="date"
-              name="lastday"
+              name="endDate"
               onChange={handleChange}
               className={classes.textField}
               InputLabelProps={{

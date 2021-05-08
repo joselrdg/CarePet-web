@@ -7,117 +7,53 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-
-// import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Badge from '@material-ui/core/Badge';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import { Link, NavLink } from "react-router-dom";
+import { logout } from "../../../stores/AccessTokenStore";
 import { usePet } from "../../hooks/usePet";
-// import { useCategory } from "../../hooks/useCategory";
 import DrawerBox from "./drawer";
 
-// const drawerWidth = 260;
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     display: "flex",
-//   },
-//   drawer: {
-//     [theme.breakpoints.up("sm")]: {
-//       width: drawerWidth,
-//       flexShrink: 0,
-//     },
-//   },
-//   appBar: {
-//     [theme.breakpoints.up("sm")]: {
-//       width: `calc(100% - ${drawerWidth}px)`,
-//       marginLeft: drawerWidth,
-//     },
-//   },
-//   menuButton: {
-//     marginRight: theme.spacing(2),
-//     [theme.breakpoints.up("sm")]: {
-//       display: "none",
-//     },
-//   },
-//   // necessary for content to be below app bar
-//   toolbar: theme.mixins.toolbar,
-//   drawerPaper: {
-//     width: drawerWidth,
-//   },
-//   content: {
-//     maxWidth: "100%",
-//     flexGrow: 1,
-//     padding: theme.spacing(3),
-//   },
-//   nested: {
-//     paddingLeft: theme.spacing(4),
-//   },
-// }));
 
 function ResponsiveDrawer(props) {
   const { petsUser, petSelect } = usePet();
-  // const {setCategory, stateCategory} = useCategory()
 
-  const [stateCategories, setStateCategories] = useState({
-    petsName: null,
-    petNumber: 0,
-    categoryNumber: 0,
-    subcategoryNumber: 0,
-  });
-  // const [open, setOpen] = React.useState(true);
+  const { stateCategories, setStateCategories } = usePet();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const { window, classes, themeDirection } = props;
-  // const classes = useStyles();
-  // const theme = useTheme();
-
-  // const setNames = () => {
-  //   setStateCategories({
-  //       ...stateCategories, 
-  //       petsName: petsUser.map((pet) => pet.review.name)
-  //     })
-  // }
 
   const {
     petsName,
-    // categoryNumber,
-    // subcategoryNumber,
   } = stateCategories;
 
   useEffect(() => {
-    console.log('use efect de los nombres')
-    if (petsUser && petsName=== null){
+    if (petsUser && petsName === null) {
       setStateCategories({
-        ...stateCategories, 
+        ...stateCategories,
         petsName: petsUser.map((pet) => pet.name)
       })
     }
-   
-  }, [petsUser, petsName,stateCategories])
 
-  
- 
+  }, [petsUser])
 
- 
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  // const handleSubcategory = (subcategory) => {
-  //   setStateCategories((prevState) => ({
-  //     ...prevState,
-  //     subcategoryNumber: subcategory,
-  //   }));
-  // };
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
-    
+
 
   return (
     <>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
+        <Toolbar className='__flex __jc-between __ai-center'>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -127,13 +63,22 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
+
           <Typography variant="h6" noWrap>
             CarePet: {petSelect && petSelect.name}
           </Typography>
+          <div className='__flex __jc-between __ai-center'>
+            <div className='__px-1'>
+              <Badge badgeContent={4} color="secondary" >
+                <NotificationsIcon />
+              </Badge>
+            </div>
+            <button onClick={logout} className="btn btn-tra"><i class="fas fa-sign-out-alt fa-2x"></i></button>
+          </div>
         </Toolbar>
+
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <Drawer
             container={container}
@@ -145,16 +90,16 @@ function ResponsiveDrawer(props) {
               paper: classes.drawerPaper,
             }}
             ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
+              keepMounted: true,
             }}
           >
             <DrawerBox
-              classes={{...classes}}
+              classes={{ ...classes }}
               // open={open}
               // categoryNumber={categoryNumber}
               petsName={petsName}
-              // handleClick={(h) => handleClick(h)}
-              // handleSubcategory={(h) => handleSubcategory(h)}
+            // handleClick={(h) => handleClick(h)}
+            // handleSubcategory={(h) => handleSubcategory(h)}
             />
 
             {/* {drawer} */}
@@ -166,15 +111,15 @@ function ResponsiveDrawer(props) {
               paper: classes.drawerPaper,
             }}
             variant="permanent"
-            // open
+          // open
           >
             <DrawerBox
-              classes={{...classes}}
+              classes={{ ...classes }}
               // open={open}
               // categoryNumber={categoryNumber}
               petsName={petsName}
-              // handleClick={(h) => handleClick(h)}
-              // handleSubcategory={(h) => handleSubcategory(h)}
+            // handleClick={(h) => handleClick(h)}
+            // handleSubcategory={(h) => handleSubcategory(h)}
             />
             {/* {drawer} */}
           </Drawer>

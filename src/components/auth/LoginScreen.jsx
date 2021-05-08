@@ -3,7 +3,6 @@ import { Link, useHistory } from "react-router-dom";
 import { login } from "../../services/AuthService";
 import { setAccessToken } from "../../stores/AccessTokenStore";
 import { useUser } from "../hooks/useUser";
-import { Redirect } from 'react-router-dom'
 
 //eslint-disable-next-line
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -59,6 +58,7 @@ export const LoginScreen = () => {
 
   const onSubmit = (e) => {
     const { fields } = state;
+    console.log(fields)
     e.preventDefault();
     if (isValid()) {
       login(fields).then((response) => {
@@ -112,12 +112,7 @@ export const LoginScreen = () => {
         </Link>
       </div>
       <form onSubmit={onSubmit}>
-        {errors.password && (
-          <div className="auth__alert-error">{errors.password}</div>
-        )}
-        {errors.email && (
-          <div className="auth__alert-error">{errors.email}</div>
-        )}
+        
         <input
           className={`auth__input ${errors.email && touched.email ? "auth__invalid" : ""
             }`}
@@ -142,6 +137,12 @@ export const LoginScreen = () => {
           onFocus={onFocus}
           autoComplete="off"
         />
+        {errors.password && (
+          <div className="auth__alert-error">{errors.password}</div>
+        )}
+        {errors.email && (
+          <div className="auth__alert-error">{errors.email}</div>
+        )}
         <button
           className={`btn ${isValid() ? "btn-primary" : "btn-primary-d"
             } btn-block`}
@@ -151,7 +152,7 @@ export const LoginScreen = () => {
           Login
         </button>
         <hr />
-        <div className="auth__social-networks">
+        {/* <div className="auth__social-networks">
           <p>Login with social networks</p>
           <div className="google-btn">
             <div className="google-icon-wrapper">
@@ -165,9 +166,9 @@ export const LoginScreen = () => {
               <b>Sign in with google</b>
             </p>
           </div>
-        </div>
-        <Link className="link" to="/auth/register">
-          Create new account
+        </div> */}
+        <Link to="/auth/register">
+          <p className="link __my-1">Crear una cuenta nueva</p>
         </Link>
       </form>
     </>

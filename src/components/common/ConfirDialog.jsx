@@ -22,6 +22,9 @@ const options = [
   "4 semanas",
   "6 semanas",
   "8 semanas",
+  "3 meses",
+  "6 meses",
+  "Anual",
 ];
 
 function ConfirmationDialogRaw(props) {
@@ -135,12 +138,12 @@ export default function ConfirDialog({ accion, clave }) {
   const { editPet, petSelect } = usePet();
   const { wash, haircut, earcleaning, teethcleaning, vaccination, deworming } = petSelect;
 
-  const lastwash = wash[wash.length-1]
-  const lasthaircut = haircut[haircut.length-1]
-  const lastearcleaning = earcleaning[earcleaning.length-1]
-  const lastteethcleaning = teethcleaning[teethcleaning.length-1]
-  const lastvaccination = vaccination[vaccination.length-1]
-  const lastdeworming = deworming[deworming.length-1]
+  const lastwash = wash[wash.length - 1]
+  const lasthaircut = haircut[haircut.length - 1]
+  const lastearcleaning = earcleaning[earcleaning.length - 1]
+  const lastteethcleaning = teethcleaning[teethcleaning.length - 1]
+  const lastvaccination = vaccination[vaccination.length - 1]
+  const lastdeworming = deworming[deworming.length - 1]
 
   const handleClickListItem = () => {
     setOpen(true);
@@ -151,22 +154,66 @@ export default function ConfirDialog({ accion, clave }) {
     setOpen(false);
 
     if (newValue) {
-      let days = newValue.split(" ")[0];
-      days = parseInt(days);
-      days = days * 7;
+      let days = 0;
+      if (newValue === '3 meses') {
+        days = 90;
+      } if (newValue === '6 meses') {
+        days = 180;
+      } if (newValue === 'Anual') {
+        days = 365;
+      } else {
+        days = newValue.split(" ")[0];
+        days = parseInt(days);
+        days = days * 7;
+      }
       const d = date.getTime() + days * 24 * 60 * 60 * 1000;
       const dateDays = new Date(d);
       const id = petSelect.id;
+      const idlength = petSelect[clave].length
+      let starTitle = ''
+      let endTitle = ''
+      if (clave === 'wash') {
+        starTitle = 'Se dio un baño a'
+        endTitle = 'Bañar a'
+      } else if (clave === 'haircut') {
+        starTitle = 'Se corto el pelo a'
+        endTitle = 'Cortar el pelo a'
+      } else if (clave === 'earcleaning') {
+        starTitle = 'Se limpio los oidos a'
+        endTitle = 'Limpiar los oidos a'
+      } else if (clave === 'teethcleaning') {
+        starTitle = 'Se hizo limpieza de dientes a'
+        endTitle = 'Limpieza de dientes programada para'
+      } else if (clave === 'deworming') {
+        starTitle = 'Se desparasitó a'
+        endTitle = 'Desparasitar a'
+      } else if (clave === 'vaccination') {
+        starTitle = 'Se vacunó a'
+        endTitle = 'Vacunar a'
+      }
+    
       editPet(
         {
-          [clave]: {
-            date: date,
-            days: dateDays,
+          [clave]:
+          {
+            // id: `${clave}start${idlength}`,
+            startDate: date,
+            endDate: date,
+            allDay: false,
+            title: `${starTitle} ${petSelect.name}`,
+            action: clave
           },
+          [`will${clave}`]: {
+            // id: `${clave}end${idlength}`,
+            startDate: dateDays,
+            endDate: dateDays,
+            allDay: false,
+            title: `${endTitle} ${petSelect.name}`,
+            action: `will${clave}`
+          }
         },
         id
       );
-      // setValueDate(date);
       setValue(newValue);
     }
   };
@@ -174,17 +221,17 @@ export default function ConfirDialog({ accion, clave }) {
   const lastdate = (clave) => {
     let date = "";
     if (clave === "wash") {
-      date = lastwash ? new Date(lastwash.date) : new Date();
+      date = lastwash ? new Date(lastwash.startDate) : new Date();
     } else if (clave === "haircut") {
-      date = lasthaircut ? new Date(lasthaircut.date) : new Date();
+      date = lasthaircut ? new Date(lasthaircut.startDate) : new Date();
     } else if (clave === "earcleaning") {
-      date = lastearcleaning ? new Date(lastearcleaning.date) : new Date();
+      date = lastearcleaning ? new Date(lastearcleaning.startDate) : new Date();
     } else if (clave === "teethcleaning") {
-      date = lastteethcleaning ? new Date(lastteethcleaning.date) : new Date();
+      date = lastteethcleaning ? new Date(lastteethcleaning.startDate) : new Date();
     } else if (clave === "vaccination") {
-      date = lastvaccination ? new Date(lastvaccination.date) : new Date();
+      date = lastvaccination ? new Date(lastvaccination.startDate) : new Date();
     } else if (clave === "deworming") {
-      date = lastdeworming ? new Date(lastdeworming.date) : new Date();
+      date = lastdeworming ? new Date(lastdeworming.startDate) : new Date();
     } else {
       date = new Date()
     }
@@ -195,23 +242,24 @@ export default function ConfirDialog({ accion, clave }) {
   const subtraction = (clave) => {
     let date = "";
     if (clave === "wash") {
-      date = lastwash ? new Date(lastwash.date) : new Date();
+      date = lastwash ? new Date(lastwash.startDate) : new Date();
     } else if (clave === "haircut") {
-      date = lasthaircut ? new Date(lasthaircut.date) : new Date();
+      date = lasthaircut ? new Date(lasthaircut.startDate) : new Date();
     } else if (clave === "earcleaning") {
-      date = lastearcleaning ? new Date(lastearcleaning.date) : new Date();
+      date = lastearcleaning ? new Date(lastearcleaning.startDate) : new Date();
     } else if (clave === "teethcleaning") {
-      date = lastteethcleaning ? new Date(lastteethcleaning.date) : new Date();
+      date = lastteethcleaning ? new Date(lastteethcleaning.startDate) : new Date();
     } else if (clave === "vaccination") {
-      date = lastvaccination ? new Date(lastvaccination.date) : new Date();
+      date = lastvaccination ? new Date(lastvaccination.startDate) : new Date();
     } else if (clave === "deworming") {
-      date = lastdeworming ? new Date(lastdeworming.date) : new Date();
+      date = lastdeworming ? new Date(lastdeworming.startDate) : new Date();
     } else {
       date = new Date()
     }
     const fecha = new Date();
     const resta = fecha.getTime() - date.getTime();
-    return Math.round(resta / (1000 * 60 * 60 * 24));
+    const result = Math.round(resta / (1000 * 60 * 60 * 24));
+    return result
   };
 
   return (

@@ -7,19 +7,20 @@ import {
 import { AuthRouter } from "./AuthRouter";
 import { CarelinkRouter } from "./CarelinkRouter";
 import { HomeScreen } from "../components/home/HomeScreen";
+import { useUser } from "../components/hooks/useUser";
 // import { UserContext } from "../context/UserContext";
 
 export const AppRouter = () => {
-  // const { user } = useContext(UserContext);
-  // const pahtCareLink = user !== null ? '/CarePet' : '/auth/login'
+  const { user } = useUser();
+  const pahtCareLink = user !== null ? '/CarePet' : '/auth/login'
   
   return (
     <Router>
       <div>
         <Switch>
-          <Route exact path="/" component={HomeScreen} />
+          {/* <Route exact path="/" component={HomeScreen} /> */}
           <Route path="/auth" component={AuthRouter} />
-          <Route path='/CarePet/' component={CarelinkRouter} />
+          <Route path={pahtCareLink} component={CarelinkRouter} />
           <Redirect to="/auth/login" />
         </Switch>
       </div>

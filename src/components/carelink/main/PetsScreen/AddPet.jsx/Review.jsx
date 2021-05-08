@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -33,7 +34,6 @@ const columns = [
 export default function Review({ valuesField }) {
     const classes = useStyles();
 
-    console.log(valuesField)
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>
@@ -111,7 +111,7 @@ export default function Review({ valuesField }) {
                             </TableRow>
                         </TableBody>
                     </Table>
-                </TableContainer>
+                </TableContainer>             
             </Paper>
 
         </React.Fragment>

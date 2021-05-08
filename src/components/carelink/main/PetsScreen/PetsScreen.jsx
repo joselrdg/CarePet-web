@@ -4,14 +4,14 @@ import { useCategory } from "../../../hooks/useCategory";
 import TabPanel from "../TabPanel";
 import AddPet from "./AddPet.jsx/AddPet";
 import Hygiene from "./Hygiene/Hygiene";
-import Appointments from "./Appointments";
+import Appointments from "./Appointments/Appointments";
 import Medication from "./Medication";
 // import PetCharacteristics from './PetCharacteristics';
-import PetProfile from "./PetProfile";
-import Breed from "./Breed";
-import Review from "./Review";
+import PetProfile from "./PetProfile/PetProfile";
+import Review from "./Review/Review";
+import { usePet } from "../../../hooks/usePet";
 
-const folderBox = (folder) => {
+const folderBox = (folder, createpet) => {
   switch (folder) {
     case 0:
       return <PetProfile />;
@@ -24,11 +24,9 @@ const folderBox = (folder) => {
     case 4:
       return <Review />;
     case 5:
-      return <Breed />;
-    case 6:
-      return <AddPet action='edit'/>;
-    case 7:
-      return <AddPet action='add'/>;
+      return <AddPet action={createpet ?'add' : 'edit'  } />;
+    // case 6:
+    //   return <AddPet action=/>;
     default:
       break;
   }
@@ -36,13 +34,13 @@ const folderBox = (folder) => {
 
 const PetsScreen = () => {
   const { stateCategory } = useCategory();
-  const { folder } = stateCategory;
-  console.log(folder)
-  // const { petsUser } = usePet();
+  const { folder, createpet } = stateCategory;
+  const { petsUser } = usePet();
+
   return (
     <>
       <TabPanel category={0} />
-      {folderBox(folder)}
+      {petsUser.length === 0 ? folderBox(5, 'add') : folderBox(folder, createpet)}
     </>
   );
 };

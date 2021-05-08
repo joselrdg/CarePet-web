@@ -7,7 +7,7 @@ import { InputAdornment } from '@material-ui/core';
 import { DatePicker, } from '@material-ui/pickers';
 import { useBreeds } from '../../../../hooks/useBreed';
 
-export default function AddressForm({ valuesField, handleTextFieldChange }) {
+export default function AddressForm({ valuesField, handleTextFieldChange, handleFieldImage }) {
   const { breedsNames } = useBreeds();
 const {
 species,breed, sex, hair, color, sterilized,datebirth,weight,chip,name,specialpeculiarities

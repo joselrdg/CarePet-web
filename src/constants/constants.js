@@ -8,20 +8,20 @@ export const CATEGORIES = [
     icon: <PetsIcon />, 
     subcategory: [{
       name:'Añadir mascota', 
-      folders: ['Tablero', 'Citas', 'Cuidados', 'Medicación', 'Reseña', 'Raza', 'Editar'
+      folders: ['Tablero', 'Citas', 'Cuidados', 'Medicación', 'Reseña', 'Editar'
     ]}] },
     { 
       name: "Razas Fci", 
       icon: <i className="fas fa-dog"></i>, 
       subcategory: [{ 
-        name: 'Añadir aviso', 
+        name: 'Grupos', 
         folders: ['Grupos', 'Todas las razas', 'Buscador', ] 
       }] },
   { 
     name: "Agenda", 
     icon: <TodayIcon />, 
     subcategory: [{ 
-      name: 'Añadir aviso', 
+      name: 'Calendario', 
       folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
     }] },
   { 
