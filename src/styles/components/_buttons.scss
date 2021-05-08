@@ -27,6 +27,17 @@
     background-color: darken($color: $primary, $amount: 15);
   }
 }
+.btn-tra {
+  background-color: transparent;
+  border-radius: 2px;
+
+  &:disabled {
+    background-color: lighten($color: $primary, $amount: 15);
+  }
+  &:hover {
+    background-color: darken($color: $primary, $amount: 15);
+  }
+}
 .btn-primary-d {
   background-color: lighten($color: $primary, $amount: 5);
   border-radius: 2px;

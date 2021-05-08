@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { register } from "../../services/AuthService";
-
+import { setAccessToken } from "../../stores/AccessTokenStore";
+import { login } from "../../services/AuthService";
+import { useUser } from "../hooks/useUser";
 //eslint-disable-next-line
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 const NUM_PATTERN = /[0-9]/;
@@ -42,6 +44,8 @@ const validators = {
 };
 
 export const RegisterScreen = () => {
+  const { push } = useHistory();
+  const { doLogin } = useUser();
   const [state, setstate] = useState({
     fields: {
       name: "",
@@ -56,6 +60,7 @@ export const RegisterScreen = () => {
   });
 
   const [touched, setTouched] = useState({});
+  const [errorRegis, setErrorRegis] = useState(false);
 
   const isValid = () => {
     const { errors } = state;
@@ -65,7 +70,17 @@ export const RegisterScreen = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (isValid) {
-      register(state.fields).then((response) => console.log(response)).catch((e)=> console.log(e));
+      register(state.fields).then((response) => {
+        const fields = {email: state.fields.email,  password:state.fields.password}
+        console.log(fields);
+        login(fields).then((response) => {
+          setAccessToken(response.access_token);
+          doLogin().then(() => {
+            push("/CarePet");
+          });
+        });
+      })
+      .catch((e)=> console.log(e));
     }
   };
 
@@ -111,15 +126,7 @@ export const RegisterScreen = () => {
         </Link>
       </div>
       <form onSubmit={onSubmit}>
-        {errors.email && (
-          <div className="auth__alert-error">{errors.email}</div>
-          )}
-          {errors.password && (
-            <div className="auth__alert-error">{errors.password}</div>
-          )}
-          {errors.password2 && (
-            <div className="auth__alert-error">{errors.password2}</div>
-          )}
+        
         <input
           className="auth__input"
           type="text"
@@ -168,11 +175,20 @@ export const RegisterScreen = () => {
           onFocus={onFocus}
           autoComplete="off"
         />
+        {errors.email && (
+          <div className="auth__alert-error">{errors.email}</div>
+          )}
+          {errors.password && (
+            <div className="auth__alert-error">{errors.password}</div>
+          )}
+          {errors.password2 && (
+            <div className="auth__alert-error">{errors.password2}</div>
+          )}
         <button className="btn btn-primary btn-block mb-5" type="submit">
           Register
         </button>
         <Link className="link" to="/auth/login">
-          Alredy registered?
+          Ya estás registrado?
         </Link>
       </form>
     </>

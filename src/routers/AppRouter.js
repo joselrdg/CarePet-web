@@ -21,7 +21,7 @@ export const AppRouter = () => {
           {/* <Route exact path="/" component={HomeScreen} /> */}
           <Route path="/auth" component={AuthRouter} />
           <Route path={pahtCareLink} component={CarelinkRouter} />
-          <Redirect to="/CarePet/" />
+          <Redirect to="/auth/login" />
         </Switch>
       </div>
     </Router>

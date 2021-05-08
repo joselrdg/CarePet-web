@@ -14,7 +14,7 @@ export const CATEGORIES = [
       name: "Razas Fci", 
       icon: <i className="fas fa-dog"></i>, 
       subcategory: [{ 
-        name: 'Añadir aviso', 
+        name: 'Grupos', 
         folders: ['Grupos', 'Todas las razas', 'Buscador', ] 
       }] },
   { 

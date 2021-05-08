@@ -9,6 +9,7 @@ import Medication from "./Medication";
 // import PetCharacteristics from './PetCharacteristics';
 import PetProfile from "./PetProfile/PetProfile";
 import Review from "./Review/Review";
+import { usePet } from "../../../hooks/usePet";
 
 const folderBox = (folder, createpet) => {
   switch (folder) {
@@ -34,11 +35,12 @@ const folderBox = (folder, createpet) => {
 const PetsScreen = () => {
   const { stateCategory } = useCategory();
   const { folder, createpet } = stateCategory;
-  // const { petsUser } = usePet();
+  const { petsUser } = usePet();
+
   return (
     <>
       <TabPanel category={0} />
-      {folderBox(folder, createpet)}
+      {petsUser.length === 0 ? folderBox(5, 'add') : folderBox(folder, createpet)}
     </>
   );
 };

@@ -9,13 +9,17 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(2),
     },
     btnleft: {
-        width: '30px',
-        height: '5px',
+        width: '28px',
+        height: '1px',
         position: 'absolute',
         right: theme.spacing(4),
         bottom: theme.spacing(0),
 
     },
+    icon:{
+width:'20px',
+height:'20px'
+    }
 }));
 
 export default function SimpleTooltips() {
@@ -24,8 +28,8 @@ export default function SimpleTooltips() {
     return (
         <div>
             <Tooltip title="Add" aria-label="add">
-                <Fab color="secondary" className={classes.btnleft}>
-                    <AddIcon />
+                <Fab color="primary" className={classes.btnleft}>
+                    <AddIcon className={classes.icon} />
                 </Fab>
             </Tooltip>
         </div>

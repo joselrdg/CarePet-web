@@ -2,6 +2,7 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { logout } from "../../stores/AccessTokenStore";
 
+
 const Navbar = () => {
   return <div>
       <NavLink to="/">Home</NavLink>

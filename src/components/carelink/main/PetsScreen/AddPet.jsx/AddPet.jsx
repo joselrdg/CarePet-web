@@ -209,15 +209,10 @@ export default function Checkout({ action }) {
     } else if (action === 'edit') {
       const id = petSelect.id
       editOnePetUser(formData, id).then((response) => {
+        setPetSelect(response)
           handleNext();
-          setPetSelect(response)
           getPetsUser(id)
           .then((r)=>{
-            setPetsUser(r)
-            setStateCategories({
-              ...stateCategories,
-              petsName: r.map((pet) => pet.name)
-            })
             setCategory({
               ...stateCategory,
               folder: 0

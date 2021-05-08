@@ -16,14 +16,8 @@ import { CATEGORIES } from "../../../constants/constants";
 import { useHistory } from "react-router-dom";
 import SimpleTooltips from "../../common/ToolTip";
 import { usePet } from "../../hooks/usePet";
-
-
-// const useStyles = makeStyles((theme) => ({
-//   toolbar: theme.mixins.toolbar,
-//   nested: {
-//     paddingLeft: theme.spacing(4),
-//   },
-// }));
+import ScatterPlotIcon from '@material-ui/icons/ScatterPlot';
+import Expand from './Expand'
 
 function DrawerBox({
   classes,
@@ -92,7 +86,7 @@ function DrawerBox({
           <div key={item.name}>
             {/* <Link to={`/CarePet/${item.name}`}> */}
             <ListItem button onClick={() => handleClick(index)}>
-              <ListItemIcon><Avatar className={classes.pink}>{item.icon}</Avatar></ListItemIcon>
+              <ListItemIcon><Avatar className={classes.avatar}>{item.icon}</Avatar></ListItemIcon>
               <ListItemText primary={item.name} />
               {open && category === index ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
@@ -111,17 +105,19 @@ function DrawerBox({
                             className={classes.nested}
                             key={index}
                           >
+                          <div className='__flex __jc-between __ai-center'>
                             <ListItemIcon>
-                              <StarBorder />
+                            <i className="fas fa-dog __px-1 __icon-light "></i>
                             </ListItemIcon>
                             <ListItemText primary={name} />
+                            </div>
                           </ListItem>
                         ))
                         : null}
                       {category
                         !== 0 && (<ListItem button className={classes.nested}>
                           <ListItemIcon>
-                            <StarBorder />
+                            <ScatterPlotIcon className="__icon-light "></ScatterPlotIcon>
                           </ListItemIcon>
                           <ListItemText primary={subcategoryMap.name} />
                         </ListItem>
