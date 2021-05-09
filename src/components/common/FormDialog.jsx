@@ -113,9 +113,7 @@ export default function FormDialog() {
       [name]: value
     })
     );
-    console.log(fields);
-    console.log(event.target.name);
-    console.log(event.target.value);
+ 
   };
 
   const handleClickOpen = () => {

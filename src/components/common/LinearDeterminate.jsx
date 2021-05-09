@@ -26,7 +26,7 @@ const progresstart = (mas) => {
 React.useEffect(() => {
     if (progress < petprogess){
         progresstart(progress + 2)}   
-    }, [progress]);
+    }, [progress, petprogess]);
 
     return (
         <div className={classes.root}>

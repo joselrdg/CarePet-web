@@ -65,8 +65,7 @@ export default function Breed() {
         // descalificantes,
     } = oneBreed
 
-    if (historia[0]){
-console.log(historia)}
+
 
     if (!raza) {
         return 'Loading...'

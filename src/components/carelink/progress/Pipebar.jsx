@@ -1,12 +1,8 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import { PieChart, Pie, Cell, } from "recharts";
 import TodayIcon from '@material-ui/icons/Today';
 
 
-const data = [
-  { name: "Group A", value: 100 },
-  { name: "Group B", value: 2 },
-];
 // const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 const COLORS = ["#55f9aa", "#e91e63"];
 
@@ -14,7 +10,6 @@ const COLORS = ["#55f9aa", "#e91e63"];
 
 
 export const Pipebar = ({ data }) => {
-  console.log(data)
   if (!data){
     return 'Loading...'
   }

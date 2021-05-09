@@ -36,11 +36,10 @@ const useStyles = makeStyles({
 export default function SimpleCard({ name, breed, color, hair, specialpeculiarities, sex, origin, family, habitat, chip, file, datebirth }) {
     const classes = useStyles();
     // const bull = <span className={classes.bullet}>•</span>;
-  const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false);
 
- 
+
     const handleBreed = () => {
-        console.log('handlebreed')
         setOpen(!open)
     }
 
@@ -61,7 +60,7 @@ export default function SimpleCard({ name, breed, color, hair, specialpeculiarit
 
     return (
         <div className='__flex __fw-w __m-2 __jc-center'>
-            <img className={classes.img} src={file} alt='profile' />
+            {file && <img className={classes.img} src={file} alt='profile' />}
             <Card className={classes.root}>
                 <CardContent>
                     <Typography className={classes.pos} color="textSecondary">
@@ -72,7 +71,7 @@ export default function SimpleCard({ name, breed, color, hair, specialpeculiarit
                         {name}{icons()}
                     </Typography>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
-                        <i className="fas fa-birthday-cake"></i>    {datePar}
+                        <i className="fas fa-birthday-cake __pl_p-1 __pr_p-1 __pt_p-1"></i>    {datePar}
                     </Typography>
                     <Typography className={classes.marg} variant="body2" component="p">
                         Número de chip:
@@ -80,19 +79,20 @@ export default function SimpleCard({ name, breed, color, hair, specialpeculiarit
                         {chip}
                     </Typography>
                     <Typography variant="body2" component="p">
-                        Tiene el pelo {hair}  y es de color {color}
+                        Pelo: {hair}
                         <br />
+                        Color: {color}
                     </Typography>
-                    <Typography variant="body2" component="p">
+                    {/* <Typography variant="body2" component="p">
                         Como particularidades especiales tiene:
                     <br />
                         {specialpeculiarities}.
-                </Typography>
-                    <Typography variant="body2" component="p">
+                </Typography> */}
+                    {/* <Typography variant="body2" component="p">
                         Vive en {family}
                         <br />
                     Es de origen {origin} y duerme en {habitat}.
-                </Typography>
+                </Typography> */}
                 </CardContent>
                 <CardActions>
                     <Button size="small">Datos clínicos</Button>

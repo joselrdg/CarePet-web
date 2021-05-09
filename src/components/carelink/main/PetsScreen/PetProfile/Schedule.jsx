@@ -1,7 +1,5 @@
 import * as React from 'react';
 import Paper from '@material-ui/core/Paper';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import { withStyles } from '@material-ui/core/styles';
 import {
   ViewState,
 } from '@devexpress/dx-react-scheduler';
@@ -11,11 +9,11 @@ import {
   DayView,
   Appointments,
   Toolbar,
-  DateNavigator,
+  // DateNavigator,
   ViewSwitcher,
   AppointmentForm,
   AppointmentTooltip,
-  TodayButton,
+  // TodayButton,
   AllDayPanel,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
@@ -66,10 +64,9 @@ export default class Schedule extends React.PureComponent {
         />
         <ViewSwitcher />
         <AppointmentTooltip
-          showOpenButton
           showCloseButton
         />
-        <AppointmentForm readOnly />
+        {/* <AppointmentForm readOnly /> */}
       </Scheduler>
     </Paper>
       </React.Fragment>

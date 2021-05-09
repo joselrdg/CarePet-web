@@ -33,7 +33,9 @@ function getStyles(name, personName, theme) {
 function SelectInput({ items, value, handleChange, itemname, label }) {
     const classes = useStyles();
     const theme = useTheme();
+    let itemsBreed = []
     if(itemname==='breed'){
+      itemsBreed = items.sort()
     }
     return (
         <FormControl >
@@ -51,7 +53,7 @@ function SelectInput({ items, value, handleChange, itemname, label }) {
             >
                 {
                     itemname === 'breed'
-                   ? items.map((name, i) => (
+                   ? itemsBreed.map((name, i) => (
                     <MenuItem key={name.id}  value={name}  style={getStyles(name, label, theme)}>
                         {name.name}
                     </MenuItem>

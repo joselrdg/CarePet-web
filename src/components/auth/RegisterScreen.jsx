@@ -60,7 +60,6 @@ export const RegisterScreen = () => {
   });
 
   const [touched, setTouched] = useState({});
-  const [errorRegis, setErrorRegis] = useState(false);
 
   const isValid = () => {
     const { errors } = state;
@@ -72,7 +71,6 @@ export const RegisterScreen = () => {
     if (isValid) {
       register(state.fields).then((response) => {
         const fields = {email: state.fields.email,  password:state.fields.password}
-        console.log(fields);
         login(fields).then((response) => {
           setAccessToken(response.access_token);
           doLogin().then(() => {

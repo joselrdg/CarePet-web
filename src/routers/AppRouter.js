@@ -6,9 +6,7 @@ import {
 } from "react-router-dom";
 import { AuthRouter } from "./AuthRouter";
 import { CarelinkRouter } from "./CarelinkRouter";
-import { HomeScreen } from "../components/home/HomeScreen";
 import { useUser } from "../components/hooks/useUser";
-// import { UserContext } from "../context/UserContext";
 
 export const AppRouter = () => {
   const { user } = useUser();

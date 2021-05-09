@@ -169,7 +169,6 @@ export default function ConfirDialog({ accion, clave }) {
       const d = date.getTime() + days * 24 * 60 * 60 * 1000;
       const dateDays = new Date(d);
       const id = petSelect.id;
-      const idlength = petSelect[clave].length
       let starTitle = ''
       let endTitle = ''
       if (clave === 'wash') {

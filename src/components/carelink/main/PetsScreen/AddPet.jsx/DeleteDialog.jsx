@@ -20,7 +20,7 @@ export default function DeleteDialog({id}) {
   const { push } = useHistory();
   const [open, setOpen] = React.useState(false);
   const { user } = useUser();
-  const { petSelect, getPets, setPet, petsUser, setPetsUser, setPetSelect, setRenderPets, 
+  const { setPet, setPetsUser,
     stateCategories,
     setStateCategories} = usePet();
   const {stateCategory, setCategory} = useCategory()

@@ -24,9 +24,10 @@ export function BreedsContextProvider({ children }) {
             arrBreedsNames.push(name)
           }
         }
-        ); 
+        );
+        const ordBreedsNames = arrBreedsNames.sort()
         setBreedsFci(response);
-        setBreedsName(arrBreedsNames)
+        setBreedsName(ordBreedsNames)
       });
   }
 

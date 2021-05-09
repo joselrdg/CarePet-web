@@ -5,7 +5,6 @@ const http = create({
 })
 
 export const login = (body) => {
-    console.log(body)
 return http.post('/users/auth', body)
 }
 export const register = (body) => {

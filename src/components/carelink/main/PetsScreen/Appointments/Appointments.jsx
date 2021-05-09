@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { usePet } from '../../../../hooks/usePet';
 import Schedule from '../../ScheduleScreen/ScheduleScreen';
 import ListAppointments from './ListAppointments';
 import InsertInvitationIcon from '@material-ui/icons/InsertInvitation';
@@ -12,7 +11,6 @@ export default function Appointments() {
         actionEnd: 'all'
     })
 
-    const { petSelect, editPet, editPetSchedule, deletePetSchedule } = usePet();
 
     // const {
     //     wash,
@@ -36,7 +34,6 @@ export default function Appointments() {
     // ]
 
     const handleOnclick = (action) => {
-        console.log(action === 'wash')
         if (action === 'wash') {
             setActionOpen({
                 actionStart: 'wash',
@@ -165,20 +162,20 @@ export default function Appointments() {
                 className='__m-1'
                 variant="contained"
                 color="default"
-                startIcon={<i class="fas fa-file-medical-alt __icon-light"></i>}
+                startIcon={<i className="fas fa-file-medical-alt __icon-light"></i>}
             >
                 {
                     actionOpen.actionStart === 'others' && 'Otros'
                 }
             </Button>
-            {/* <i class="fas fa-deaf"></i> */}
+            {/* <i className="fas fa-deaf"></i> */}
             <Button
                 name='all'
                 onClick={() => handleOnclick('all')}
                 className='__m-1'
                 variant="contained"
                 color="default"
-                startIcon={<i class="fas fa-folder-open  __icon-light"></i>}
+                startIcon={<i className="fas fa-folder-open  __icon-light"></i>}
             >
                 {
                     actionOpen.actionStart === 'all' && 'Todo'
