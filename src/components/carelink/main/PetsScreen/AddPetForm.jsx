@@ -37,15 +37,12 @@ function AddPetForm(props) {
     });
 
     const handleChange = (event) => {
-        console.log('event')
-        console.log(event.target)
         setValues({
             ...values,
             [event.target.name]: event.target.value,
         });
     };
 
-    console.log(values)
 
     return (
         <div className='addpetform__root'>

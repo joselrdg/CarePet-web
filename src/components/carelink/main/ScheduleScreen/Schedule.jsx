@@ -15,25 +15,25 @@ import {
   AllDayPanel,
   ConfirmationDialog,
 } from '@devexpress/dx-react-scheduler-material-ui';
-import { withStyles } from '@material-ui/core/styles';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
+// import { withStyles } from '@material-ui/core/styles';
+// import Select from '@material-ui/core/Select';
+// import MenuItem from '@material-ui/core/MenuItem';
 
 
 
 
 
-const styles = theme => ({
-  container: {
-    display: 'flex',
-    marginBottom: theme.spacing(2),
-    justifyContent: 'flex-end',
-  },
-  text: {
-    ...theme.typography.h6,
-    marginRight: theme.spacing(2),
-  },
-});
+// const styles = theme => ({
+//   container: {
+//     display: 'flex',
+//     marginBottom: theme.spacing(2),
+//     justifyContent: 'flex-end',
+//   },
+//   text: {
+//     ...theme.typography.h6,
+//     marginRight: theme.spacing(2),
+//   },
+// });
 
 const messages = {
   detailsLabel: 'Título',
@@ -53,7 +53,7 @@ const messages = {
   onLabel: 'En',
   occurrencesLabel: 'Repeticion(es)',
   afterLabel: 'El día',
-  commitCommand: <i class="fas fa-save  fa-2x"></i>,
+  commitCommand: <i className="fas fa-save  fa-2x"></i>,
 };
 
 const messagesdiag = {
@@ -64,28 +64,29 @@ const messagesdiag = {
   confirmCancelMessage: '¿Descartar los cambios sin guardados?',
 }
 
+// Eleccion de colores de las notas 
 
-const ResourceSwitcher = withStyles(styles, { name: 'ResourceSwitcher' })(
-  ({
-    mainResourceName, onChange, classes, resources,
-  }) => (
-    <div className={classes.container}>
-      <div className={classes.text}>
-        Main resource name:
-      </div>
-      <Select
-        value={mainResourceName}
-        onChange={e => onChange(e.target.value)}
-      >
-        {resources.map(resource => (
-          <MenuItem key={resource.fieldName} value={resource.fieldName}>
-            {resource.title}
-          </MenuItem>
-        ))}
-      </Select>
-    </div>
-  ),
-);
+// const ResourceSwitcher = withStyles(styles, { name: 'ResourceSwitcher' })(
+//   ({
+//     mainResourceName, onChange, classes, resources,
+//   }) => (
+//     <div className={classes.container}>
+//       <div className={classes.text}>
+//         Main resource name:
+//       </div>
+//       <Select
+//         value={mainResourceName}
+//         onChange={e => onChange(e.target.value)}
+//       >
+//         {resources.map(resource => (
+//           <MenuItem key={resource.fieldName} value={resource.fieldName}>
+//             {resource.title}
+//           </MenuItem>
+//         ))}
+//       </Select>
+//     </div>
+//   ),
+// );
 
 export default class Demo extends React.PureComponent {
   constructor(props) {
@@ -205,7 +206,7 @@ export default class Demo extends React.PureComponent {
       resources,
       mainResourceName,
       addedAppointment,
-      appointmentChanges,
+      // appointmentChanges,
       editingAppointment,
     } = this.state;
     return (

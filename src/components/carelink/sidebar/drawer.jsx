@@ -9,7 +9,6 @@ import {
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import Collapse from "@material-ui/core/Collapse";
-import StarBorder from "@material-ui/icons/StarBorder";
 import Avatar from '@material-ui/core/Avatar';
 import { useCategory } from "../../hooks/useCategory";
 import { CATEGORIES } from "../../../constants/constants";
@@ -17,7 +16,6 @@ import { useHistory } from "react-router-dom";
 import SimpleTooltips from "../../common/ToolTip";
 import { usePet } from "../../hooks/usePet";
 import ScatterPlotIcon from '@material-ui/icons/ScatterPlot';
-import Expand from './Expand'
 
 function DrawerBox({
   classes,

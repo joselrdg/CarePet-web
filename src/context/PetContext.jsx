@@ -6,6 +6,7 @@ export const PetsContext = createContext();
 
 export function PetsContextProvider({ children }) {
   const [petsUser, setPetsUser] = useState(null);
+  const [alert, setAlert] = useState(0);
   const [petSelect, setPetSelect] = useState(null)
   const [renderPets, setRenderPets] = useState(0)
   const [stateCategories, setStateCategories] = useState({
@@ -18,7 +19,6 @@ export function PetsContextProvider({ children }) {
 
   const getPets = (id) => {
     if (id) {
-      console.log('getPets')
       return getPetsUser(id).then((response) => {
         setPetsUser(response);
       });
@@ -31,9 +31,7 @@ export function PetsContextProvider({ children }) {
     });
   };
 
-  const setPetRenSelected = (r) => {
-    setPetSelect(r)
-  }
+
 
   const editPetSchedule = (body, id) => {
     return editPetUserSchedule(body, id).then((response) => {
@@ -56,7 +54,6 @@ export function PetsContextProvider({ children }) {
 
 
   useEffect(() => {
-    console.log('useefect pets. rederpets: ' + renderPets)
     if (user !== null ) {
       const id = user.id;
       getPets(id);
@@ -76,7 +73,9 @@ export function PetsContextProvider({ children }) {
     deletePetSchedule,
     setRenderPets,
     stateCategories,
-    setStateCategories
+    setStateCategories,
+    alert,
+    setAlert
   };
   return <PetsContext.Provider value={value}>{children}</PetsContext.Provider>;
 }

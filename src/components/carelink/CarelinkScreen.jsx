@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 // import Copyright from "../copyright/Copyright";
 import { usePet } from "../hooks/usePet";
 // import { useBreeds } from "../hooks/useBreed";
-import { green, pink, indigo } from '@material-ui/core/colors';
+import { green, indigo } from '@material-ui/core/colors';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Sidebar from "./sidebar/Sidebar";
 // import {getRaza }from "../../services/ScraperService";

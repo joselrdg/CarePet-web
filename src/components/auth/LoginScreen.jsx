@@ -58,7 +58,6 @@ export const LoginScreen = () => {
 
   const onSubmit = (e) => {
     const { fields } = state;
-    console.log(fields)
     e.preventDefault();
     if (isValid()) {
       login(fields).then((response) => {

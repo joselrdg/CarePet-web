@@ -1,23 +1,12 @@
+import React  from 'react';
 import { makeStyles, Paper } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
-import { Pipebar } from '../../../progress/Pipebar';
+// import { Pipebar } from '../../../progress/Pipebar';
 import { Circularbar } from '../../../progress/Circularbar';
 import ConfirDialog from '../../../../common/ConfirDialog'
 import { usePet } from '../../../../hooks/usePet';
-import { editPetUser } from "../../../../../services/PetService";
-
-import TodayIcon from '@material-ui/icons/Today';
-import { PieChart, Pie, Cell, } from "recharts";
 
 
-const data = [
-    { name: "Group A", value: 100 },
-    { name: "Group B", value: 2 },
-];
-// const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-const COLORS = ["#55f9aa", "#e91e63"];
-
-
+// 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: "flex",
@@ -42,7 +31,7 @@ export default function Hygiene() {
         willteethcleaning, teethcleaning,
         vaccination, willvaccination,
         deworming, willdeworming,
-        medication, others
+        // medication, others
     } = petSelect;
 
 
@@ -91,12 +80,6 @@ export default function Hygiene() {
     }
 
 
-    console.log(lastwash.startDate)
-    console.log(willlastwash.startDate)
-    console.log(datachart(lastwash.startDate, willlastwash.startDate))
-
-
-    console.log(petSelect.id)
     return (
         <div>
             Cuidados
@@ -174,7 +157,6 @@ export default function Hygiene() {
                             <i className="fas fa-syringe fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
                             <Circularbar
                                 cx={120}                            
-                                cy={60}
                                 cy={60}
                                 outerRadius={60}
                                 innerRadius={40}

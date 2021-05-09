@@ -4,14 +4,16 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import SelectInput from '../../../../common/SelectInput';
 import { InputAdornment } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
 import { DatePicker, } from '@material-ui/pickers';
 import { useBreeds } from '../../../../hooks/useBreed';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
 export default function AddressForm({ valuesField, handleTextFieldChange, handleFieldImage }) {
   const { breedsNames } = useBreeds();
-const {
-species,breed, sex, hair, color, sterilized,datebirth,weight,chip,name,specialpeculiarities
-} = valuesField
+  const {
+    species, breed, sex, hair, color, sterilized, datebirth, weight, chip, name, specialpeculiarities
+  } = valuesField
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -22,9 +24,9 @@ species,breed, sex, hair, color, sterilized,datebirth,weight,chip,name,specialpe
           <SelectInput value={species} handleChange={handleTextFieldChange} items={['Perro', 'Gato', 'Ave', 'Reptil', 'Anfibio', 'Otro']} itemname='species' label='Especie' />
         </Grid>
         <Grid item xs={12} sm={6}  >
-        {
-         breedsNames !== null ? <SelectInput value={breed} handleChange={handleTextFieldChange} items={breedsNames} itemname='breed' label='Raza' /> : 'Loading...'
-        }
+          {
+            breedsNames !== null ? <SelectInput value={breed} handleChange={handleTextFieldChange} items={breedsNames} itemname='breed' label='Raza' /> : 'Loading...'
+          }
         </Grid>
         <Grid item xs={12} sm={3}  >
           <SelectInput value={sex} handleChange={handleTextFieldChange} items={['Macho', 'Hembra', 'Indifinido']} itemname='sex' label='Sexo' />
@@ -33,10 +35,10 @@ species,breed, sex, hair, color, sterilized,datebirth,weight,chip,name,specialpe
           <SelectInput value={hair} handleChange={handleTextFieldChange} items={['Corto', 'Medio', 'Largo', 'Rizo', 'Sin pelo']} itemname='hair' label='Pelo' />
         </Grid>
         <Grid item xs={12} sm={3}  >
-          <SelectInput value={color} handleChange={handleTextFieldChange} items={['Abigarrado', 'Albino', 'Atigrado', 'Azul', 'Chocolate', 'Gris']} itemname='color' label='Capa' />
+          <SelectInput value={color} handleChange={handleTextFieldChange} items={['Abigarrado', 'Albino', 'Atigrado', 'Azul', 'Chocolate', 'Gris', 'Fuego', 'Acero']} itemname='color' label='Capa' />
         </Grid>
         <Grid item xs={12} sm={3}  >
-          <SelectInput value={sterilized} handleChange={handleTextFieldChange} items={['Esterilizado', 'Castrado', 'Gestación', 'Lactancia']} itemname='sterilized' label='Estado' />
+          <SelectInput value={sterilized} handleChange={handleTextFieldChange} items={['Esterilizado', 'Gestación', 'Lactancia']} itemname='sterilized' label='Estado' />
         </Grid>
         <Grid item xs={12} sm={3}>
           <DatePicker
@@ -85,7 +87,22 @@ species,breed, sex, hair, color, sterilized,datebirth,weight,chip,name,specialpe
             onChange={handleTextFieldChange}
           />
         </Grid>
-        <Grid item xs={12} sm={12}>
+        <Grid item xs={6} sm={2}>
+          <input
+            accept="image/*"
+            className='__dsp-n __mt-2'
+            id="icon-button-file"
+            type="file"
+            name="file"
+            onChange={handleTextFieldChange}
+          />
+          <label htmlFor="icon-button-file">
+            <IconButton color="primary" aria-label="upload picture" component="span">
+              <PhotoCamera />
+            </IconButton>
+          </label>
+        </Grid>
+        <Grid item xs={6} sm={10}>
           <TextField
             id="specialpeculiarities"
             label="Señas particularidades"
@@ -97,17 +114,16 @@ species,breed, sex, hair, color, sterilized,datebirth,weight,chip,name,specialpe
           />
         </Grid>
       </Grid>
-      <Grid item xs={12} sm={12}>
-          <TextField
-            type='file'
-            id="file"
-            name="file"
-            fullWidth
-            autoComplete="given-name"
-            // value={valuesField.file}
-            onChange={handleTextFieldChange}
-          />
-        </Grid>
+      {/* <TextField
+          type='file'
+      </Grid>
+          id="file"
+          name="file"
+          fullWidth
+          autoComplete="given-name"
+          className='__mt-2'
+          onChange={handleTextFieldChange}
+        /> */}
     </React.Fragment>
   );
 }

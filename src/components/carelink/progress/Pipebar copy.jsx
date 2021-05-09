@@ -53,7 +53,6 @@ export default class Pipebar extends PureComponent {
 
 
   render() {
-    console.log(this.state.data)
     return (
       <div className='pipebar__root'>
         <PieChart width={250} height={125} onMouseEnter={this.onPieEnter}>

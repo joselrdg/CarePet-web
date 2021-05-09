@@ -1,4 +1,4 @@
-import React, { useState, useHistory } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
@@ -15,7 +15,6 @@ import { createPet, editOnePetUser, getPetsUser } from "../../../../../services/
 import { useUser } from "../../../../hooks/useUser";
 import { usePet } from "../../../../hooks/usePet";
 import DeleteDialog from "./DeleteDialog";
-import { useBreeds } from "../../../../hooks/useBreed";
 import { useCategory } from "../../../../hooks/useCategory";
 
 
@@ -102,12 +101,11 @@ function getStepContent(step, valuesField, handleTextFieldChange, handleFieldIma
 
 export default function Checkout({ action }) {
   const classes = useStyles();
-  const { breedsNames } = useBreeds();
   const { user } = useUser();
-  const { petSelect, getPets, setPet, petsUser, setPetsUser, setPetSelect, setRenderPets, 
+  const { petSelect, setPetsUser, setPetSelect,
     stateCategories,
-    setStateCategories} = usePet();
-  const {stateCategory, setCategory} = useCategory()
+    setStateCategories } = usePet();
+  const { stateCategory, setCategory } = useCategory()
 
   const [activeStep, setActiveStep] = useState(0);
   // const [fieldImage, setFieldImage] = useState()
@@ -172,12 +170,11 @@ export default function Checkout({ action }) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    let index = 0
-    let breedId = ''
-    if (valuesField.breed) {
-      index = breedsNames.find((e) => { e.name.includes(valuesField.breed) })
-      // breedId = breedsNames[index]
-    }
+    // let index = 0
+    // if (valuesField.breed) {
+    //   index = breedsNames.find((e) => { e.name.includes(valuesField.breed) })
+    //   // breedId = breedsNames[index]
+    // }
     const fieldsOk = {
       ...valuesField,
       breed: valuesField.breed.name ? valuesField.breed.name : '',
@@ -194,25 +191,25 @@ export default function Checkout({ action }) {
         handleNext();
         setPetSelect(response)
         getPetsUser(id)
-        .then((r)=>{
-          setPetsUser(r)
-          setStateCategories({
-            ...stateCategories,
-            petsName: r.map((pet) => pet.name)
+          .then((r) => {
+            setPetsUser(r)
+            setStateCategories({
+              ...stateCategories,
+              petsName: r.map((pet) => pet.name)
+            })
+            setCategory({
+              ...stateCategory,
+              folder: 0
+            })
           })
-          setCategory({
-            ...stateCategory,
-            folder: 0
-          })
-        })
       });
     } else if (action === 'edit') {
       const id = petSelect.id
       editOnePetUser(formData, id).then((response) => {
         setPetSelect(response)
-          handleNext();
-          getPetsUser(id)
-          .then((r)=>{
+        handleNext();
+        getPetsUser(id)
+          .then((r) => {
             setCategory({
               ...stateCategory,
               folder: 0
@@ -239,9 +236,10 @@ export default function Checkout({ action }) {
             <Typography component="h1" variant="h4" align="center">
               {action === 'add' ? 'Añadir mascota' : 'Editar mascota'}
             </Typography>
-            <Stepper activeStep={activeStep} className={classes.stepper}>
+            <Stepper activeStep={activeStep} className='__flex __fw-w'>
+
               {steps.map((label) => (
-                <Step key={label}>
+                <Step key={label}  className='__my-1'>
                   <StepLabel>{label}</StepLabel>
                 </Step>
               ))}
@@ -250,20 +248,19 @@ export default function Checkout({ action }) {
               {activeStep === steps.length ? (
                 <React.Fragment>
                   <Typography variant="h5" gutterBottom>
-                    Your pet's data has been successfully saved!
+                  ¡Los datos de su mascota se han guardado correctamente!
                   </Typography>
                   <Typography variant="subtitle1">
-                    You can now control and enhance your pet's health thanks to
-                    Pet&Vet and CarePet.
+                  Ahora puedes controlar y mejorar la salud de tu mascota gracias a Pet Vet y CarPet.
                   </Typography>
                 </React.Fragment>
               ) : (
                 <React.Fragment>
-                  {getStepContent(
-                    activeStep,
-                    valuesField,
-                    handleTextFieldChange,
-                  )}
+                    {getStepContent(
+                      activeStep,
+                      valuesField,
+                      handleTextFieldChange,
+                    )}
                   <div className={classes.buttons}>
                     {action === 'edit' && (<DeleteDialog className='' id={petSelect.id} />)}
                     {activeStep !== 0 && (

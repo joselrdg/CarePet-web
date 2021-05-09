@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
@@ -8,17 +8,14 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Badge from '@material-ui/core/Badge';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { Link, NavLink } from "react-router-dom";
 import { logout } from "../../../stores/AccessTokenStore";
 import { usePet } from "../../hooks/usePet";
 import DrawerBox from "./drawer";
 
 
 function ResponsiveDrawer(props) {
-  const { petsUser, petSelect } = usePet();
+  const { petsUser, petSelect, alert } = usePet();
 
   const { stateCategories, setStateCategories } = usePet();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -36,7 +33,6 @@ function ResponsiveDrawer(props) {
         petsName: petsUser.map((pet) => pet.name)
       })
     }
-
   }, [petsUser])
 
 
@@ -69,11 +65,11 @@ function ResponsiveDrawer(props) {
           </Typography>
           <div className='__flex __jc-between __ai-center'>
             <div className='__px-1'>
-              <Badge badgeContent={4} color="secondary" >
+              <Badge badgeContent={alert} color="secondary" >
                 <NotificationsIcon />
               </Badge>
             </div>
-            <button onClick={logout} className="btn btn-tra"><i class="fas fa-sign-out-alt fa-2x"></i></button>
+            <button onClick={logout} className="btn btn-tra"><i className="fas fa-sign-out-alt fa-2x"></i></button>
           </div>
         </Toolbar>
 

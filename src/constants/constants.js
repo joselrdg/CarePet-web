@@ -10,20 +10,48 @@ export const CATEGORIES = [
       name:'Añadir mascota', 
       folders: ['Tablero', 'Citas', 'Cuidados', 'Medicación', 'Reseña', 'Editar'
     ]}] },
-    { 
-      name: "Razas Fci", 
-      icon: <i className="fas fa-dog"></i>, 
-      subcategory: [{ 
-        name: 'Grupos', 
-        folders: ['Grupos', 'Todas las razas', 'Buscador', ] 
-      }] },
+    // { 
+    //   name: "Razas Fci", 
+    //   icon: <i className="fas fa-dog"></i>, 
+    //   subcategory: [{ 
+    //     name: 'Grupos', 
+    //     folders: ['Grupos', 'Todas las razas' ] 
+    //   }] },
   { 
     name: "Agenda", 
     icon: <TodayIcon />, 
     subcategory: [{ 
       name: 'Calendario', 
-      folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
+      folders: ['Calendario'] 
+    }] }, 
+  { 
+    name: "Recomendaciones", 
+    icon: <i className="fas fa-hand-holding-medical"></i>, 
+    subcategory: [{ 
+      name: 'Recomendaciones', 
+      folders: ['Recomendaciones'] 
     }] },
+  { 
+    name: "Nutrición", 
+    icon: <i className="fas fa-bone"></i>, 
+    subcategory: [{ 
+      name: 'Nutrición', 
+      folders: ['Nutrición', 'Nutrición', 'Nutrición'] 
+    }] },
+  // { 
+  //   name: "Vacunas", 
+  //   icon: <i className="fas fa-syringe"></i>, 
+  //   subcategory: [{ 
+  //     name: 'Vacunas', 
+  //     folders: ['Vacunas', 'Vacunas', 'Vacunas'] 
+  //   }] },
+  // { 
+  //   name: "Desparasitación", 
+  //   icon: <i className="fas fa-bug"></i>, 
+  //   subcategory: [{ 
+  //     name: 'Añadir aviso', 
+  //     folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
+  //   }] },
   { 
     name: "Plan de salud",
      icon: <LocalHospitalIcon />, 
@@ -32,39 +60,11 @@ export const CATEGORIES = [
       folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
     }] },
   { 
-    name: "Recomendaciones", 
-    icon: <i className="fas fa-hand-holding-medical"></i>, 
-    subcategory: [{ 
-      name: 'Añadir aviso', 
-      folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
-    }] },
-  { 
-    name: "Nutrición", 
-    icon: <i className="fas fa-bone"></i>, 
-    subcategory: [{ 
-      name: 'Añadir aviso', 
-      folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
-    }] },
-  { 
-    name: "Vacunas", 
-    icon: <i className="fas fa-syringe"></i>, 
-    subcategory: [{ 
-      name: 'Añadir aviso', 
-      folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
-    }] },
-  { 
-    name: "Desparasitación", 
-    icon: <i className="fas fa-bug"></i>, 
-    subcategory: [{ 
-      name: 'Añadir aviso', 
-      folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
-    }] },
-  { 
     name: "Historial", 
     icon: <i className="fas fa-file-medical"></i>, 
     subcategory: [{ 
-      name: 'Añadir aviso', 
-      folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
+      name: 'Historial', 
+      folders: ['Historial', 'Historial', 'Historial'] 
     }] }
 ];
 

@@ -1,12 +1,8 @@
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import React, { useEffect } from 'react';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import { usePet } from '../../../../hooks/usePet';
-import Schedule from '../../ScheduleScreen/ScheduleScreen';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -38,7 +34,7 @@ const columns = [
 export default function ListAppointments({ actionOpen }) {
     const classes = useStyles()
 
-    const { petSelect, editPet, editPetSchedule, deletePetSchedule } = usePet();
+    const { petSelect, alert, setAlert } = usePet();
 
     const {
         wash,
@@ -66,10 +62,15 @@ export default function ListAppointments({ actionOpen }) {
     // console.log(
     //     fecha.toLocaleDateString("es-ES", options)
     //   );
-
+    let alarmtime = 0
     let datap = data.map((e, i) => {
         const timeSt = new Date(e.startDate).getTime()
         const timeEnd = new Date(e.endDate).getTime()
+        const fecha = new Date()
+        const fechetime = fecha.getTime()
+        if (timeEnd < fechetime + 86400000 && timeEnd > fechetime - 86400000) {
+            alarmtime++
+        }
         e.startDate = (timeSt);
         e.endDate = (timeEnd);
         return e
@@ -79,11 +80,15 @@ export default function ListAppointments({ actionOpen }) {
         return b.startDate - a.startDate
     })
 
-    const dataFilter  = []
+    useEffect(() => {
+        if (alert === 0 || alert < alarmtime) {
+            setAlert(alarmtime)
+        }
+    }, [])
+
+    const dataFilter = []
     datap.map((e) => {
-        console.log(e.action === actionOpen.actionStart)
-        console.log(e.action)
-        console.log(actionOpen.actionEnd)
+
         if (actionOpen.actionStart === 'all') {
             dataFilter.push(e)
             return e
@@ -94,7 +99,6 @@ export default function ListAppointments({ actionOpen }) {
             return e
         }
     })
-    console.log(dataFilter)
     return (
         <Paper className={classes.root}>
             <TableContainer className={classes.container}>
