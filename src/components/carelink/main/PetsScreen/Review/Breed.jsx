@@ -83,14 +83,14 @@ export default function Breed() {
         <div className='__flex __fw-w'>
             <Card className={classes.root}>
                 <CardActionArea>
-                    <CardMedia
+                    {/* <CardMedia
                         component="img"
                         alt="Contemplative Reptile"
                         height="140"
                         image="./descarga.jpg"
                         title="Contemplative Reptile"
-                    />
-                    <CardContent>
+                    /> */}
+                    <CardContent className='__flex __fd-col __ai-center'>
                         <Typography gutterBottom variant="h5" component="h2">
                             {nameTwo ? nameTwo : nameOne}
                         </Typography>

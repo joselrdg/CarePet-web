@@ -88,7 +88,7 @@ const PetProfile = () => {
     const willlastdeworming = willdeworming[willdeworming.length - 1] ? willdeworming[willdeworming.length - 1] : { startDate: new Date(2020, 12, 17) }
 
     // const { review} = petsUser[0]
-  
+
 
     const sum = (clave) => {
         let date = "";
@@ -188,97 +188,99 @@ const PetProfile = () => {
 
     return (
         <>
-            <div className={classes.root}>
+            <div className='__flex __fw-w __ai-center __jc-center '>
                 <Paper elevation={3} className={classes.review}>
                     <Review />
                 </Paper>
                 <Paper elevation={3} className={classes.review}>
                     <Schedule className='__schedule' datap={datap} />
                 </Paper>
-                <Paper elevation={3} className={classes.weight}>
-                    <div className='__flex __jc-center'>
-                        <i className="fas fa-bath fa-3x __mt-1 __mx-1 __my-1 __icon-light"></i>
-                        <Circularbar
-                                cx={180}                            
+                <div className='__flex __fw-w __ai-center __jc-center '>
+                    <Paper elevation={3} className={classes.weight}>
+                        <div className='__flex __jc-center'>
+                            <i className="fas fa-bath fa-3x __mt-1 __mx-1 __my-1 __icon-light"></i>
+                            <Circularbar
+                                cx={180}
                                 cy={40}
                                 outerRadius={30}
                                 innerRadius={18}
                                 height='80px'
                                 data={datachart(lastwash.startDate, willlastwash.startDate)} />
-                    </div>
-                    <h4 className='__my-1'>{subtraction('wash')} días desde el ultimo baño.</h4>
-                    <LinearDeterminate petprogess={percentage('wash')} />
-                    <h4 className='__my-1'>Faltan {sum('wash') > 0 ? sum('wash'):0} días para el siguiente.</h4>
-                    <div className='__flex __ai-center'>
-                        <i className="fas fa-cut fa-3x  __mt-1 __mx-1 __my-1 __icon-light"></i>
-                         <Circularbar
-                                cx={180}                            
+                        </div>
+                        <h4 className='__my-1'>{subtraction('wash')} días desde el ultimo baño.</h4>
+                        <LinearDeterminate petprogess={percentage('wash')} />
+                        <h4 className='__my-1'>Faltan {sum('wash') > 0 ? sum('wash') : 0} días para el siguiente.</h4>
+                        <div className='__flex __ai-center'>
+                            <i className="fas fa-cut fa-3x  __mt-1 __mx-1 __my-1 __icon-light"></i>
+                            <Circularbar
+                                cx={180}
                                 cy={40}
                                 outerRadius={30}
                                 innerRadius={18}
                                 height='80px'
                                 data={datachart(lasthaircut.startDate, willlasthaircut.startDate)} />
-                    </div>
-                    <h4 className='__my-1'>{subtraction("haircut")} días desde el ultimo corte.</h4>
-                    <LinearDeterminate petprogess={percentage("haircut")} />
-                    <h4 className='__my-1'>Faltan {sum("haircut") > 0 ? sum('haircut'):0} días para el siguiente.</h4>
-                </Paper>
-                <Paper elevation={3} className={classes.weight}>
-                    <div className='__flex __ai-center'>
-                        <i className="fas fa-tooth fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
-                        <Circularbar
-                                cx={180}                            
+                        </div>
+                        <h4 className='__my-1'>{subtraction("haircut")} días desde el ultimo corte.</h4>
+                        <LinearDeterminate petprogess={percentage("haircut")} />
+                        <h4 className='__my-1'>Faltan {sum("haircut") > 0 ? sum('haircut') : 0} días para el siguiente.</h4>
+                    </Paper>
+                    <Paper elevation={3} className={classes.weight}>
+                        <div className='__flex __ai-center'>
+                            <i className="fas fa-tooth fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
+                            <Circularbar
+                                cx={180}
                                 cy={40}
                                 outerRadius={30}
                                 innerRadius={18}
                                 height='80px'
                                 data={datachart(lastteethcleaning.startDate, willlastteethcleaning.startDate)} />
-                    </div>
-                    <h4 className='__my-1'>{subtraction("teethcleaning")} días desde la última limpieza.</h4>
-                    <LinearDeterminate petprogess={percentage("teethcleaning")} />
-                    <h4 className='__my-1'>Faltan {sum("teethcleaning") > 0 ? sum('teethcleaning'):0} días para el siguiente.</h4>
-                    <div className='__flex __ai-center'>
-                        <i className="fas fa-hand-sparkles fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
-                        <Circularbar
-                                cx={180}                            
+                        </div>
+                        <h4 className='__my-1'>{subtraction("teethcleaning")} días desde la última limpieza.</h4>
+                        <LinearDeterminate petprogess={percentage("teethcleaning")} />
+                        <h4 className='__my-1'>Faltan {sum("teethcleaning") > 0 ? sum('teethcleaning') : 0} días para el siguiente.</h4>
+                        <div className='__flex __ai-center'>
+                            <i className="fas fa-hand-sparkles fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
+                            <Circularbar
+                                cx={180}
                                 cy={40}
                                 outerRadius={30}
                                 innerRadius={18}
                                 height='80px'
                                 data={datachart(lastearcleaning.startDate, willlastearcleaning.startDate)} />
-                    </div>
-                    <h4 className='__my-1'>{subtraction("deworming")} días desde la limpieza de oídos.</h4>
-                    <LinearDeterminate petprogess={percentage("deworming")} />
-                    <h4 className='__my-1'>Faltan {sum("deworming") > 0 ? sum('deworming'):0} días para el siguiente.</h4>
-                </Paper>
-                <Paper elevation={3} className={classes.weight}>
-                    <div className='__flex __ai-center'>
-                        <i className="fas fa-bug fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
-                        <Circularbar
-                                cx={180}                            
+                        </div>
+                        <h4 className='__my-1'>{subtraction("deworming")} días desde la limpieza de oídos.</h4>
+                        <LinearDeterminate petprogess={percentage("deworming")} />
+                        <h4 className='__my-1'>Faltan {sum("deworming") > 0 ? sum('deworming') : 0} días para el siguiente.</h4>
+                    </Paper>
+                    <Paper elevation={3} className={classes.weight}>
+                        <div className='__flex __ai-center'>
+                            <i className="fas fa-bug fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
+                            <Circularbar
+                                cx={180}
                                 cy={40}
                                 outerRadius={30}
                                 innerRadius={18}
                                 height='80px'
                                 data={datachart(lastteethcleaning.startDate, willlastteethcleaning.startDate)} />
-                    </div>
-                    <h4 className='__my-1'>{subtraction("teethcleaning")} días desde la última desparasitación.</h4>
-                    <LinearDeterminate petprogess={percentage("teethcleaning")} />
-                    <h4 className='__my-1'>Faltan {sum("teethcleaning") > 0 ? sum('teethcleaning'):0} días para el siguiente.</h4>
-                    <div className='__flex __ai-center'>
-                        <i className="fas fa-syringe fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
-                         <Circularbar
-                                cx={180}                            
+                        </div>
+                        <h4 className='__my-1'>{subtraction("teethcleaning")} días desde la última desparasitación.</h4>
+                        <LinearDeterminate petprogess={percentage("teethcleaning")} />
+                        <h4 className='__my-1'>Faltan {sum("teethcleaning") > 0 ? sum('teethcleaning') : 0} días para el siguiente.</h4>
+                        <div className='__flex __ai-center'>
+                            <i className="fas fa-syringe fa-3x __mt-1 __mb-0 __mx-1 __icon-light"></i>
+                            <Circularbar
+                                cx={180}
                                 cy={40}
                                 outerRadius={30}
                                 innerRadius={18}
                                 height='80px'
                                 data={datachart(lastvaccination.startDate, willlastvaccination.startDate)} />
-                    </div>
-                    <h4 className='__my-1'>{subtraction("vaccination")} días desde la última vacuna.</h4>
-                    <LinearDeterminate petprogess={percentage("vaccination") > 0 ? sum('vaccination'):0} />
-                    <h4 className='__my-1'>Faltan {sum("vaccination")} días para el siguiente.</h4>
-                </Paper>
+                        </div>
+                        <h4 className='__my-1'>{subtraction("vaccination")} días desde la última vacuna.</h4>
+                        <LinearDeterminate petprogess={percentage("vaccination") > 0 ? sum('vaccination') : 0} />
+                        <h4 className='__my-1'>Faltan {sum("vaccination")} días para el siguiente.</h4>
+                    </Paper>
+                </div>
             </div>
         </>
     );
