@@ -1,70 +1,169 @@
-# Getting Started with Create React App
+# CarePet - Web
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- PROJECT LOGO -->
 
-## Available Scripts
+<!-- <p align="center">
+  <a href="https://infectme.herokuapp.com"> 
+    <img src="public/images/logo.png" alt="Logo">
+  </a>
+  <br /> -->
 
-In the project directory, you can run:
+  <!-- <h3 align="center">Infect Me</h3> -->
 
-### `npm start`
+  <p align="center">
+    A website to control daily care and centralize your pet's appointments.
+    <br />
+    <a href="https://github.com/joselrdg/CarePet-web"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://petvet-web.herokuapp.com/">View Demo</a>
+    ·
+    <a href="https://github.com/joselrdg/CarePet-web/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/joselrdg/CarePet-web/issues">Request Feature</a>
+  </p>
+</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary><h2 style="display: inline-block">Table of Contents 🚀</h2></summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <!-- <li><a href="#acknowledgements">Acknowledgements</a></li> -->
+  </ol>
+    
+</details>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<!-- ABOUT THE PROJECT -->
+## About The Project
+### Dashboard:
+![ScreenShot CarePet](./public/screenShot/profile.png)
+### Simple graphics to see appointments quickly:
+![ScreenShot CarePet](./public/screenShot/care.png)
+### Appointments:
+![ScreenShot CarePet](./public/screenShot/appo.png)
+### You can program your pet's drug guidelines:
+![ScreenShot CarePet](./public/screenShot/medication.png)
+### Calendar:
+![ScreenShot CarePet](./public/screenShot/calendar.png)
+![ScreenShot CarePet](./public/screenShot/calendar2.png)
+![ScreenShot CarePet](./public/screenShot/calendar4.png)
+![ScreenShot CarePet](./public/screenShot/calendar3.png)
+### Review and breeds of dogs:
+Its own api provides you with a wealth of information on the 332 dog breeds approved by the Federation Cynologique Internationale.
+![ScreenShot CarePet](./public/screenShot/breed.png)
+### Recommendations:
+![ScreenShot CarePet](./public/screenShot/reco.png)
+![ScreenShot CarePet](./public/screenShot/reco2.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+<!-- Here's a blank template to get started:
+**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
+`github_username`, `repo_name`, `twitter_handle`, `email`, `project_title`, `project_description` -->
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Built With 🛠️
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* [NPM](https://www.npmjs.com/)
+* [Axios](https://github.com/axios/axios)
+* [React](https://es.reactjs.org/)
+* [SASS](https://sass-lang.com/)
+* [Material UI](https://material-ui.com/)
+* [DevExpress](https://www.devexpress.com/)
+* [Recharts](https://recharts.org/)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<!-- GETTING STARTED -->
+## Getting Started
 
-### Code Splitting
+To get a local copy up and running follow these simple steps.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Prerequisites
 
-### Analyzing the Bundle Size
+This is an example of how to list things you need to use the software and how to install them.
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Installation
 
-### Making a Progressive Web App
+1. Clone the repo
+   ```sh
+   git clone https://github.com/joselrdg/CarePet-web
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Create .ENV file with the following variables:
+   ```sh
+   REACT_APP_API_HOST=http://localhost:3001
+   ```
+4. Create .ENV.PRODUCTION file with the following variables:
+   ```sh
+   REACT_APP_API_HOST="Your api host"
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+<!-- ROADMAP -->
+## Roadmap
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+See the [open issues](https://github.com/joselrdg/CarePet-web/issues) for a list of proposed features (and known issues).
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+<!-- CONTRIBUTING -->
+## Contributing ✒️
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+
+
+<!-- LICENSE -->
+<!-- ## License 
+
+Distributed under the MIT License. See `LICENSE` for more information. -->
+
+
+
+<!-- CONTACT -->
+## Contact
+
+José Luis Rodríguez , [josesietepicos@gmail.com](mailto:josesietepicos@gmail.com)
+
+Project Link: [https://github.com/joselrdg/CarePet-web](https://github.com/joselrdg/Infect-me)
+
+Demo Link: [https://petvet-web.herokuapp.com/](https://infectme.herokuapp.com/)
+
+<!-- ## Acknowledgements -->
