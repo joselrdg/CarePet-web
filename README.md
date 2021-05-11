@@ -164,8 +164,8 @@ José Luis Rodríguez , [josesietepicos@gmail.com](mailto:josesietepicos@gmail.c
 
 LinkedIn , [https://www.linkedin.com/in/joseluis-rodriguez-gonzalez/](mailto:josesietepicos@gmail.com)
 
-Project Link: [https://github.com/joselrdg/CarePet-web](https://github.com/joselrdg/Infect-me)
+Project Link: [https://github.com/joselrdg/CarePet-web](https://github.com/joselrdg/CarePet-web)
 
-Demo Link: [https://petvet-web.herokuapp.com/](https://infectme.herokuapp.com/)
+Demo Link: [https://petvet-web.herokuapp.com/](https://petvet-web.herokuapp.com)
 
 <!-- ## Acknowledgements -->
