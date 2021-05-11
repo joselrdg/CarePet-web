@@ -162,6 +162,8 @@ Distributed under the MIT License. See `LICENSE` for more information. -->
 
 José Luis Rodríguez , [josesietepicos@gmail.com](mailto:josesietepicos@gmail.com)
 
+LinkedIn , [https://www.linkedin.com/in/joseluis-rodriguez-gonzalez/](mailto:josesietepicos@gmail.com)
+
 Project Link: [https://github.com/joselrdg/CarePet-web](https://github.com/joselrdg/Infect-me)
 
 Demo Link: [https://petvet-web.herokuapp.com/](https://infectme.herokuapp.com/)
