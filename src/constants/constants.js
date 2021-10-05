@@ -31,13 +31,13 @@ export const CATEGORIES = [
       name: 'Recomendaciones', 
       folders: ['Recomendaciones'] 
     }] },
-  { 
-    name: "Nutrición", 
-    icon: <i className="fas fa-bone"></i>, 
-    subcategory: [{ 
-      name: 'Nutrición', 
-      folders: ['Nutrición', 'Nutrición', 'Nutrición'] 
-    }] },
+ // { 
+  //  name: "Nutrición", 
+  //  icon: <i className="fas fa-bone"></i>, 
+  //  subcategory: [{ 
+  //    name: 'Nutrición', 
+  //    folders: ['Nutrición', 'Nutrición', 'Nutrición'] 
+   // }] },
   // { 
   //   name: "Vacunas", 
   //   icon: <i className="fas fa-syringe"></i>, 
@@ -52,20 +52,20 @@ export const CATEGORIES = [
   //     name: 'Añadir aviso', 
   //     folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
   //   }] },
-  { 
-    name: "Plan de salud",
-     icon: <LocalHospitalIcon />, 
-     subcategory: [{ 
-      name: 'Añadir aviso', 
-      folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
-    }] },
-  { 
-    name: "Historial", 
-    icon: <i className="fas fa-file-medical"></i>, 
-    subcategory: [{ 
-      name: 'Historial', 
-      folders: ['Historial', 'Historial', 'Historial'] 
-    }] }
+  //{ 
+   // name: "Plan de salud",
+    // icon: <LocalHospitalIcon />, 
+    // subcategory: [{ 
+    //  name: 'Añadir aviso', 
+    //  folders: ['Perfil', 'Reseña', 'Recomendaciones'] 
+   // }] },
+ // { 
+  //  name: "Historial", 
+  //  icon: <i className="fas fa-file-medical"></i>, 
+  //  subcategory: [{ 
+  //    name: 'Historial', 
+  //    folders: ['Historial', 'Historial', 'Historial'] 
+  //  }] }
 ];
 
 export const DOGBREED = [
